@@ -30,7 +30,8 @@ const ThemeSwitcher = (props: Props) => {
                 />
             ):(
                 <BiSun
-                className=" cursor-pointer"
+                className=" cursor-pointer text-white"
+                fill="white"
                 size={25}
                 onClick={()=>setTheme("light")}
                 />

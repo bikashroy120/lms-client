@@ -10,8 +10,8 @@ export default function Home() {
   return (
       <>
         <div>
-        hello
-        <Header open={open} setOpen={setOpen} activeItem={activeItem}/>
+          hello
+        < Header open={open} setOpen={setOpen} activeItem={activeItem}/>
         </div>
       </>
   )

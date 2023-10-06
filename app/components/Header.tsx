@@ -1,6 +1,8 @@
 "use client"
 
+import Link from 'next/link';
 import React, { FC, useState } from 'react'
+import NavItem from '../utils/NavItem';
 
 type Props = {
   open: boolean;
@@ -11,11 +13,11 @@ type Props = {
 const Header: FC<Props> = (props) => {
   const [active, setActive] = useState(false)
 
-  if(typeof window !=="undefined"){
-    window.addEventListener("scroll",()=>{
-      if(window.scrollY > 80){
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 80) {
         setActive(true)
-      }else{
+      } else {
         setActive(false)
       }
     })
@@ -25,8 +27,18 @@ const Header: FC<Props> = (props) => {
     <div
       className={`${active ? " dark:bg-opacity-50 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black fixed top-0 left-0 w-full h-[80px] z-[80] border-b dark:border-[#ffffff1c] shadow-xl transition duration-500" : "w-full border-b dark:border-[#ffffff1c] z-[80] h-[80px] dark:shadow"}`}
     >
-      hellow
-
+      <div className=' w-[90%] 800px:w-[92%] m-auto py-2 h-full'>
+        <div className=' w-full h-[80px] flex items-center justify-between p-3'>
+            <div>
+                <Link href={"/"} className=' text-[28px] font-Poppins font-[500] text-black dark:text-white'>
+                    Elearing
+                </Link>
+            </div>
+            <div className=' flex items-center'>
+                <NavItem activeItem={props.activeItem} isMobile={false}/>
+            </div>
+        </div>
+      </div>
     </div>
   )
 }

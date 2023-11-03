@@ -5,15 +5,19 @@ import React, { FC, useState } from 'react'
 import NavItem from '../utils/NavItem';
 import ThemeSwitcher from '../utils/ThemeSwitcher';
 import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi"
+import CustomModal from './Modal/CustomModal';
+import Login from './auth/Login';
 
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
   activeItem: number;
+  route:string,
+  setRoute:(route:string)=>void;
 }
 
 const Header: FC<Props> = (props) => {
-  const { open, setOpen, activeItem } = props
+  const { open, setOpen, activeItem,route,setRoute } = props
   const [active, setActive] = useState(false)
   const [openSideber, setOpenSideber] = useState(false)
 
@@ -91,6 +95,18 @@ const Header: FC<Props> = (props) => {
                 Copyright @ 2023 Elearning
               </p>
             </div>
+
+            {
+              route==="Login" && (
+                <>
+                {
+                  open && (
+                    <CustomModal open={open} setOpen={setOpen} setRoute={setRoute} active={active} component={Login}/>
+                  )
+                }
+                </>
+              )
+            }
           </div>
         )
       }

@@ -13,6 +13,16 @@ const config: Config = {
         Poppins:["var(--font-Poppins)"],
         Josefin:["var(--font-Josefin)"],
       },  
+      colors:{
+        dark: "#1b1b1b",
+        light: "#f5f5f5",
+        primary: "#B63E96",
+        primaryDark: "#58E6D9", 
+        bodyColor: "#212428",
+        lightText: "#c4cfde",
+        boxBg: "linear-gradient(145deg, #1e2024, #23272b)",
+        designColor: "#ff014f",
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

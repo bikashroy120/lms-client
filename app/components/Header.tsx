@@ -8,6 +8,7 @@ import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi";
 import CustomModal from "./Modal/CustomModal";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
+import Verification from "./auth/Verification";
 
 type Props = {
   open: boolean;
@@ -131,6 +132,19 @@ const Header: FC<Props> = (props) => {
               setRoute={setRoute}
               active={active}
               component={Signup}
+            />
+          )}
+        </>
+      )}
+      {route === "verify-otp" && (
+        <>
+          {open && (
+            <CustomModal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              active={active}
+              component={Verification}
             />
           )}
         </>

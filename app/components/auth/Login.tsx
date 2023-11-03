@@ -72,8 +72,7 @@ const Login = ({ setRoute }: Props) => {
           )}
         </div>
 
-        <button className=" w-full py-3 text-white rounded-full mt-5 font-Poppins font-semibold text-[17px] bg-[#39c1f3] ">Login</button>
-      </form>
+        <button className=" w-full py-3 text-white rounded-full mt-5 font-Poppins font-semibold text-[17px] bg-[#39c1f3] ">Login</button>      </form>
 
       <div>
         <div className=" flex flex-col items-center justify-center py-5">

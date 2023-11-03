@@ -23,7 +23,8 @@ const Signup = ({ setRoute }: Props) => {
     initialValues: {name:"", email: "", password: "" },
     validationSchema: schema,
     onSubmit: async ({ email, password }) => {
-      console.log("hello world");
+      setRoute("verify-otp")
+      console.log("click")
     },
   });
 
@@ -38,11 +39,11 @@ const Signup = ({ setRoute }: Props) => {
             Enter your name
           </label>
           <input
-            type="email"
+            type="text"
             value={values.name}
             onChange={handleChange}
             id="name"
-            placeholder="loginemail@gmail.com"
+            placeholder="Jon Deo"
             className={`${errors.name && touched.name && "border-red-500"} ${
               styles.input
             }`}
@@ -94,7 +95,7 @@ const Signup = ({ setRoute }: Props) => {
           )}
         </div>
 
-        <button className=" w-full py-3 text-white rounded-full mt-5 font-Poppins font-semibold text-[17px] bg-[#39c1f3] ">
+        <button type="submit" className=" w-full py-3 text-white rounded-full mt-5 font-Poppins font-semibold text-[17px] bg-[#39c1f3] ">
           Sign up
         </button>
       </form>

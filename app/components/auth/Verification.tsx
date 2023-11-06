@@ -1,8 +1,11 @@
 "use client"
 
-import React,{useState,useRef} from 'react'
+import React,{useState,useRef, useEffect} from 'react'
 import { styles } from '../styles/style';
 import { Icon } from '@iconify/react';
+import { useSelector } from 'react-redux';
+import { useActivationMutation } from '@/redux/features/auth/authApi';
+import toast from 'react-hot-toast';
 
 type Props = {
   setRoute:(route:string)=>void
@@ -18,6 +21,23 @@ type VerifyNumber = {
 const Verification = ({setRoute}: Props) => {
 
   const [invalidError , setInvalidError] = useState<boolean>(false)
+  const {token,code} = useSelector((state:any)=>state.auth)
+  const [activation,{isSuccess,data,error,isLoading}] = useActivationMutation()
+
+  useEffect(()=>{
+    if(isSuccess){
+      const message = data?.message || "Register success"
+      toast.success(message)
+      setRoute("Login")
+    }
+    if(error){
+      if("data" in error){
+        const errorData = error as any;
+        toast.error(errorData.data.message)
+      }
+    }
+  },[isSuccess,error])
+
   const inputRefs = [
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
@@ -32,8 +52,16 @@ const Verification = ({setRoute}: Props) => {
   })
 
   const verificationHandler = async()=>{
-    console.log("test")
-    setInvalidError(true)
+
+    const verifyNumberData = Object.values(verifyNumber).join("")
+    if(verifyNumberData.length !== 4){
+      setInvalidError(true)
+    }
+    await activation({
+      token, 
+      activitonnCode:verifyNumberData
+    })
+
   }
 
   const handelInputChange = (index:number,value:string)=>{
@@ -58,6 +86,7 @@ const Verification = ({setRoute}: Props) => {
             <Icon icon="uil:comment-verify" className='text-[30px]'/>
           </div>
       </div>
+      <p className=' text-white'>{code}</p>
       <br />
       <br />
       <div className='m-auto flex items-center justify-around'>

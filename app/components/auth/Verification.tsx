@@ -24,6 +24,9 @@ const Verification = ({setRoute}: Props) => {
   const {token,code} = useSelector((state:any)=>state.auth)
   const [activation,{isSuccess,data,error,isLoading}] = useActivationMutation()
 
+
+  console.log(token)
+
   useEffect(()=>{
     if(isSuccess){
       const message = data?.message || "Register success"
@@ -34,6 +37,8 @@ const Verification = ({setRoute}: Props) => {
       if("data" in error){
         const errorData = error as any;
         toast.error(errorData.data.message)
+      }else{
+        console.log(error)
       }
     }
   },[isSuccess,error])

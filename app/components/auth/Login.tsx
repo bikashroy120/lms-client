@@ -1,13 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { styles } from "../styles/style";
 import { Icon } from "@iconify/react";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import toast from "react-hot-toast";
 
 type Props = {
   setRoute: (route: string) => void;
+  setOpen:(open:boolean)=>void
 };
 
 const schema = Yup.object().shape({
@@ -15,14 +18,32 @@ const schema = Yup.object().shape({
   password: Yup.string().required("please enter your password").min(6),
 });
 
-const Login = ({ setRoute }: Props) => {
+const Login = ({ setOpen,setRoute }: Props) => {
   const [show, setShow] = useState(false);
+
+  const [login,{isError,isSuccess,isLoading,data,error}] = useLoginMutation()
+
+  useEffect(()=>{
+    if(isSuccess){
+      const message = data?.message || "login success"
+      toast.success(message)
+      setOpen(false)
+    }
+    if(error){
+      if("data" in error){
+        const errorData = error as any;
+        toast.error(errorData.data.message)
+      }else{
+        console.log(error)
+      }
+    }
+  },[isSuccess,error])
 
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: schema,
     onSubmit: async ({ email, password }) => {
-      console.log("hello world");
+      await login({email,password})
     },
   });
 
@@ -72,7 +93,7 @@ const Login = ({ setRoute }: Props) => {
           )}
         </div>
 
-        <button className=" w-full py-3 text-white rounded-full mt-5 font-Poppins font-semibold text-[17px] bg-[#39c1f3] ">Login</button>      </form>
+        <button className=" w-full py-3 text-white rounded-full mt-5 font-Poppins font-semibold text-[17px] bg-[#39c1f3] ">{isLoading ? "Loading..." :"Login"}</button> </form>
 
       <div>
         <div className=" flex flex-col items-center justify-center py-5">

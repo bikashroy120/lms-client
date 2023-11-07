@@ -9,6 +9,8 @@ import CustomModal from "./Modal/CustomModal";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import Verification from "./auth/Verification";
+import { useSelector } from "react-redux";
+import Image from "next/image";
 
 type Props = {
   open: boolean;
@@ -22,6 +24,10 @@ const Header: FC<Props> = (props) => {
   const { open, setOpen, activeItem, route, setRoute } = props;
   const [active, setActive] = useState(false);
   const [openSideber, setOpenSideber] = useState(false);
+
+  const {user} = useSelector((state:any)=>state.auth)
+
+  console.log(user)
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
@@ -70,11 +76,19 @@ const Header: FC<Props> = (props) => {
                 onClick={() => setOpenSideber(true)}
               />
             </div>
-            <HiOutlineUserCircle
+
+            {
+              user ? <>
+
+                <Image src={user?.avater ? user?.avater : "/user.png"} width={50} height={50} alt="logo" className="w-[30px] h-[30px] rounded-full" />
+
+              </> : <HiOutlineUserCircle
               size={25}
               className=" cursor-pointer dark:text-white text-black"
               onClick={() => setOpen(true)}
             />
+            }
+
           </div>
         </div>
       </div>

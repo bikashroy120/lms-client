@@ -4,6 +4,9 @@ import { Josefin_Sans } from "next/font/google";
 import { ThemeProvider } from "./utils/theme-provider";
 import { Toaster } from "react-hot-toast";
 import { Providers } from "./Provider";
+import { FC } from "react";
+import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
+import Loader from "./components/Loader/Loader";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,7 +32,7 @@ export default function RootLayout({
       >
         <Providers>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
+              {children}
             <Toaster position="top-center" reverseOrder={false} />
           </ThemeProvider>
         </Providers>
@@ -37,3 +40,13 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+// const Custom :FC<{children:React.ReactNode}>=({children})=>{
+//   const {isLoading} = useLoadUserQuery({})
+//   return(
+//     <>
+//     { isLoading ? <Loader/> : <>{children}</>}
+//     </>
+//   )
+// }

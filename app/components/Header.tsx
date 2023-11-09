@@ -78,11 +78,11 @@ const Header: FC<Props> = (props) => {
             </div>
 
             {
-              user ? <>
+              user ? <Link href={"/profile"}>
 
                 <Image src={user?.avater ? user?.avater : "/user.png"} width={50} height={50} alt="logo" className="w-[30px] h-[30px] rounded-full" />
 
-              </> : <HiOutlineUserCircle
+              </Link> : <HiOutlineUserCircle
               size={25}
               className=" cursor-pointer dark:text-white text-black"
               onClick={() => setOpen(true)}

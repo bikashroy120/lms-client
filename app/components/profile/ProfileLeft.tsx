@@ -7,10 +7,11 @@ import {AiOutlineLogout} from "react-icons/ai"
 type Props = {
   active: number;
   user: any;
-  setActive:(active:number)=>void
+  setActive:(active:number)=>void;
+  logOutFunction:()=>void;
 };
 
-const ProfileLeft = ({ active, user,setActive }: Props) => {
+const ProfileLeft = ({ active, user,setActive,logOutFunction }: Props) => {
   return (
     <div className=" bg-slate-800 rounded-md h-[500px] overflow-hidden">
       <button onClick={()=>setActive(1)} className={`flex hover:bg-slate-500 py-3 px-5 items-center gap-3 cursor-pointer w-[300px] ${active === 1 ? "bg-slate-500" : " bg-transparent"}`}>
@@ -37,7 +38,7 @@ const ProfileLeft = ({ active, user,setActive }: Props) => {
           Enrolled Courses
         </h2>
       </button>
-      <button className={`flex hover:bg-slate-500 py-3 dark:text-white font-semibold text-black px-5 items-center gap-3 cursor-pointer w-[300px] ${active === 2 ? "bg-slate-500" : " bg-transparent"}`}>
+      <button onClick={()=>logOutFunction()} className={`flex hover:bg-slate-500 py-3 dark:text-white font-semibold text-black px-5 items-center gap-3 cursor-pointer w-[300px] ${active === 2 ? "bg-slate-500" : " bg-transparent"}`}>
         <AiOutlineLogout size={20}/>
         <h2 className=" dark:text-white font-semibold text-black">
           Log Out

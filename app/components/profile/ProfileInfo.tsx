@@ -27,6 +27,10 @@ const ProfileInfo = ({ user }: Props) => {
       });
   };
 
+  const updateProfile = ()=>{
+    
+  } 
+
   useEffect(() => {
         setName(user?.name)
         setEmail(user?.email)
@@ -35,7 +39,7 @@ const ProfileInfo = ({ user }: Props) => {
 
   return (
     <div>
-      <div>
+      <div className=" flex items-center justify-center flex-col w-full gap-5 mt-10">
         <div className=" w-[100px] h-[100px] border-2 border-primaryDark relative rounded-full ">
           <Image
             src={imageUrl ? imageUrl : user.avater ? user.avater : "/user.png"}
@@ -54,8 +58,12 @@ const ProfileInfo = ({ user }: Props) => {
           </button>
         </div>
         
-        <div>
-            <input value={name} onChange={(e)=>setName(e.target.value)} type="text" className="py-2 px-2 border border-primaryDark bg-transparent text-white"  />
+        <div className=" flex items-center flex-col 800px:w-[700px] w-full gap-5">
+            <input value={name} onChange={(e)=>setName(e.target.value)} type="text" className="py-2 px-2 border border-primaryDark bg-transparent w-full text-white"  />
+            <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" disabled className="py-2 px-2 border border-primaryDark bg-transparent w-full text-white"  />
+            <div>
+              <button className="py-2 px-5 bg-purple-400 rounded-lg">submit</button>
+            </div>
         </div>
 
       </div>

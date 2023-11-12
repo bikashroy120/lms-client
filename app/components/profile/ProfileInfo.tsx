@@ -1,7 +1,10 @@
 "use client";
 
+import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
+import { useUpdateMutation } from "@/redux/features/auth/authApi";
 import Image from "next/image";
 import React, { useState,useEffect } from "react";
+import toast from "react-hot-toast";
 import { BiCamera } from "react-icons/bi";
 
 type Props = {
@@ -12,6 +15,10 @@ const ProfileInfo = ({ user }: Props) => {
   const [imageUrl, setImageUrl] = useState<any>();
     const [name,setName]= useState("")
     const [email,setEmail]= useState("")
+    const [loadUser,setLoadUser] = useState(false)
+    const {} = useLoadUserQuery(undefined,{skip:loadUser ? false : true})
+    const [update,{isLoading,isError,data,error,isSuccess}] = useUpdateMutation()
+
   const imgUrl = `https://api.imgbb.com/1/upload?key=${"ab3e927fbb2142be370cd6e16ff2fdee"}`;
   const handleImageUpload = (e: any) => {
     const image = e.target.files[0];
@@ -27,9 +34,28 @@ const ProfileInfo = ({ user }: Props) => {
       });
   };
 
-  const updateProfile = ()=>{
-    
+  const updateProfile = async()=>{
+      await update({
+        name:name,
+        avater:imageUrl,
+      })
   } 
+
+  useEffect(()=>{
+    if(isSuccess){
+      const message = data?.message || "Profile update success"
+      toast.success(message)
+      setLoadUser(true)
+    }
+    if(error){
+      if("data" in error){
+        const errorData = error as any;
+        toast.error(errorData.data.message)
+      }else{
+        console.log(error)
+      }
+    }
+  },[isSuccess,error])
 
   useEffect(() => {
         setName(user?.name)
@@ -62,7 +88,7 @@ const ProfileInfo = ({ user }: Props) => {
             <input value={name} onChange={(e)=>setName(e.target.value)} type="text" className="py-2 px-2 border border-primaryDark bg-transparent w-full text-white"  />
             <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" disabled className="py-2 px-2 border border-primaryDark bg-transparent w-full text-white"  />
             <div>
-              <button className="py-2 px-5 bg-purple-400 rounded-lg">submit</button>
+              <button onClick={()=>updateProfile()} className="py-2 px-5 bg-purple-400 rounded-lg">{isLoading ? "Loading.." : "submit"} </button>
             </div>
         </div>
 

@@ -1,4 +1,5 @@
 
+import { url } from "inspector";
 import {apiSlice} from "../api/apiSlice"
 import {userLoggedIn, userLoggedOut, userRegistration,} from "./authSlice"
 
@@ -87,8 +88,19 @@ export const authApi = apiSlice.injectEndpoints({
                     console.log(error)
                 }
             }
+        }),
+        update:builder.mutation({
+            query:({name,avater})=>({
+                url:"update-user",
+                method:"PUT",
+                body:{
+                    name,
+                    avater
+                },
+                credentials:"include" as const,
+            })
         })
     })
 })
 
-export const {useRegisterMutation,useActivationMutation,useLoginMutation,useLogoutQuery} = authApi;
+export const {useRegisterMutation,useActivationMutation,useLoginMutation,useLogoutQuery,useUpdateMutation} = authApi;

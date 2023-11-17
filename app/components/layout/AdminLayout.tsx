@@ -1,11 +1,19 @@
 import React from 'react'
+import AdminSidber from './AdminSidber'
 
-type Props = {}
+type Props = {
+  children:React.ReactNode
+}
 
-const AdminLayout = (props: Props) => {
+const AdminLayout = ({children}: Props) => {
   return (
-    <div className=''>
-
+    <div className=' flex items-start'>
+        <div>
+            <AdminSidber/>
+        </div>
+        <div>
+            {children}
+        </div>
     </div>
   )
 }

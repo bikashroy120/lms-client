@@ -17,7 +17,6 @@ const CustomModal = ({
   setRoute,
 }: Props) => {
 
-    console.log("hellow",open)
 
   return (
     <Modal

@@ -82,7 +82,7 @@ const AdminSidber = (props: Props) => {
     <motion.div
       variants={Sidebar_animation}
       animate={open ? "open" : "closed"}
-      className=" w-[16rem] max-w-[16rem] bg-white text-gray shadow-xl h-screen  md:relative fixed"
+      className=" w-[16rem] max-w-[16rem] bg-white text-gray border-r border-r-gray-300 h-screen  md:relative fixed"
     >
       <div className=" p-5 flex items-center justify-between">
         <Image src={"/logo.png"} width={50} height={50} alt="logo" />

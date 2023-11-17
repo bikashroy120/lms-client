@@ -1,3 +1,4 @@
+import AddCourses from "@/app/components/admin/courses/AddCourses";
 import AdminLayout from "@/app/components/layout/AdminLayout";
 import React from "react";
 
@@ -6,7 +7,9 @@ type Props = {};
 const Page = (props: Props) => {
   return (
     <AdminLayout>
-      <div> add user</div>
+        <div>
+            <AddCourses/>
+        </div>
     </AdminLayout>
   );
 };

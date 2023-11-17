@@ -10,6 +10,10 @@ const SubMenu = ({ data }: any) => {
   const [subMenuOpen, setSubMenuOpen] = useState(false);
   const pathname = usePathname();
   const isActive = (href: any) => {
+    return pathname.slice(0,data?.active) === href;
+  };
+
+  const isActive2 = (href: any) => {
     return pathname === href;
   };
 
@@ -20,12 +24,14 @@ const SubMenu = ({ data }: any) => {
     background: "rgba(0, 106, 60, 0.08)",
     borderRight : "3px solid rgb(0, 106, 60)"
   };
+
+
   return (
     <>
       <li
-        onClick={() => setSubMenuOpen(!subMenuOpen)}
+        onClick={() => setSubMenuOpen((pre)=>!pre)}
       >
-        <div   className=" flex items-center py-3 relative group  text-slate-500 font-semibold px-8 gap-6 hover:bg-gray-200">
+        <div style={isActive(data?.activeData) ? activeStyle : undefined}   className=" flex items-center py-3 relative group  text-slate-500 font-semibold px-8 gap-6 hover:bg-gray-200">
           <data.icon size={23} className="min-w-max" />
           <p className="flex-1 capitalize">{data.name}</p>
           <IoIosArrowDown
@@ -43,16 +49,17 @@ const SubMenu = ({ data }: any) => {
                 height: 0,
               }
         }
-        className="flex h-0 flex-col pl-14 text-[0.8rem] font-normal overflow-hidden"
+        className="flex h-0 flex-col font-normal overflow-hidden"
       >
         {data.menus?.map((menu: any) => (
-          <li key={menu}>
+          <li key={menu} onClick={()=>setSubMenuOpen(true)}>
             {/* className="hover:text-blue-600 hover:font-medium" */}
             <Link
-              href={`/${data.name}/${menu}`}
-              className="link !bg-transparent capitalize"
-            >
-              {menu}
+              href={ menu?.link? menu?.link : "/" }
+              className={`flex items-center pl-10 py-3 relative group  text-slate-500 px-9 gap-6 hover:bg-gray-200 ${isActive2(menu?.link) ? " font-bold" : " font-normal"}`}
+            > 
+              <div className=" h-[6px] w-[6px] rounded-full bg-gray-500"></div>
+              {menu?.title}
             </Link>
           </li>
         ))}

@@ -45,14 +45,20 @@ const text_hedin = {
 
 const subMenusList = [
   {
-    name: "build",
+    name: "Courses",
     icon: RiBuilding3Line,
-    menus: ["auth", "app settings", "stroage", "hosting"],
-  },
-  {
-    name: "analytics",
-    icon: TbReportAnalytics,
-    menus: ["dashboard", "realtime", "events"],
+    active: 13,
+    activeData: "/admin/course",
+    menus: [
+      {
+        title: "Add Course",
+        link: "/admin/course/add",
+      },
+      {
+        title: "All Course",
+        link: "/admin/course/all",
+      },
+    ],
   },
 ];
 
@@ -69,7 +75,7 @@ const AdminSidber = (props: Props) => {
 
     color: "rgb(0, 106, 60)",
     background: "rgba(0, 106, 60, 0.08)",
-    borderRight : "3px solid rgb(0, 106, 60)"
+    borderRight: "3px solid rgb(0, 106, 60)",
   };
 
   return (
@@ -155,6 +161,25 @@ const AdminSidber = (props: Props) => {
               <SubMenu data={menu} />
             </div>
           ))}
+
+          <li>
+            <Link
+              style={isActive("/admin") ? activeStyle : undefined}
+              href={"/admin"}
+              className=" flex items-center py-3 relative group  text-slate-500 font-semibold px-8 gap-6 hover:bg-gray-200"
+            >
+              <MdOutlineDashboard size={20} className={" min-w-max"} />
+              <span
+                className={`${
+                  !open
+                    ? "absolute top-[3px] hidden group-hover:flex  bg-gray-200 rounded-md p-2 left-[100px]"
+                    : ""
+                }`}
+              >
+                DashBoard
+              </span>
+            </Link>
+          </li>
         </ul>
       </div>
     </motion.div>

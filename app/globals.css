@@ -22,6 +22,21 @@ input::-webkit-outer-spin-button{
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  transition: 5s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(transparent, #00ab55);
+  border-radius: 10px;
+  transition: 5s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(transparent, #da0707);
+}
+
 body {
   color: rgb(var(--foreground-rgb));
 }

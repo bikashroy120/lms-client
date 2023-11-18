@@ -8,7 +8,7 @@ import CourseData from "./CourseData";
 type Props = {};
 
 const AddCourses = (props: Props) => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
   const [courseInfo, setCourseInfo] = useState({
     name: "",
     description: "",
@@ -50,7 +50,7 @@ const AddCourses = (props: Props) => {
           />
         )}
 
-        {active === 0 && (
+        {active === 1 && (
           <CourseData
             benefits={benefits}
             setBenefits={setBenefits}

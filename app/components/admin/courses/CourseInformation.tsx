@@ -19,7 +19,7 @@ const CourseInformation = ({
 
 
   const handelSubmit = (e:any)=>{
-    e.preventdefault()
+    e.preventDefault()
     setActive(active+1)
   }
 
@@ -40,6 +40,9 @@ const CourseInformation = ({
 
   return (
     <div className="p-8">
+
+      <h2 className=" text-2xl font-semibold">Course Information</h2>
+
       <form onSubmit={handelSubmit}>
         <div className=" flex items-start flex-col gap-1 py-3">
           <label className=" text-black font-semibold text-sm" htmlFor="name">
@@ -53,7 +56,7 @@ const CourseInformation = ({
             onChange={(e: any) =>
               setCourseInfo({ ...courseInfo, name: e.target.value })
             }
-            className=" w-full py-3 px-3 border-2 shadow-md rounded-lg border-gray-500 focus:outline-blue-500"
+            className=" w-full py-3 px-3 border  rounded-lg border-gray-400 focus:outline-blue-500"
             placeholder="Enter Course Name"
           />
         </div>
@@ -70,7 +73,7 @@ const CourseInformation = ({
             onChange={(e: any) =>
               setCourseInfo({ ...courseInfo, description: e.target.value })
             }
-            className=" w-full py-2 px-3 border-2 shadow-md rounded-lg border-gray-500 h-[150px] focus:outline-blue-500"
+            className=" w-full py-2 px-3 border  rounded-lg border-gray-400 h-[150px] focus:outline-blue-500"
             placeholder="Enter description"
           ></textarea>
         </div>
@@ -88,7 +91,7 @@ const CourseInformation = ({
               onChange={(e: any) =>
                 setCourseInfo({ ...courseInfo, price: e.target.value })
               }
-              className=" w-full py-3 px-3 border-2 shadow-md rounded-lg border-gray-500 focus:outline-blue-500"
+              className=" w-full py-3 px-3 border rounded-lg border-gray-400 focus:outline-blue-500"
               placeholder="Enter Course price"
             />
           </div>
@@ -104,7 +107,7 @@ const CourseInformation = ({
               onChange={(e: any) =>
                 setCourseInfo({ ...courseInfo, estimatedPrise: e.target.value })
               }
-              className=" w-full py-3 px-3 border-2 shadow-md rounded-lg border-gray-500 focus:outline-blue-500"
+              className=" w-full py-3 px-3 border rounded-lg border-gray-400 focus:outline-blue-500"
               placeholder="Enter Estimated Price"
             />
           </div>
@@ -122,7 +125,7 @@ const CourseInformation = ({
             onChange={(e: any) =>
               setCourseInfo({ ...courseInfo, tags: e.target.value })
             }
-            className=" w-full py-3 px-3 border-2 shadow-md rounded-lg border-gray-500 focus:outline-blue-500"
+            className=" w-full py-3 px-3 border  rounded-lg border-gray-400 focus:outline-blue-500"
             placeholder="Enter Course Tags"
           />
         </div>
@@ -140,7 +143,7 @@ const CourseInformation = ({
               onChange={(e: any) =>
                 setCourseInfo({ ...courseInfo, level: e.target.value })
               }
-              className=" w-full py-3 px-3 border-2 shadow-md rounded-lg border-gray-500 focus:outline-blue-500"
+              className=" w-full py-3 px-3 border rounded-lg border-gray-400 focus:outline-blue-500"
               placeholder="Enter Course Level"
             />
           </div>
@@ -156,7 +159,7 @@ const CourseInformation = ({
               onChange={(e: any) =>
                 setCourseInfo({ ...courseInfo, demoUrl: e.target.value })
               }
-              className=" w-full py-3 px-3 border-2 shadow-md rounded-lg border-gray-500 focus:outline-blue-500"
+              className=" w-full py-3 px-3 border  rounded-lg border-gray-400 focus:outline-blue-500"
               placeholder="Enter Estimated Price"
             />
           </div>
@@ -165,7 +168,7 @@ const CourseInformation = ({
         <div className="w-full my-3">
           <div className="md:flex items-center gap-2">
             {/* <p className="text-info text-lg font-bold">Icon:</p> */}
-            <div className="relative border-4 border-gray-500 border-dashed w-full h-[100px]  text-center flex items-center justify-center flex-col">
+            <div className="relative border-4 border-gray-400 border-dashed w-full h-[100px]  text-center flex items-center justify-center flex-col">
               <p className="text-xl font-bold  text-slate-900">
                 Drag your image here
               </p>
@@ -195,7 +198,7 @@ const CourseInformation = ({
         </div>
 
         <div className=" flex justify-end">
-            <button type="submit" className="w-[200px] py-3 bg-primary rounded-md text-white font-semibold text-xl">Next</button>
+            <button type="submit" className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">Next</button>
         </div>
       </form>
     </div>

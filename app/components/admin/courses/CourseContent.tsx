@@ -1,7 +1,8 @@
 import CustomInput from "@/app/utils/CustomInput";
 import React, { useState } from "react";
-import { AiOutlineDelete } from "react-icons/ai";
-import { BiSolidPencil } from "react-icons/bi";
+import toast from "react-hot-toast";
+import { AiOutlineDelete, AiOutlinePlusCircle } from "react-icons/ai";
+import { BiSolidBank, BiSolidPencil } from "react-icons/bi";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 type Props = {
@@ -31,6 +32,83 @@ const CourseContent = ({
     updateCollapsed[index] = !updateCollapsed[index];
     setIsCollapsed(updateCollapsed);
   };
+
+  const handleRemoveLink = (index: number, LinkIndex: number) => {
+    const updateData = [...courseContentData];
+    updateData[index].links.splice(LinkIndex, 1);
+    setCourseContentData(updateData);
+  };
+
+  const handelAddLink = (index:number)=>{
+    const updateData = [...courseContentData];
+    updateData[index].links.push({title:"",url:""})
+    setCourseContentData(updateData)
+  } 
+
+  const newContentHandler = (item:any)=>{
+    if(item.title==="" || item.description==="" || item.videoUrl==="" || item.links[0].title==="" || item.links[0].url===""){
+      toast.error("Please fill all the fields first!");
+    }else{
+      let newVideoSection = "";
+
+      if(courseContentData.length > 0){
+        const lastVideoSection = courseContentData[courseContentData.length - 1].videoSection;
+
+        if(lastVideoSection){
+          newVideoSection = lastVideoSection;
+        }
+      }
+      const newContent = {
+        videoUrl:"",
+        title:"",
+        description:"",
+        links:[{title:"",url:""}]
+      }
+      setCourseContentData([...courseContentData,newContent])
+    }
+  }
+
+
+  const addNewSection = ()=>{
+    if(
+      courseContentData[courseContentData.length - 1].title === " " ||
+      courseContentData[courseContentData.length - 1].description === " " ||
+      courseContentData[courseContentData.length - 1].videoUrl === " " ||
+      courseContentData[courseContentData.length - 1].links[0].title === " " ||
+      courseContentData[courseContentData.length - 1].links[0].url === " " 
+    ){
+      toast.error("Please fill all the fields first!");
+    }else{
+      setActiveSection(activeSection+1)
+      const newContent = {
+        videoUrl:"",
+        title:"",
+        description:"",
+        videoSection:`Untitled Section ${activeSection}`,
+        links:[{title:"",url:""}]
+      }
+      setCourseContentData([...courseContentData,newContent])
+    }
+  }
+
+
+  const handelOption = ()=>{
+    if(
+      courseContentData[courseContentData.length - 1].title === " " ||
+      courseContentData[courseContentData.length - 1].description === " " ||
+      courseContentData[courseContentData.length - 1].videoUrl === " " ||
+      courseContentData[courseContentData.length - 1].links[0].title === " " ||
+      courseContentData[courseContentData.length - 1].links[0].url === " " 
+    ){
+
+    }else{
+      toast.error("Please fill the fields for go to next")
+    }
+  }
+
+  const preButton = ()=>{
+    setActive(active-1)
+  }
 
   return (
     <div className="p-8">
@@ -157,14 +235,77 @@ const CourseContent = ({
                             className=" w-full py-2 px-3 border bg-transparent  rounded-lg border-gray-400 h-[150px] focus:outline-blue-500"
                             placeholder="Enter description"
                           ></textarea>
+                          <br />
+                          <br />
+                          <br />
+                        </div>
+                        {item.links.map((link: any, LinkIndex: number) => (
+                          <div className=" mb-3 block">
+                            <div className=" w-full flex items-center justify-between">
+                              <label htmlFor="">Link {LinkIndex + 1}</label>
+                              <AiOutlineDelete
+                                onClick={() =>
+                                  LinkIndex === 0
+                                    ? null
+                                    : handleRemoveLink(index, LinkIndex)
+                                }
+                                className={`${
+                                  LinkIndex === 0
+                                    ? " cursor-no-drop"
+                                    : " cursor-pointer"
+                                } text-black text-[20px]`}
+                              />
+                            </div>
+                            <CustomInput
+                              label="Link Title"
+                              value={link.title}
+                              onChange={(e: any) => {
+                                const updateData = [...courseContentData];
+                                updateData[index].links[LinkIndex].title = e.target.value;
+                                setCourseContentData(updateData);
+                              }}
+                            />
+                            <CustomInput
+                              label="Link url"
+                              type={"url"}
+                              value={link.url}
+                              onChange={(e: any) => {
+                                const updateData = [...courseContentData];
+                                updateData[index].links[LinkIndex].url = e.target.value;
+                                setCourseContentData(updateData);
+                              }}
+                            />
+                          </div>
+                        ))}
+
+                        <br />
+                        <div className=" inline-block mb-4">
+                            <p onClick={()=>handelAddLink(index)} className=" flex items-center text-[18px] text-black cursor-pointer">
+                              <BiSolidBank className="mr-2"/> Add Link
+                            </p>
                         </div>
                       </div>
                     </>
+                  )}
+                  <br />
+                  {index === courseContentData.length - 1 && (
+                    <div>
+                        <p
+                          className=" flex items-center text-[18px] text-black cursor-pointer"
+                          onClick={()=>newContentHandler(item)}
+                        >
+                          <AiOutlinePlusCircle className= "mr-2"/> Add New Content
+                        </p>
+                    </div>
                   )}
                 </div>
               </>
             );
           })}
+          <br />
+          <div onClick={()=>addNewSection()} className=" flex items-center text-[20px] text-black">
+            <AiOutlinePlusCircle className= "mr-2"/> Add New Section
+          </div>
         </form>
       </div>
     </div>

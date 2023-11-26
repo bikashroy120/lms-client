@@ -39,6 +39,40 @@ const AddCourses = (props: Props) => {
   ]);
   const [courseData, setCourseData] = useState({});
 
+  const handelSubmit = ()=>{
+    const formattedBenefitData = benefits.map((benefit)=>({title:benefit.title}))
+    const formattedPrereQuisitions = prerequistions.map((prerequistion)=>({title:prerequistion.title}))
+
+    const formattedCourseContentData = courseContentData.map((courseContent)=>({
+      videoUrl:courseContent.videoUrl,
+      title:courseContent.title,
+      videoSection:courseContent.videoSection,
+      links:courseContent.links.map((link)=>({
+        title:link.title,
+        url:link.url
+      })),
+      suggestion:courseContent.suggestion,
+    }))
+
+
+    const data = {
+      name:courseInfo.name,
+      description:courseInfo.description,
+      price:courseInfo.price,
+      estimatedPrise:courseInfo.estimatedPrise,
+      tags:courseInfo.tags,
+      thumbnail:courseInfo.thumbnail,
+      level:courseInfo.level,
+      demoUrl:courseInfo.demoUrl,
+      totalVideos:courseContentData.length,
+      benefits:formattedBenefitData,
+      prerequistions:formattedBenefitData,
+      courseContent:formattedCourseContentData,
+    }
+
+    setCourseData(data)
+  }
+
   return (
     <div className=" w-full flex gap-3 h-full">
       <div className="w-[75%] h-full bg-white shadow-lg rounded-lg">

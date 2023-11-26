@@ -60,6 +60,7 @@ const CourseContent = ({
       }
       const newContent = {
         videoUrl:"",
+        videoSection:`${newVideoSection}`,
         title:"",
         description:"",
         links:[{title:"",url:""}]
@@ -71,15 +72,15 @@ const CourseContent = ({
 
   const addNewSection = ()=>{
     if(
-      courseContentData[courseContentData.length - 1].title === " " ||
-      courseContentData[courseContentData.length - 1].description === " " ||
-      courseContentData[courseContentData.length - 1].videoUrl === " " ||
-      courseContentData[courseContentData.length - 1].links[0].title === " " ||
-      courseContentData[courseContentData.length - 1].links[0].url === " " 
+      courseContentData[courseContentData.length - 1].title === "" ||
+      courseContentData[courseContentData.length - 1].description === "" ||
+      courseContentData[courseContentData.length - 1].videoUrl === "" ||
+      courseContentData[courseContentData.length - 1].links[0].title === "" ||
+      courseContentData[courseContentData.length - 1].links[0].url === "" 
     ){
       toast.error("Please fill all the fields first!");
     }else{
-      setActiveSection(activeSection+1)
+      setActiveSection(activeSection + 1)
       const newContent = {
         videoUrl:"",
         title:"",
@@ -175,7 +176,8 @@ const CourseContent = ({
                         onClick={() => {
                           if (index > 0) {
                             const updateData = [...courseContentData];
-                            updateData.slice(index, 1);
+                            updateData?.splice(index,1);
+                            console.log(updateData);
                             setCourseContentData(updateData);
                           }
                         }}
@@ -306,6 +308,11 @@ const CourseContent = ({
           <div onClick={()=>addNewSection()} className=" flex items-center text-[20px] text-black">
             <AiOutlinePlusCircle className= "mr-2"/> Add New Section
           </div>
+
+          <div className=" flex items-center justify-between">
+            <button onClick={()=>preButton()}  className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">Prev</button>
+            <button onClick={()=>handelOption()}  className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">Next</button>
+        </div>
         </form>
       </div>
     </div>

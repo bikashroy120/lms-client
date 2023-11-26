@@ -1,15 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import CourseOption from "./CourseOption";
 import CourseInformation from "./CourseInformation";
 import CourseData from "./CourseData";
 import CourseContent from "./CourseContent";
+import PreviewCourse from "./PreviewCourse";
+import { useCreateCourseMutation } from "@/redux/features/courses/coursesApi";
+import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 type Props = {};
 
 const AddCourses = (props: Props) => {
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(0);
+  const [createCourse,{isLoading,isSuccess,error}] = useCreateCourseMutation()
   const [courseInfo, setCourseInfo] = useState({
     name: "",
     description: "",
@@ -66,12 +71,33 @@ const AddCourses = (props: Props) => {
       demoUrl:courseInfo.demoUrl,
       totalVideos:courseContentData.length,
       benefits:formattedBenefitData,
-      prerequistions:formattedBenefitData,
+      prerequisites:formattedPrereQuisitions,
       courseContent:formattedCourseContentData,
     }
-
     setCourseData(data)
   }
+
+  const handleAddCourse = async()=>{
+    const data = courseData;
+    if(!isLoading){
+      await createCourse(data)
+    }
+  }
+
+  useEffect(()=>{
+    if(isSuccess){
+      toast.success("create course successfully")
+      redirect("/admin/course/all")
+    }
+    if(error){
+      if("data" in error){
+        const errorData = error as any;
+        toast.error(errorData.data.message)
+      }else{
+        console.log(error)
+      }
+    }
+  },[isSuccess,error])
 
   return (
     <div className=" w-full flex gap-3 h-full">
@@ -102,6 +128,16 @@ const AddCourses = (props: Props) => {
             setCourseContentData={setCourseContentData}
             active={active}
             setActive={setActive}
+            handelSubmit={handelSubmit}
+          />
+        )}
+
+        {active === 3 && (
+          <PreviewCourse
+            active={active}
+            setActive={setActive}
+            courseData={courseData}
+            handleAddCourse={handleAddCourse}
           />
         )}
       </div>

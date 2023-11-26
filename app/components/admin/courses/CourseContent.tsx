@@ -10,6 +10,7 @@ type Props = {
   setCourseContentData: (courseContentData: any[]) => void;
   active: number;
   setActive: (active: number) => void;
+  handelSubmit:any
 };
 
 const CourseContent = ({
@@ -17,6 +18,7 @@ const CourseContent = ({
   setCourseContentData,
   active,
   setActive,
+  handelSubmit,
 }: Props) => {
   const [isCollapsed, setIsCollapsed] = useState(
     Array(courseContentData.length).fill(false)
@@ -93,17 +95,20 @@ const CourseContent = ({
   }
 
 
-  const handelOption = ()=>{
+  const handelOption = (e:any)=>{
+    e.preventDefault()
     if(
-      courseContentData[courseContentData.length - 1].title === " " ||
-      courseContentData[courseContentData.length - 1].description === " " ||
-      courseContentData[courseContentData.length - 1].videoUrl === " " ||
-      courseContentData[courseContentData.length - 1].links[0].title === " " ||
-      courseContentData[courseContentData.length - 1].links[0].url === " " 
+      courseContentData[courseContentData.length - 1].title === "" ||
+      courseContentData[courseContentData.length - 1].description === "" ||
+      courseContentData[courseContentData.length - 1].videoUrl === "" ||
+      courseContentData[courseContentData.length - 1].links[0].title === "" ||
+      courseContentData[courseContentData.length - 1].links[0].url === "" 
     ){
-
-    }else{
       toast.error("Please fill the fields for go to next")
+    }else{
+
+      handelSubmit()
+      setActive(active+1)
     }
   }
 
@@ -310,8 +315,8 @@ const CourseContent = ({
           </div>
 
           <div className=" flex items-center justify-between">
-            <button onClick={()=>preButton()}  className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">Prev</button>
-            <button onClick={()=>handelOption()}  className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">Next</button>
+            <button type="button" onClick={()=>preButton()}  className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">Prev</button>
+            <button type="submit" onClick={handelOption}  className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">Next</button>
         </div>
         </form>
       </div>

@@ -51,6 +51,10 @@ const subMenusList = [
     activeData: "/admin/course",
     menus: [
       {
+        title: "Category & Tags",
+        link: "/admin/course/tags",
+      },
+      {
         title: "Add Course",
         link: "/admin/course/add",
       },

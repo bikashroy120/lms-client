@@ -10,10 +10,10 @@ const Tags = (props: Props) => {
     <AdminLayout>
         <div className='flex items-start justify-between gap-8'>
             <div className=' w-full'>
-                <AddTags/>
+              <AddCategory/>
             </div>
             <div className=' w-full'>
-                <AddCategory/>
+                <AddTags/>
             </div>
         </div>
     </AdminLayout>

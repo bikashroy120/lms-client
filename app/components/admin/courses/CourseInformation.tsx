@@ -1,7 +1,9 @@
 "use client";
 
+import { useGetAllCategoryQuery } from "@/redux/features/category/categoryApi";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Select, { ActionMeta } from "react-select";
 
 type Props = {
   courseInfo: any;
@@ -10,18 +12,27 @@ type Props = {
   setActive: (active: number) => void;
 };
 
+type Option = {
+  // Define properties of your Option type
+  // For example:
+  value: string;
+  label: string;
+  // Add more properties as needed
+};
+
 const CourseInformation = ({
   courseInfo,
   setCourseInfo,
   active,
   setActive,
 }: Props) => {
-
-
-  const handelSubmit = (e:any)=>{
-    e.preventDefault()
-    setActive(active+1)
-  }
+  const {data} = useGetAllCategoryQuery({},{refetchOnMountOrArgChange:true})
+  const [tag, setTag] = useState<null | Option[]>(null);
+  const tagsData = ["HTML", "Javascript", "MySQL", "PHP"];
+  const handelSubmit = (e: any) => {
+    e.preventDefault();
+    setActive(active + 1);
+  };
 
   const imgUrl = `https://api.imgbb.com/1/upload?key=8afa748431eb08431e4d3e8918c75005`;
   const handleImageUpload = (e: any) => {
@@ -38,9 +49,25 @@ const CourseInformation = ({
       });
   };
 
+
+
+  useEffect(()=>{
+
+  },[tag])
+
+  const onChange = (
+    option: readonly Option[],
+    actionMeta: ActionMeta<Option>
+  ) => {
+    setTag([...option])
+  };
+
+  const categoryAdd = (option: Option | null, actionMeta: ActionMeta<Option>) => {
+    console.log(option)
+ }
+
   return (
     <div className="p-8">
-
       <h2 className=" text-2xl font-semibold">Course Information</h2>
 
       <form onSubmit={handelSubmit}>
@@ -115,19 +142,43 @@ const CourseInformation = ({
 
         <div className=" flex items-start flex-col gap-1 py-3 w-full">
           <label className=" text-black font-semibold text-sm" htmlFor="name">
+            Course Category
+          </label>
+          <div className=" w-full py-2  border  rounded-lg border-gray-400 focus:outline-blue-500">
+            <Select
+              defaultValue={tag}
+              onChange={categoryAdd}
+              name="category"
+              required
+              options={data?.category?.map((child:any) => {
+                return { value: child?._id, label: child?.title }
+              })}
+              className=" "
+              id="choose_account_category"
+              classNamePrefix="select"
+            />
+          </div>
+        </div>
+
+        <div className=" flex items-start flex-col gap-1 py-3 w-full">
+          <label className=" text-black font-semibold text-sm" htmlFor="name">
             Course Tags
           </label>
-          <input
-            type="text"
-            required
-            id="name"
-            value={courseInfo.tags}
-            onChange={(e: any) =>
-              setCourseInfo({ ...courseInfo, tags: e.target.value })
-            }
-            className=" w-full py-3 px-3 border  rounded-lg border-gray-400 focus:outline-blue-500"
-            placeholder="Enter Course Tags"
-          />
+          <div className=" w-full py-2  border  rounded-lg border-gray-400 focus:outline-blue-500">
+            <Select
+              defaultValue={tag}
+              onChange={onChange}
+              isMulti
+              name="colors"
+              required
+              options={tagsData.map((child) => {
+                return { value: child, label: child };
+              })}
+              className=" "
+              id="choose_account_category"
+              classNamePrefix="select"
+            />
+          </div>
         </div>
 
         <div className="flex items-center justify-between gap-5">
@@ -198,7 +249,12 @@ const CourseInformation = ({
         </div>
 
         <div className=" flex justify-end">
-            <button type="submit" className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">Next</button>
+          <button
+            type="submit"
+            className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl"
+          >
+            Next
+          </button>
         </div>
       </form>
     </div>

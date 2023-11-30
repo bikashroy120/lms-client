@@ -17,9 +17,16 @@ export const categoryApi = apiSlice.injectEndpoints({
                 method:"GET",
                 credentials:"include" as const,
             })
+        }),
+        deleteCategory:builder.mutation({
+            query:(id)=>({
+                url:`delete-category/${id}`,
+                method:"DELETE",
+                credentials:"include" as const,
+            })
         })
     })
 })
 
 
-export const {useCreateCategoryMutation,useGetAllCategoryQuery} = categoryApi;
+export const {useCreateCategoryMutation,useGetAllCategoryQuery,useDeleteCategoryMutation} = categoryApi;

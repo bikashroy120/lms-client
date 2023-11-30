@@ -9,10 +9,14 @@ import PreviewCourse from "./PreviewCourse";
 import { useCreateCourseMutation } from "@/redux/features/courses/coursesApi";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
+import Select from "react-select";
 
 type Props = {};
 
 const AddCourses = (props: Props) => {
+
+  const tagsData = ["HTML","Javascript","MySQL","PHP",]
+
   const [active, setActive] = useState(0);
   const [createCourse,{isLoading,isSuccess,error}] = useCreateCourseMutation()
   const [courseInfo, setCourseInfo] = useState({
@@ -20,7 +24,7 @@ const AddCourses = (props: Props) => {
     description: "",
     price: "",
     estimatedPrise: "",
-    tags: "",
+    tags: [""],
     level: "",
     demoUrl: "",
     thumbnail: "",

@@ -15,8 +15,6 @@ type Props = {};
 
 const AddCourses = (props: Props) => {
 
-  const tagsData = ["HTML","Javascript","MySQL","PHP",]
-
   const [active, setActive] = useState(0);
   const [createCourse,{isLoading,isSuccess,error}] = useCreateCourseMutation()
   const [courseInfo, setCourseInfo] = useState({
@@ -24,6 +22,7 @@ const AddCourses = (props: Props) => {
     description: "",
     price: "",
     estimatedPrise: "",
+    category:"",
     tags: [""],
     level: "",
     demoUrl: "",
@@ -68,7 +67,8 @@ const AddCourses = (props: Props) => {
       name:courseInfo.name,
       description:courseInfo.description,
       price:courseInfo.price,
-      estimatedPrise:courseInfo.estimatedPrise,
+      estimatedPrice:courseInfo.estimatedPrise,
+      category:courseInfo.category,
       tags:courseInfo.tags,
       thumbnail:courseInfo.thumbnail,
       level:courseInfo.level,

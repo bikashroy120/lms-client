@@ -28,6 +28,7 @@ const CourseInformation = ({
 }: Props) => {
   const {data} = useGetAllCategoryQuery({},{refetchOnMountOrArgChange:true})
   const [tag, setTag] = useState<null | Option[]>(null);
+  const [category,setCategory] = useState<null | Option>(null)
   const tagsData = ["HTML", "Javascript", "MySQL", "PHP"];
   const handelSubmit = (e: any) => {
     e.preventDefault();
@@ -49,11 +50,15 @@ const CourseInformation = ({
       });
   };
 
-
+  useEffect(()=>{
+    const newTags = tag?.map((t:any)=>t.value)
+    setCourseInfo({ ...courseInfo, tags: newTags });
+  },[tag])
 
   useEffect(()=>{
-
-  },[tag])
+    const newCategory = category?.value;
+    setCourseInfo({ ...courseInfo, category: newCategory});
+  },[category])
 
   const onChange = (
     option: readonly Option[],
@@ -63,7 +68,7 @@ const CourseInformation = ({
   };
 
   const categoryAdd = (option: Option | null, actionMeta: ActionMeta<Option>) => {
-    console.log(option)
+    setCategory(option)
  }
 
   return (
@@ -146,12 +151,12 @@ const CourseInformation = ({
           </label>
           <div className=" w-full py-2  border  rounded-lg border-gray-400 focus:outline-blue-500">
             <Select
-              defaultValue={tag}
+              defaultValue={category}
               onChange={categoryAdd}
               name="category"
               required
               options={data?.category?.map((child:any) => {
-                return { value: child?._id, label: child?.title }
+                return { value: child?.title, label: child?.title }
               })}
               className=" "
               id="choose_account_category"

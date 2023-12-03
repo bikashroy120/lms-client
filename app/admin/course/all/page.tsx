@@ -6,8 +6,9 @@ import Table from "@/app/utils/Table";
 import { useGetAllCategoryQuery } from "@/redux/features/category/categoryApi";
 import { useGetAllCourseQuery } from "@/redux/features/courses/coursesApi";
 import { Pagination } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select, { ActionMeta } from "react-select";
+import { useDebounce } from 'use-debounce';
 
 type Props = {};
 
@@ -20,20 +21,26 @@ type Option = {
 };
 
 const Page = (props: Props) => {
-  const [gender, setGender] = useState("");
+  const [level, setLevel] = useState("");
   const [searchName, setSearchName] = useState("");
   const [searchQuery, sestSearchQuery] = useState("");
   const [category, setCategory] = useState<null | Option>(null);
+  const [searchValue] = useDebounce(searchName, 1000);
   const query = "656a18488e32a74844ff646e";
+
+  let itemsPerPage = 10;
 
   const {
     data: course,
     isError,
     isLoading,
-  } = useGetAllCourseQuery(searchQuery);
+    refetch
+  } = useGetAllCourseQuery(searchQuery,{refetchOnMountOrArgChange:true});
   const { data } = useGetAllCategoryQuery({});
 
-  console.log(data);
+  console.log(searchQuery);
+
+  console.log(level)
 
   const categoryAdd = (
     option: Option | null,
@@ -41,6 +48,46 @@ const Page = (props: Props) => {
   ) => {
     setCategory(option);
   };
+
+
+  console.log(category)
+
+
+  const generateQuery = () => {
+    const queryParams = [];
+
+    if (category) {
+      queryParams.push(`category=${category.value}`);
+    }
+
+    if (searchName) {
+      queryParams.push(`search=${searchValue}`);
+    }
+
+    if (level) {
+      queryParams.push(`level=${level}`);
+    }
+    // if (gender) {
+    //   queryParams.push(`gender=${gender}`);
+    // }
+    // if (selectedStatus) {
+    //   queryParams.push(`status=${selectedStatus}`);
+    // }
+
+    //---- Default userRole for "student"
+    // queryParams.push("userRole=student");
+    // queryParams.push(`underOfInst=${user?.id}`);
+
+    return queryParams.join("&");
+  };
+
+  useEffect(() => {
+    const query = generateQuery();
+    sestSearchQuery(`${query}&page=1&limit=${itemsPerPage}`);
+    refetch()
+  }, [searchValue, category,level]);
+
+
 
   const handelClear = () => {
     setCategory(null);
@@ -81,7 +128,7 @@ const Page = (props: Props) => {
             </div>
 
             <div className="w-full">
-              <select className=" w-full py-3 px-3 border  rounded-lg border-gray-400 focus:outline-blue-500">
+              <select value={level} onChange={(e:any)=>setLevel(e.target.value)} className=" w-full py-3 px-3 border  rounded-lg border-gray-400 focus:outline-blue-500">
                 <option value="">Select Level</option>
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>

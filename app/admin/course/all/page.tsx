@@ -5,6 +5,7 @@ import AdminLayout from "@/app/components/layout/AdminLayout";
 import Table from "@/app/utils/Table";
 import { useGetAllCategoryQuery } from "@/redux/features/category/categoryApi";
 import { useGetAllCourseQuery } from "@/redux/features/courses/coursesApi";
+import { Pagination } from "antd";
 import React, { useState } from "react";
 import Select, { ActionMeta } from "react-select";
 
@@ -50,8 +51,8 @@ const Page = (props: Props) => {
       <div>
         <h2 className=" font-semibold text-[25px]">All Course</h2>
 
-        <div className=" py-5 px-4 mt-5 bg-white shadow-md rounded-lg">
-          <div className=" flex items-center justify-between gap-7">
+        <div className=" mt-5 bg-white shadow-md rounded-lg">
+          <div className="py-5 px-4 flex items-center justify-between gap-7">
             <div className="w-full">
               <input
                 type="text"
@@ -92,12 +93,15 @@ const Page = (props: Props) => {
               <button onClick={handelClear}>clear</button>
             </div>
           </div>
-        </div>
 
-        <div className="">
-            <CourseTable course={course} isLoading={isLoading}/>      
-        </div>
+          <div className=" border-b w-full flex items-center justify-center">
+            <CourseTable course={course?.course} isLoading={isLoading}/>      
+          </div>
 
+          <div className=" py-5">
+            {isLoading ? <> </> : <Pagination defaultCurrent={1} total={100} pageSize={10}  showSizeChanger={false}/>} 
+          </div>
+        </div>
         {/* <Table columns={columns} data={data}/> */}
       </div>
     </AdminLayout>

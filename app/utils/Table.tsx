@@ -37,6 +37,7 @@ const Table = ({columns,data}: Props) => {
         rows: {
             style: {
                 minHeight: '52px', // override the row height
+                
             },
         },
 
@@ -51,23 +52,22 @@ const Table = ({columns,data}: Props) => {
             style: {
                 paddingLeft: '20px', // override the cell padding for head cells
                 paddingRight: '20px',
-                fontSize:"20px",
-                background:"red",
-                borderRadius:"20px"
+                fontSize:"16px",
+                backgroundColor: 'rgb(244, 246, 248)',
             },
         },
         cells: {
             style: {
-                padding:"10px 20px ",
+                padding:"15px 20px ",
                 paddingLeft: '20px', // override the cell padding for data cells
                 paddingRight: '20px',
-                fontSize:"18px",
-                
+                fontSize:"16px",
+                color: "rgb(99, 115, 129)",
             },
         },
     };
   return (
-    <div className=' text-black  font-Poppins'>
+    <div className=' w-full font-Poppins text-slate-500 '>
         <DataTable
             columns={columns}
             data={data && data}

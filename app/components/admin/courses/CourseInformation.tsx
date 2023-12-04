@@ -154,7 +154,6 @@ const CourseInformation = ({
               defaultValue={category}
               onChange={categoryAdd}
               name="category"
-              required
               options={data?.category?.map((child:any) => {
                 return { value: child?.title, label: child?.title }
               })}
@@ -175,7 +174,6 @@ const CourseInformation = ({
               onChange={onChange}
               isMulti
               name="colors"
-              required
               options={tagsData.map((child) => {
                 return { value: child, label: child };
               })}

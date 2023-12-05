@@ -21,7 +21,7 @@ const CourseContent = ({
   handelSubmit,
 }: Props) => {
   const [isCollapsed, setIsCollapsed] = useState(
-    Array(courseContentData.length).fill(false)
+    Array(courseContentData?.length).fill(false)
   );
   const [activeSection, setActiveSection] = useState(1);
 

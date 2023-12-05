@@ -6,7 +6,7 @@ import CourseInformation from "./CourseInformation";
 import CourseData from "./CourseData";
 import CourseContent from "./CourseContent";
 import PreviewCourse from "./PreviewCourse";
-import { useCreateCourseMutation, useGetSingleCourseQuery } from "@/redux/features/courses/coursesApi";
+import {  useEditCourseMutation, useGetSingleCourseQuery } from "@/redux/features/courses/coursesApi";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 import Loader2 from "@/app/utils/Loader2/Loader2";
@@ -20,7 +20,7 @@ const EditCourse = ({id}:Props) => {
     console.log(data?.course?.name)
 
   const [active, setActive] = useState(0);
-  const [createCourse,{isLoading,isSuccess,error}] = useCreateCourseMutation()
+  const [editCourse,{isLoading,isSuccess,error}] = useEditCourseMutation()
   const [courseInfo, setCourseInfo] = useState({
     name: "",
     description: "",
@@ -80,7 +80,7 @@ const EditCourse = ({id}:Props) => {
       totalVideos:courseContentData.length,
       benefits:formattedBenefitData,
       prerequisites:formattedPrereQuisitions,
-      courseContent:formattedCourseContentData,
+      courseData:formattedCourseContentData,
     }
     setCourseData(data)
   }
@@ -88,7 +88,7 @@ const EditCourse = ({id}:Props) => {
   useEffect(()=>{
     if(data?.course){
         setCourseInfo({
-            name: "ssdsdsdsdssdsdsd",
+            name: data?.course?.name,
             description: data?.course?.description,
             price: data?.course?.price,
             estimatedPrise: data?.course.estimatedPrice,
@@ -98,19 +98,22 @@ const EditCourse = ({id}:Props) => {
             demoUrl: data?.course?.demoUrl,
             thumbnail: data?.course?.thumbnail,
         })
+        setBenefits(data?.course?.benefits)
+        setPrerequistions(data?.course?.prerequisites)
+        // setCourseContentData(data?.course?.courseData)
     }
   },[data?.course,id,mainSuccess,mainLoading])
 
   const handleAddCourse = async()=>{
     const data = courseData;
     if(!isLoading){
-      await createCourse(data)
+      await editCourse({id,data})
     }
   }
 
   useEffect(()=>{
     if(isSuccess){
-      toast.success("create course successfully")
+      toast.success("update course successfully")
       redirect("/admin/course/all")
     }
     if(error){
@@ -131,7 +134,8 @@ const EditCourse = ({id}:Props) => {
 //   }
 
   return (
-    <div className=" w-full flex gap-3 h-full">
+    <div className=" w-full flex flex-col gap-3 h-full">
+      <h2 className=" text-[25px] font-medium">Edit Course</h2>
       <div className="w-[75%] h-full bg-white shadow-lg rounded-lg">
         {active === 0 && (
           <CourseInformation

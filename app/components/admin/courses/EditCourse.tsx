@@ -51,6 +51,8 @@ const EditCourse = ({id}:Props) => {
   ]);
   const [courseData, setCourseData] = useState({});
 
+  console.log("head", data?.course)
+
   const handelSubmit = ()=>{
     const formattedBenefitData = benefits.map((benefit)=>({title:benefit.title}))
     const formattedPrereQuisitions = prerequistions.map((prerequistion)=>({title:prerequistion.title}))
@@ -59,6 +61,7 @@ const EditCourse = ({id}:Props) => {
       videoUrl:courseContent.videoUrl,
       title:courseContent.title,
       videoSection:courseContent.videoSection,
+      description:courseContent.description,
       links:courseContent.links.map((link)=>({
         title:link.title,
         url:link.url
@@ -100,12 +103,13 @@ const EditCourse = ({id}:Props) => {
         })
         setBenefits(data?.course?.benefits)
         setPrerequistions(data?.course?.prerequisites)
-        // setCourseContentData(data?.course?.courseData)
+        setCourseContentData(data?.course?.courseData)
     }
   },[data?.course,id,mainSuccess,mainLoading])
 
   const handleAddCourse = async()=>{
     const data = courseData;
+    console.log(data)
     if(!isLoading){
       await editCourse({id,data})
     }
@@ -173,6 +177,7 @@ const EditCourse = ({id}:Props) => {
             setActive={setActive}
             courseData={courseData}
             handleAddCourse={handleAddCourse}
+            edit={true}
           />
         )}
       </div>

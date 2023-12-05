@@ -142,7 +142,7 @@ const Page = (props: Props) => {
           </div>
 
           <div className=" border-b w-full flex items-center justify-center">
-            <CourseTable course={course?.course} isLoading={isLoading}/>      
+            <CourseTable course={course?.course} isLoading={isLoading} refetch={refetch}/>      
           </div>
 
           <div className=" py-5">

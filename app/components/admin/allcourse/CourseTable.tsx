@@ -1,17 +1,43 @@
 import Loader2 from "@/app/utils/Loader2/Loader2";
 import Table from "@/app/utils/Table";
+import { useDeleteCourseMutation } from "@/redux/features/courses/coursesApi";
 import Image from "next/image";
 import { useRouter } from 'next/navigation'
-import React from "react";
+import React,{useEffect} from "react";
 import { AiFillEdit, AiTwotoneDelete } from "react-icons/ai";
+import swal from "sweetalert";
 
 type Props = {
   course: any;
   isLoading: boolean;
+  refetch:any;
 };
 
-const CourseTable = ({ course, isLoading }: Props) => {
+const CourseTable = ({ course, isLoading,refetch }: Props) => {
   const router = useRouter()
+  const [deleteCourse,{isSuccess,error}] = useDeleteCourseMutation()
+
+
+  useEffect(()=>{
+    if(isSuccess){
+      swal("Successfully deleted!", {
+        icon: "success",
+      });
+      refetch()
+    }
+    if(error){
+      if("data" in error){
+        const errorData = error as any;
+        swal(errorData.data.message, {
+          icon: "warning",
+        });
+      }else{
+        console.log(error)
+      }
+    }
+  },[isSuccess,error])
+
+
   const columns = [
     {
       name: "Image",
@@ -51,7 +77,7 @@ const CourseTable = ({ course, isLoading }: Props) => {
             <button onClick={()=>handelEdit(row._id)}  className=" text-[20px] hover:text-green-500">
               <AiFillEdit />
             </button>
-            <button className=" text-[20px] hover:text-red-500">
+            <button onClick={()=>handelDelete(row._id)} className=" text-[20px] hover:text-red-500">
               <AiTwotoneDelete />
             </button>
           </div>
@@ -62,6 +88,28 @@ const CourseTable = ({ course, isLoading }: Props) => {
 
   const handelEdit = (id:any)=>{
     router.push(`/admin/course/edit-course/${id}`)
+  }
+
+  const handelDelete = async(id:any)=>{
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this product.",
+      icon: "warning",
+      // buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        deleteItemFun(id)
+      } else {
+        swal("Course is safe!");
+      }
+    });
+  }
+
+  const deleteItemFun = async(id:any)=>{
+
+    console.log(id)
+    await deleteCourse(id)
   }
 
   return <div className=" w-full flex items-center justify-center">

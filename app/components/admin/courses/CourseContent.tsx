@@ -29,6 +29,9 @@ const CourseContent = ({
     e.preventDefault();
   };
 
+
+  console.log("courseContentData",courseContentData)
+
   const handleCollapseToggle = (index: number) => {
     const updateCollapsed = [...isCollapsed];
     updateCollapsed[index] = !updateCollapsed[index];

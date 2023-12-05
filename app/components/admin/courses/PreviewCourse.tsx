@@ -5,9 +5,10 @@ type Props = {
     setActive: (active: number) => void;
     handleAddCourse:any;
     courseData:any;
+    edit?:boolean
 }
 
-const PreviewCourse = ({active,setActive,handleAddCourse,courseData}: Props) => {
+const PreviewCourse = ({active,setActive,handleAddCourse,courseData,edit}: Props) => {
 
     const handelOption = ()=>{
         console.log(courseData)
@@ -32,7 +33,7 @@ const PreviewCourse = ({active,setActive,handleAddCourse,courseData}: Props) => 
 
         <div className=" flex items-center justify-between">
             <button type="button" onClick={()=>preButton()}  className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">Prev</button>
-            <button type="submit" onClick={()=>handelOption()}  className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">Next</button>
+            <button type="submit" onClick={()=>handelOption()}  className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">{edit ? "Update" : "Create"}</button>
         </div>
     </div>
   )

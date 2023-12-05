@@ -54,6 +54,7 @@ const AddCourses = (props: Props) => {
     const formattedCourseContentData = courseContentData.map((courseContent)=>({
       videoUrl:courseContent.videoUrl,
       title:courseContent.title,
+      description:courseContent.description,
       videoSection:courseContent.videoSection,
       links:courseContent.links.map((link)=>({
         title:link.title,
@@ -76,7 +77,7 @@ const AddCourses = (props: Props) => {
       totalVideos:courseContentData.length,
       benefits:formattedBenefitData,
       prerequisites:formattedPrereQuisitions,
-      courseContent:formattedCourseContentData,
+      courseData:formattedCourseContentData,
     }
     setCourseData(data)
   }

@@ -32,9 +32,16 @@ export const courseApi = apiSlice.injectEndpoints({
                 body:data,
                 credentials:"include" as const,
             })
+        }),
+        deleteCourse:builder.mutation({
+            query:(id)=>({
+                url:`course/delete-course/${id}`,
+                method:"DELETE",
+                credentials:"include" as const,
+            })
         })
     })
 })
 
 
-export const {useCreateCourseMutation,useGetAllCourseQuery,useGetSingleCourseQuery,useEditCourseMutation} = courseApi;
+export const {useCreateCourseMutation,useGetAllCourseQuery,useGetSingleCourseQuery,useEditCourseMutation,useDeleteCourseMutation} = courseApi;

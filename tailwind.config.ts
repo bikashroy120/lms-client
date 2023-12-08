@@ -16,10 +16,11 @@ const config: Config = {
       colors:{
         dark: "#1b1b1b",
         light: "#f5f5f5",
-        primary: "#B63E96",
+        primary: "#FF6575",
         primaryDark: "#58E6D9", 
         bodyColor: "#212428",
-        lightText: "#c4cfde",
+        text:"#002058",
+        lightText: "#515151",
         boxBg: "linear-gradient(145deg, #1e2024, #23272b)",
         designColor: "#ff014f",
       },

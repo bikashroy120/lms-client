@@ -46,6 +46,14 @@ body {
   animation: changeBgColor 8s infinite alternate;
 }
 
+.hero_background{
+  background-image: url("/banner.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
 @keyframes changeBgColor {
   0%,100%{
     opacity: 1;

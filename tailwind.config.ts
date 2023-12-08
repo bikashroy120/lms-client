@@ -18,6 +18,7 @@ const config: Config = {
         light: "#f5f5f5",
         primary: "#FF6575",
         primaryDark: "#58E6D9", 
+        success:"#B4A7F5",
         bodyColor: "#212428",
         text:"#002058",
         lightText: "#515151",

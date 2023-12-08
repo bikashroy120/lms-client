@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import { Icon } from "@iconify/react";
 import Container from "@/app/utils/Container";
 import { BiSearch } from "react-icons/bi";
 import { FaArrowRightLong } from "react-icons/fa6";
+import AnimatedNumber from "../ui/AnimatedNumber";
 
 
 type Props = {};
@@ -26,7 +26,7 @@ const Hero = (props: Props) => {
                       worldwide since 2022</h3>
 
                     <div>
-                        <h2 className=" text-[50px] font-bold text-text">290+ 4.5</h2>
+                        <h2 className=" text-[50px] font-bold text-text"><AnimatedNumber value={290} />+  4.5</h2>
                     </div>
                 </div>
 

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Route/Hero";
+import Category from "./components/HomePage/Category";
 
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         <div>
           < Header open={open} setOpen={setOpen} route={route} setRoute={setRoute} activeItem={activeItem}/>
           <Hero/>
+          <Category/>
         </div>
       </>
   )

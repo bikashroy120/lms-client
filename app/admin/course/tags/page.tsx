@@ -12,9 +12,6 @@ const Tags = (props: Props) => {
             <div className=' w-full'>
               <AddCategory/>
             </div>
-            <div className=' w-full'>
-                <AddTags/>
-            </div>
         </div>
     </AdminLayout>
   )

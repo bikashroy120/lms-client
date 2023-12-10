@@ -26,7 +26,7 @@ const Page = (props: Props) => {
   const [searchQuery, sestSearchQuery] = useState("");
   const [category, setCategory] = useState<null | Option>(null);
   const [searchValue] = useDebounce(searchName, 1000);
-  const query = "656a18488e32a74844ff646e";
+ 
 
   let itemsPerPage = 10;
 
@@ -38,9 +38,6 @@ const Page = (props: Props) => {
   } = useGetAllCourseQuery(searchQuery,{refetchOnMountOrArgChange:true});
   const { data } = useGetAllCategoryQuery({});
 
-  console.log(searchQuery);
-
-  console.log(level)
 
   const categoryAdd = (
     option: Option | null,
@@ -48,9 +45,6 @@ const Page = (props: Props) => {
   ) => {
     setCategory(option);
   };
-
-
-  console.log(category)
 
 
   const generateQuery = () => {

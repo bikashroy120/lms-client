@@ -12,21 +12,36 @@ export const categoryApi = apiSlice.injectEndpoints({
             })
         }),
         getAllCategory:builder.query({
-            query:()=>({
-                url:"all-category",
+            query:(query:any)=>({
+                url:`all-category?${query}`,
                 method:"GET",
                 credentials:"include" as const,
             })
         }),
         deleteCategory:builder.mutation({
-            query:(id)=>({
+            query:(id:any)=>({
                 url:`delete-category/${id}`,
                 method:"DELETE",
                 credentials:"include" as const,
             })
-        })
+        }),
+        updateCategory:builder.mutation({
+            query:({id,data})=>({
+                url:`edit-category/${id}`,
+                method:"PUT",
+                body:data,
+                credentials:"include" as const,
+            })
+        }),
+        getSingleCategory:builder.query({
+            query:(id:any)=>({
+                url:`single-category/${id}`,
+                method:"GET",
+                credentials:"include" as const,
+            })
+        }),
     })
 })
 
 
-export const {useCreateCategoryMutation,useGetAllCategoryQuery,useDeleteCategoryMutation} = categoryApi;
+export const {useCreateCategoryMutation,useGetAllCategoryQuery,useDeleteCategoryMutation,useGetSingleCategoryQuery,useUpdateCategoryMutation} = categoryApi;

@@ -1,31 +1,33 @@
 import Image from 'next/image';
 import CustomDrawer from '../../../ui/CustomDrawer';
 import React, { useEffect, useState } from 'react'
-import { useCreateCategoryMutation } from '../../../../../redux/features/category/categoryApi';
+import { useGetSingleCategoryQuery, useUpdateCategoryMutation } from '../../../../../redux/features/category/categoryApi';
 import toast from 'react-hot-toast';
-import AdminButton from '@/app/components/ui/AdminButton';
+import AdminButton from '../../../ui/AdminButton';
 
 type Props = {
   open:boolean;
   setOpen:(open:boolean)=>void;
-  refetch:any
+  refetch:any;
+  id:string | null;
 }
 
-const CategoryDrawer = ({open,setOpen,refetch}: Props) => {
+const EditCategory = ({open,setOpen,refetch,id}: Props) => {
   const [title,setTitle] = useState("")
   const [description,setDescription] = useState("")
   const [image,setImage] = useState<string | null>(null)
-
-  const [createCategory, { isLoading, isError, isSuccess, error }] = useCreateCategoryMutation();
+  const {data} = useGetSingleCategoryQuery(id)
+  const [updateCategory, { isLoading, isError, isSuccess, error }] = useUpdateCategoryMutation();
 
     useEffect(() => {
     if (isSuccess) {
-      const message = "Category add success";
+      const message = "Category update success";
       toast.success(message);
       setTitle("");
       setDescription("")
       setImage(null)
       refetch();
+      setOpen(false)
     }
     if (error) {
       if ("data" in error) {
@@ -36,6 +38,12 @@ const CategoryDrawer = ({open,setOpen,refetch}: Props) => {
       }
     }
   }, [isSuccess, error]);
+
+  useEffect(()=>{
+    setTitle(data?.category?.title)
+    setImage(data?.category?.image)
+    setDescription(data?.category?.description)
+  },[data])
 
   const imgUrl = `https://api.imgbb.com/1/upload?key=8afa748431eb08431e4d3e8918c75005`;
   const handleImageUpload = (e: any) => {
@@ -62,7 +70,7 @@ const CategoryDrawer = ({open,setOpen,refetch}: Props) => {
       description:description,
       image:image,
     };
-    await createCategory(data);
+    await updateCategory({id,data});
   };
 
   
@@ -138,4 +146,4 @@ const CategoryDrawer = ({open,setOpen,refetch}: Props) => {
   )
 }
 
-export default CategoryDrawer
+export default EditCategory

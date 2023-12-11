@@ -43,7 +43,7 @@ const CategoryTable = ({ course, isLoading,refetch }: Props) => {
     {
       name: "Image",
       selector: (row: any) => <>
-        <Image src={row?.thumbnail} width={50} height={50} alt="logo" className=" w-[40px] h-[40px] rounded-md"/>
+        <Image src={row?.image} width={50} height={50} alt="logo" className=" w-[40px] h-[40px] rounded-md"/>
       </>,
       width:"100px"
     },
@@ -52,22 +52,14 @@ const CategoryTable = ({ course, isLoading,refetch }: Props) => {
       selector: (row: any) => row?._id,
     },
     {
-      name: "Course Title",
-      selector: (row: any) => row?.name,
+      name: "Category Title",
+      selector: (row: any) => row?.title,
       width:"430px"
     },
     {
-      name: "Rating",
-      selector: (row: any) => row?.rating,
+      name: "Description",
+      selector: (row: any) => row?.description,
     },
-    {
-      name: "Purchased",
-      selector: (row: any) => row?.purchased,
-    },
-    // {
-    //   name: "Created At",
-    //   selector: (row: any) => row.age,
-    // },
     {
       name: "Action",
       width:"140px",

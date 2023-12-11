@@ -10,6 +10,7 @@ import { useDebounce } from "use-debounce";
 import { Pagination } from "antd";
 import AdminButton from "@/app/components/ui/AdminButton";
 import CategoryTable from "./CategoryTable";
+import CategoryDrawer from "./CategoryDrawer";
 
 type Props = {};
 
@@ -17,31 +18,13 @@ const AddCategory = (props: Props) => {
   const [title, setTitle] = useState("");
   const [searchName, setSearchName] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  // const [createCategory, { isLoading, isError, isSuccess, error }] =
-  //   useCreateCategoryMutation();
+  const [addOpen,setAddOpen] = useState<boolean>(false)
   const { data,isLoading, refetch } = useGetAllCategoryQuery(
     searchQuery,{refetchOnMountOrArgChange:true}
   );
   const [searchValue] = useDebounce(searchName, 1000);
 
   let itemsPerPage = 10;
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     const message = "Category add success";
-  //     toast.success(message);
-  //     setTitle("");
-  //     refetch();
-  //   }
-  //   if (error) {
-  //     if ("data" in error) {
-  //       const errorData = error as any;
-  //       toast.error(errorData.data.message);
-  //     } else {
-  //       console.log(error);
-  //     }
-  //   }
-  // }, [isSuccess, error]);
 
   const generateQuery = () => {
     const queryParams = [];
@@ -59,18 +42,8 @@ const AddCategory = (props: Props) => {
     refetch();
   }, [searchValue]);
 
-  // const handelSubmit = async () => {
-  //   if (!title) {
-  //     return toast.error("give a title");
-  //   }
-  //   const data = {
-  //     title: title,
-  //   };
 
-  //   await createCategory(data);
-  // };
-
-  console.log(data);
+  console.log(data?.category)
 
   return (
     <div>
@@ -89,20 +62,20 @@ const AddCategory = (props: Props) => {
         </div>
 
         <div className="w-full flex items-center justify-end ">
-          <AdminButton title={"Add Category"} variant={"fill"}/>
+          <AdminButton handelClick={()=>setAddOpen(true)} title={"Add Category"} variant={"fill"}/>
         </div>
 
       </div>
 
       <div className=" border-b w-full flex items-center justify-center">
-        {/* <CategoryTable course={course?.course} isLoading={isLoading} refetch={refetch}/>       */}
+        <CategoryTable course={data?.category} isLoading={isLoading} refetch={refetch}/>      
       </div>
 
       <div className=" py-5">
         {isLoading ? <> </> : <Pagination defaultCurrent={1} total={100} pageSize={10}  showSizeChanger={false}/>} 
       </div>
     </div>
-    {/* <Table columns={columns} data={data}/> */}
+    <CategoryDrawer open={addOpen} setOpen={setAddOpen} refetch={refetch}/>
   </div>
   );
 };

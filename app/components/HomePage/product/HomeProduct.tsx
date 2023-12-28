@@ -22,8 +22,6 @@ const HomeProduct = (props: Props) => {
   } = useGetAllCourseQuery("",{refetchOnMountOrArgChange:true});
 
 
-  console.log(courses?.course)
-
   return (
     <div className="hero_background">
       <Container>

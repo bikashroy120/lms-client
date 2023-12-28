@@ -6,6 +6,7 @@ import Hero from "./components/Route/Hero";
 import Category from "./components/HomePage/Category";
 import HomeProduct from "./components/HomePage/product/HomeProduct";
 import MasterSkills from "./components/HomePage/MasterSkills";
+import TrendingCourses from "./components/HomePage/TrendingCourses";
 
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
           <Category/>
           <HomeProduct/>
           <MasterSkills/>
+          <TrendingCourses/>
         </div>
       </>
   )

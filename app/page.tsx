@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Route/Hero";
 import Category from "./components/HomePage/Category";
+import HomeProduct from "./components/HomePage/product/HomeProduct";
 
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
           < Header open={open} setOpen={setOpen} route={route} setRoute={setRoute} activeItem={activeItem}/>
           <Hero/>
           <Category/>
+          <HomeProduct/>
         </div>
       </>
   )

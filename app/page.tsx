@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Hero from "./components/Route/Hero";
 import Category from "./components/HomePage/Category";
 import HomeProduct from "./components/HomePage/product/HomeProduct";
+import MasterSkills from "./components/HomePage/MasterSkills";
 
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
           <Hero/>
           <Category/>
           <HomeProduct/>
+          <MasterSkills/>
         </div>
       </>
   )

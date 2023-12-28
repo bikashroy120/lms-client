@@ -36,7 +36,7 @@ const Page = (props: Props) => {
     isLoading,
     refetch
   } = useGetAllCourseQuery(searchQuery,{refetchOnMountOrArgChange:true});
-  const { data } = useGetAllCategoryQuery({});
+  const { data } = useGetAllCategoryQuery("");
 
 
   const categoryAdd = (

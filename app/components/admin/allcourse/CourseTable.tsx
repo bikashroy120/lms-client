@@ -53,7 +53,7 @@ const CourseTable = ({ course, isLoading,refetch }: Props) => {
     {
       name: "Course Title",
       selector: (row: any) => row?.name,
-      width:"430px"
+      width:"330px"
     },
     {
       name: "Rating",

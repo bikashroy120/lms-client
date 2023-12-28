@@ -12,7 +12,7 @@ const config: Config = {
       fontFamily:{
         Poppins:["var(--font-Poppins)"],
         Josefin:["var(--font-Josefin)"],
-      },  
+      }, 
       colors:{
         dark: "#1b1b1b",
         light: "#f5f5f5",

@@ -24,9 +24,6 @@ const Category = (props: Props) => {
   );
 
 
-  console.log("category========",data?.category)
-
-
   return (
     <div className="">
       <CategoryTop />

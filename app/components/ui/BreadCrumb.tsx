@@ -6,7 +6,7 @@ type Props = {
     subTitle:string,
 }
 
-const TopHeader = ({title,subTitle}: Props) => {
+const BreadCrumb = ({title,subTitle}: Props) => {
   return (
     <div id='topHeader_bg'>
         <div className=' py-10 w-full h-full bg-text/10 flex items-center justify-center flex-col'>
@@ -21,4 +21,4 @@ const TopHeader = ({title,subTitle}: Props) => {
   )
 }
 
-export default TopHeader
+export default BreadCrumb

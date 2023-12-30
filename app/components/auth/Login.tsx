@@ -50,8 +50,8 @@ const Login = ({ setOpen,setRoute }: Props) => {
   const { values, touched, errors, handleChange, handleSubmit } = formik;
 
   return (
-    <div className="w-full">
-      <h1 className={`${styles.title}`}>Login with Elearning</h1>
+    <div className="w-full px-3">
+      <h1 className={`${styles.title} `}>Login with Elearning</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label className={`${styles.label}`} htmlFor="email">
@@ -85,7 +85,7 @@ const Login = ({ setOpen,setRoute }: Props) => {
               errors.password && touched.password && "border-red-500"
             } ${styles.input}`}
           />
-          <span onClick={()=>setShow((pre)=>!pre)} className=" absolute right-[5px] text-black dark:text-white cursor-pointer text-[20px] top-[45px]">
+          <span onClick={()=>setShow((pre)=>!pre)} className=" absolute right-[20px] text-black dark:text-white cursor-pointer text-[20px] top-[45px]">
             {show ? <Icon icon="mdi:eye" /> : <Icon icon="el:eye-close" />}
           </span>
           {errors.password && touched.password && (

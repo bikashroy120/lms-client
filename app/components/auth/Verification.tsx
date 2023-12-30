@@ -83,7 +83,7 @@ const Verification = ({setRoute}: Props) => {
 
 
   return (
-    <div>
+    <div className=' w-full px-3'>
       <h1 className={`${styles.title}`}>Verify Your Account</h1>
       <br />
       <div className=' w-full flex items-center justify-center'>

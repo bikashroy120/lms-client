@@ -53,7 +53,7 @@ const Signup = ({ setRoute }: Props) => {
   const { values, touched, errors, handleChange, handleSubmit } = formik;
 
   return (
-    <div className="w-full">
+    <div className="w-full px-3">
       <h1 className={`${styles.title}`}>Join to Elearning</h1>
       <form onSubmit={handleSubmit}>
         <div className="mt-2">
@@ -108,7 +108,7 @@ const Signup = ({ setRoute }: Props) => {
           />
           <span
             onClick={() => setShow((pre) => !pre)}
-            className=" absolute right-[5px] text-black dark:text-white cursor-pointer text-[20px] top-[45px]"
+            className=" absolute right-[20px] text-black dark:text-white cursor-pointer text-[20px] top-[45px]"
           >
             {show ? <Icon icon="mdi:eye" /> : <Icon icon="el:eye-close" />}
           </span>

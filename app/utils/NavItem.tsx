@@ -17,12 +17,16 @@ export const navsItemData = [
         url: "/course"
     },
     {
+        name: "About Us",
+        url: "/about"
+    },
+    {
         name: "Policy",
         url: "/policy"
     },
     {
-        name: "FAQ",
-        url: "/faq"
+        name: "Contact Us",
+        url: "/contact"
     },
 ]
 

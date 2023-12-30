@@ -54,13 +54,13 @@ const Header: FC<Props> = (props) => {
         <div
           className={`${
             active
-              ? " fixed bg-white top-0 left-0 w-full h-[80px] z-[80] border-b dark:border-[#ffffff1c] shadow-xl transition duration-500"
-              : "w-full absolute top-0 left-0 z-[80] h-[80px] dark:shadow"
+              ? " fixed bg-white top-0 left-0 w-full h-[80px] z-[80] border-b dark:border-[#ffffff1c] shadow-sm transition duration-500"
+              : "w-full absolute top-0 left-0 z-[80] h-[80px]  dark:shadow"
           }`}
         >
           <Container>
           <div className=" py-2 h-full">
-            <div className=" w-full h-[80px] flex items-center justify-between p-3">
+            <div className=" w-full h-[65px] flex items-center justify-between px-3">
               <div>
                 <Link
                   href={"/"}
@@ -71,7 +71,7 @@ const Header: FC<Props> = (props) => {
               </div>
               <div className=" flex items-center">
                 <NavItem activeItem={activeItem} isMobile={false} />
-                <ThemeSwitcher />
+                {/* <ThemeSwitcher /> */}
                 {/* ======only for mobile===== */}
                 <div className=" 800px:hidden">
                   <HiOutlineMenuAlt3

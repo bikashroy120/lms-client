@@ -54,6 +54,14 @@ body {
   height: 100%;
 }
 
+#topHeader_bg{
+  background-image: url("/b.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
 @keyframes changeBgColor {
   0%,100%{
     opacity: 1;

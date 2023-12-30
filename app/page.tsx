@@ -7,6 +7,7 @@ import Category from "./components/HomePage/Category";
 import HomeProduct from "./components/HomePage/product/HomeProduct";
 import MasterSkills from "./components/HomePage/MasterSkills";
 import TrendingCourses from "./components/HomePage/TrendingCourses";
+import StudentReview from "./components/HomePage/StudentReview";
 
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
           <HomeProduct/>
           <MasterSkills/>
           <TrendingCourses/>
+          <StudentReview/>
         </div>
       </>
   )

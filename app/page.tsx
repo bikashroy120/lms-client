@@ -8,6 +8,7 @@ import HomeProduct from "./components/HomePage/product/HomeProduct";
 import MasterSkills from "./components/HomePage/MasterSkills";
 import TrendingCourses from "./components/HomePage/TrendingCourses";
 import StudentReview from "./components/HomePage/StudentReview";
+import Footer from "./components/Footer";
 
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
           <MasterSkills/>
           <TrendingCourses/>
           <StudentReview/>
+          <Footer/>
         </div>
       </>
   )

@@ -14,7 +14,7 @@ export const navsItemData = [
     },
     {
         name: "Course",
-        url: "/courde"
+        url: "/course"
     },
     {
         name: "Policy",

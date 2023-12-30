@@ -29,7 +29,7 @@ const TrendingCourses = (props: Props) => {
     <div className="hero_background">
       <Container>
         <div className="lg:py-[100px] py-5">
-          <div className=" flex items-center justify-between">
+          <div className="flex md:items-center flex-col md:flex-row md:justify-between">
             <TopHeading
               title="Trending Courses"
               topTitle="What’s New"
@@ -37,7 +37,7 @@ const TrendingCourses = (props: Props) => {
                   accumsan bibendum gravida maecenas augue elementum et neque. Suspendisse
                  imperdiet."
             />
-            <div className=" w-full flex items-center justify-end">
+            <div className=" w-full flex items-center md:justify-end">
               <CustomButton
                 title="All Courses"
                 handelClick={() => router.push("/admin")}
@@ -62,9 +62,13 @@ const TrendingCourses = (props: Props) => {
                         }
                     </div> */}
                 <Swiper
-                  slidesPerView={3}
+                  slidesPerView={1}
                   spaceBetween={30}
                   breakpoints={{
+                    "@.10": {
+                      slidesPerView: 1,
+                      spaceBetween: 30,
+                    },
                     "@.50": {
                       slidesPerView: 1,
                       spaceBetween: 30,
@@ -74,7 +78,7 @@ const TrendingCourses = (props: Props) => {
                       spaceBetween: 30,
                     },
                     "@1.50": {
-                      slidesPerView: 2,
+                      slidesPerView: 3,
                       spaceBetween: 30,
                     },
                     "@1.75": {

@@ -26,7 +26,7 @@ const HomeProduct = (props: Props) => {
     <div className="hero_background">
       <Container>
           <div className='lg:py-[100px] py-5'>
-            <div className=" flex items-center justify-between">
+            <div className=" flex md:items-center flex-col md:flex-row md:justify-between">
               <TopHeading
                 title="Featured Courses"
                 topTitle="What’s New"
@@ -34,7 +34,7 @@ const HomeProduct = (props: Props) => {
                   accumsan bibendum gravida maecenas augue elementum et neque. Suspendisse
                  imperdiet."
               />
-              <div className=" w-full flex items-center justify-end">
+              <div className=" w-full flex items-center md:justify-end">
                   <CustomButton title="All Courses" handelClick={()=>router.push("/admin")}/>
               </div>
             </div>
@@ -46,7 +46,7 @@ const HomeProduct = (props: Props) => {
                       Loading.....
                     </div>
                   </> : <>
-                    <div className=' grid grid-cols-3 gap-5'>
+                    <div className=' grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5'>
                         {
                           courses?.course?.map((course:any,index:number)=>(
                             <div key={index}>

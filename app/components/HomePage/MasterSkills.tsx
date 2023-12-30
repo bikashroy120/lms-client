@@ -32,7 +32,7 @@ const MasterSkills = (props: Props) => {
   ];
 
   return (
-    <div className="lg:py-[100px] bg-white py-5">
+    <div className=" bg-white pt-5 lg:pt-0">
       <Container>
         <div className="flex items-center justify-between flex-col lg:flex-row">
           <div>
@@ -42,7 +42,7 @@ const MasterSkills = (props: Props) => {
               sub="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget aenean accumsan bibendum gravida maecenas augue elementum et neque. Suspendisse imperdiet."
             />
 
-            <div className=" grid grid-cols-2 gap-7 mt-7">
+            <div className=" grid md:grid-cols-2 grid-cols-1  gap-8 mt-7">
                 {
                     data.map((item:any,index:number)=>(
                         <div key={index} className=" flex hover:-translate-y-2 duration-300 items-center gap-3 py-5 px-5 rounded-2xl border">
@@ -57,8 +57,8 @@ const MasterSkills = (props: Props) => {
                 }
             </div>
           </div>
-          <div>
-                <Image src={"/image/join.png"} width={1000} height={500} alt="master"/>
+          <div className=" relative w-full lg:h-[650px] h-full flex items-center justify-center mt-5 lg:mt-0">
+                <Image src={"/image/join.png"} width={1000} height={500} alt="master" className=" lg:absolute w-[600px] bottom-0 right-0"/>
           </div>
         </div>
       </Container>

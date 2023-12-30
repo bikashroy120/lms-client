@@ -33,7 +33,7 @@ const Category = (props: Props) => {
       <div className="lg:py-[100px] lg:pt-[130px] py-5">
         <Container>
           <div>
-            <div className=" flex items-center justify-between">
+            <div className=" flex md:items-center flex-col md:flex-row md:justify-between">
               <TopHeading
                 title="Top Category"
                 topTitle="Favourite Course"
@@ -41,26 +41,26 @@ const Category = (props: Props) => {
                   accumsan bibendum gravida maecenas augue elementum et neque. Suspendisse
                  imperdiet."
               />
-              <div className=" w-full flex items-center justify-end">
+              <div className=" w-full flex items-center md:justify-end">
                   <CustomButton title="All Category" handelClick={()=>router.push("/admin")}/>
               </div>
             </div>
 
             <div className=" mt-5">
             <Swiper
-            slidesPerView={3}
-            spaceBetween={30}
+            slidesPerView={2}
+            spaceBetween={20}
             breakpoints={{
               "@.50": {
-                slidesPerView: 1,
-                spaceBetween: 30,
+                slidesPerView: 2,
+                spaceBetween: 20,
               },
               "@1.00": {
-                slidesPerView: 2,
-                spaceBetween: 30,
+                slidesPerView: 3,
+                spaceBetween: 20,
               },
               "@1.50": {
-                slidesPerView: 2,
+                slidesPerView: 3,
                 spaceBetween: 30,
               },
               "@1.75": {

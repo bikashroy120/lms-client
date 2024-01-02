@@ -26,7 +26,7 @@ const CourseInformation = ({
   active,
   setActive,
 }: Props) => {
-  const {data} = useGetAllCategoryQuery({},{refetchOnMountOrArgChange:true})
+  const {data} = useGetAllCategoryQuery("",{refetchOnMountOrArgChange:true})
   const [tag, setTag] = useState<null | Option[]>(null);
   const [category,setCategory] = useState<null | Option>(null)
   const tagsData = ["HTML", "Javascript", "MySQL", "PHP"];
@@ -70,6 +70,7 @@ const CourseInformation = ({
   const categoryAdd = (option: Option | null, actionMeta: ActionMeta<Option>) => {
     setCategory(option)
  }
+
 
   return (
     <div className="p-8">

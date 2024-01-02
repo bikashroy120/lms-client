@@ -1,23 +1,28 @@
+"use client"
+
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import CustomButton from '../../ui/CustomButton';
+import { useRouter } from 'next/navigation';
 
 type Props = {
     course:any;
 }
 
 const ProductCard = ({course}: Props) => {
+    const router = useRouter()
+
   return (
     <div className='py-5 bg-white px-5 rounded-lg '>
-        <div className='w-full h-[250px] rounded-lg relative overflow-hidden cursor-pointer group'>
+        <div onClick={()=>router.push(`/course/${course._id}`)} className='w-full h-[250px] rounded-lg relative overflow-hidden cursor-pointer group'>
             <Image src={course?.thumbnail} width={500} height={500} alt="course image" className='w-full group-hover:scale-110 duration-500 h-full object-fill'/>
             <div className=' absolute right-3 shadow-md bottom-3 px-3 py-2 rounded-lg bg-white'>
                 <h2 className=' text-[25px] text-primary font-bold'>${course?.price} <span className='text-[15px]  text-lightText'>${course?.estimatedPrice}</span></h2>
             </div>
         </div>
         <div className=' mt-5'>
-        <Link href={"/"}  className=' group-hover:text-white'>
+        <Link href={`/course/${course._id}`}  className=' group-hover:text-white'>
             <h2 className=' text-[20px] font-bold hover:text-primary  duration-500 text-text'>{course?.name}</h2>
         </Link>
         <div className='flex items-center py-3 text-[18px] font-semibold text-lightText justify-between'>
@@ -30,7 +35,7 @@ const ProductCard = ({course}: Props) => {
             <div className='w-[20px]'>
 
             </div>
-            <CustomButton title='Buy Now' />
+            <CustomButton handelClick={()=>router.push(`/course/${course._id}`)} title='Buy Now' />
         </div>
     </div>
   )

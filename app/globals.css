@@ -54,6 +54,17 @@ body {
   height: 100%;
 }
 
+
+.details_background{
+  background-image: url("/image/inner-banner.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+
 #topHeader_bg{
   background-image: url("/b.png");
   background-position: center;

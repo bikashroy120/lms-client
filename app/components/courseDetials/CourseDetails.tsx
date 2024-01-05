@@ -10,10 +10,12 @@ import CourseIncludes from "./CourseIncludes";
 import CourseContent from "./CourseContent";
 import Review from "./Review";
 import CourseBook from "./CourseBook";
+import Included from "./Included";
+import CourseCategory from "./CourseCategory";
 
 const CourseDetails = ({ id }: any) => {
-  const { data, isLoading, isSuccess } = useGetSingleCourseQuery(id);
-  console.log("========id=====", data?.course);
+  const { data, isLoading } = useGetSingleCourseQuery(id);
+
 
   return (
     <div className="bg-[#fafafa]">
@@ -34,8 +36,10 @@ const CourseDetails = ({ id }: any) => {
                 <Review/>
               </div>
               <div className=" lg:w-[34%] w-full sticky top-[370px]">
-                <div className=" lg:relative lg:top-[-280px]">
+                <div className=" lg:relative lg:top-[-280px] lg:mb-[-280px] w-full flex flex-col gap-7">
                     <CourseBook courseData={data?.course}/>
+                    <Included />
+                    <CourseCategory/>
                 </div>
               </div>
             </div>

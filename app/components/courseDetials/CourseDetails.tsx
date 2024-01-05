@@ -8,6 +8,7 @@ import Container from "../../utils/Container";
 import CourseOverView from "./CourseOverView";
 import CourseIncludes from "./CourseIncludes";
 import CourseContent from "./CourseContent";
+import Review from "./Review";
 
 const CourseDetails = ({ id }: any) => {
   const { data, isLoading, isSuccess } = useGetSingleCourseQuery(id);
@@ -29,6 +30,7 @@ const CourseDetails = ({ id }: any) => {
                 <CourseIncludes title="What you will learn from this course?" data={data?.course?.benefits}/>
                 <CourseIncludes title="What are the prerequisites for starting this course?" data={data?.course?.prerequisites}/>
                 <CourseContent data={data?.course?.courseData}/>
+                <Review/>
               </div>
               <div className=" lg:w-[40%] w-full">
                 

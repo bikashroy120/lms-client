@@ -1,15 +1,49 @@
 "use client"
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Icon } from '@iconify/react';
-import CustomButton from '../ui/CustomButton';
+import useAuth from '../hooks/useAuth';
+import { useCreateOrderMutation } from '../../../redux/features/order/orderApi';
+import toast from 'react-hot-toast';
+import { redirect } from 'next/navigation';
 
 type Props = {
     courseData:any;
 }
 
 const CourseBook = ({courseData}: Props) => {
+    const auth =  useAuth()
+    const [createOrder,{isError,data,error,isSuccess,isLoading}] = useCreateOrderMutation()
+
+
+    useEffect(()=>{
+        if(isSuccess){
+          const message = data?.message || "order create success"
+          toast.success(message)
+          redirect(`/access-course/${courseData?._id}`)
+        }
+        if(error){
+          if("data" in error){
+            const errorData = error as any;
+            toast.error(errorData.data.message)
+          }
+        }
+      },[isSuccess,error])
+
+
+    const handelOrder = async()=>{
+        if(!auth){
+            toast.error("Please login first")
+        }
+
+        const data = {
+            courseId:courseData?._id,
+            payment_info:"paid" 
+        }
+        await createOrder(data)
+    }
+
   return (
     <div className=' bg-white border p-5 rounded-lg shadow-sm'>
         <div className=' relative h-[280px] w-full'>
@@ -19,7 +53,7 @@ const CourseBook = ({courseData}: Props) => {
             </div>
         </div>
         <div className=' flex items-center justify-center mt-5'>
-            <button className={`py-2 px-5 font-semibold flex items-center justify-center text-[20px] w-full rounded-full border-[3px] duration-300 border-green-500 bg-green-500 text-white hover:bg-transparent hover:text-green-500  `}> Enroll Course </button>
+            <button onClick={handelOrder} className={`py-2 px-5 font-semibold flex items-center justify-center text-[20px] w-full rounded-full border-[3px] duration-300 border-green-500 bg-green-500 text-white hover:bg-transparent hover:text-green-500  `}>{isLoading? "Loading..." :"Enroll Course "}</button>
         </div>
     </div>
   )

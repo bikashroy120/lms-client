@@ -6,6 +6,7 @@ import Loader from "../Loader/Loader";
 import Container from "../../utils/Container";
 import CourseAccessMedia from "./CourseAccessMedia";
 import Link from "next/link";
+import Answer from "./Answer";
 
 type Props = {
   id: any;
@@ -59,12 +60,22 @@ const CourseAccess = ({ id }: Props) => {
                         (item: any, index: number) => (
                           <div key={index} className=" flex items-center gap-3">
                             <h2>{item?.title}</h2> :{" "}
-                            <Link href={item?.url} target="_blank" className=" text-primary">
+                            <Link
+                              href={item?.url}
+                              target="_blank"
+                              className=" text-primary"
+                            >
                               {item?.url}
                             </Link>
                           </div>
                         )
                       )}
+                    </div>
+                  )}
+
+                  {activeTab === 2 && (
+                    <div>
+                      <Answer courseId={data?.course?._id} data={courseData[activeVideo]}/>
                     </div>
                   )}
                 </div>

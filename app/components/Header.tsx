@@ -28,7 +28,6 @@ const Header: FC<Props> = (props) => {
 
   const { user } = useSelector((state: any) => state.auth);
 
-  console.log(user);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {

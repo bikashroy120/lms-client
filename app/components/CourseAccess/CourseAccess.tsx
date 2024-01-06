@@ -14,7 +14,7 @@ type Props = {
 
 const CourseAccess = ({ id }: Props) => {
   const [activeVideo, setActiveVideo] = useState(0);
-  const { data, isLoading } = useGetSingleCourseQuery(id);
+  const { data, isLoading,refetch } = useGetSingleCourseQuery(id);
   const courseData = data?.course?.courseData;
   const [activeTab, setActiveTab] = useState(0);
   const tabData = ["Overview", "Resources", "Q&A", "Reviews"];
@@ -75,7 +75,7 @@ const CourseAccess = ({ id }: Props) => {
 
                   {activeTab === 2 && (
                     <div>
-                      <Answer courseId={data?.course?._id} data={courseData[activeVideo]}/>
+                      <Answer refetch={refetch} courseId={data?.course?._id} data={courseData[activeVideo]}/>
                     </div>
                   )}
                 </div>

@@ -46,7 +46,7 @@ const CourseAccessMedia = ({
             Next Lesson
           </button>
         </div>
-        <h2>{courseData[activeVideo]?.title}</h2>
+        <h2 className=" text-[25px] text-text font-semibold pt-3">{courseData[activeVideo]?.title}</h2>
       </div>
     </div>
   );

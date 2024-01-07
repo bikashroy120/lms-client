@@ -20,8 +20,6 @@ const Answer = ({ data, courseId,refetch }: Props) => {
   const [question, setQuestion] = useState("");
   const [addQuestion, { isSuccess, isLoading, error }] =
     useAddQuestionMutation();
-  // console.log("question===========", data?.question);
-  // console.log("question===========", courseId);
 
   useEffect(() => {
     if (isSuccess) {

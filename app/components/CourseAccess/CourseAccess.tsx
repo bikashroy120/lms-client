@@ -7,6 +7,7 @@ import Container from "../../utils/Container";
 import CourseAccessMedia from "./CourseAccessMedia";
 import Link from "next/link";
 import Answer from "./Answer";
+import Reviews from "./review/Reviews";
 
 type Props = {
   id: any;
@@ -14,7 +15,7 @@ type Props = {
 
 const CourseAccess = ({ id }: Props) => {
   const [activeVideo, setActiveVideo] = useState(0);
-  const { data, isLoading,refetch } = useGetSingleCourseQuery(id);
+  const { data, isLoading, refetch } = useGetSingleCourseQuery(id);
   const courseData = data?.course?.courseData;
   const [activeTab, setActiveTab] = useState(0);
   const tabData = ["Overview", "Resources", "Q&A", "Reviews"];
@@ -75,7 +76,20 @@ const CourseAccess = ({ id }: Props) => {
 
                   {activeTab === 2 && (
                     <div>
-                      <Answer refetch={refetch} courseId={data?.course?._id} data={courseData[activeVideo]}/>
+                      <Answer
+                        refetch={refetch}
+                        courseId={data?.course?._id}
+                        data={courseData[activeVideo]}
+                      />
+                    </div>
+                  )}
+                  {activeTab === 3 && (
+                    <div>
+                      <Reviews
+                      refetch={refetch}
+                      couresId={data?.course?._id}
+                      data={data?.course?.reviews}
+                      />
                     </div>
                   )}
                 </div>

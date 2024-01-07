@@ -20,7 +20,7 @@ const Answer = ({ data, courseId,refetch }: Props) => {
   const [question, setQuestion] = useState("");
   const [addQuestion, { isSuccess, isLoading, error }] =
     useAddQuestionMutation();
-  console.log("question===========", data?.question);
+  // console.log("question===========", data?.question);
   // console.log("question===========", courseId);
 
   useEffect(() => {
@@ -28,6 +28,7 @@ const Answer = ({ data, courseId,refetch }: Props) => {
       const message = data?.message || "Question add success";
       toast.success(message);
       refetch()
+      setQuestion("")
     }
     if (error) {
       if ("data" in error) {
@@ -105,7 +106,7 @@ const Answer = ({ data, courseId,refetch }: Props) => {
                   />
                 ) : (
                   <h2 className=" font-bold uppercase text-[20px] text-text">
-                    {item?.user?.name.slice(0, 2)}
+                    {item?.user?.name.slice(0, 2)} 
                   </h2>
                 )}
               </div>
@@ -114,8 +115,8 @@ const Answer = ({ data, courseId,refetch }: Props) => {
                   <p className=" text-base font-normal text-lightText">{item?.question}</p>
                   <span className=" text-[13px] text-lightText font-semibold">{format(item?.createdAt)}</span>
 
-                  <div className=" mt-5">
-                    <Replies />
+                  <div className=" mt-1">
+                    <Replies user={user} courseId={courseId}  refetch={refetch} contentId={data?._id} question={item}/>
                   </div>
               </div>
             </div>

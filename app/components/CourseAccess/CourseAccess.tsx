@@ -36,11 +36,11 @@ const CourseAccess = ({ id }: Props) => {
                   activeVideo={activeVideo}
                   setActiveVideo={setActiveVideo}
                 />
-                <div className=" py-3 px-5 flex items-center bg-gray-300 justify-between">
+                <div className=" px-5 flex items-center bg-gray-300 justify-between">
                   {tabData.map((item: string, index: number) => (
                     <button
                       onClick={() => setActiveTab(index)}
-                      className={` lg:text-[18px] text-base font-bold ${
+                      className={` lg:text-[18px] text-base py-3 font-bold ${
                         index === activeTab ? " text-primary" : "text-text"
                       }`}
                       key={index}

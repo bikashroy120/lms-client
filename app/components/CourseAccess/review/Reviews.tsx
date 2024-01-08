@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 import CustomButton from "../../ui/CustomButton";
 import toast from "react-hot-toast";
 import { useAddReviewMutation } from "../../../../redux/features/courses/coursesApi";
-import {format} from "timeago.js"
+import { format } from "timeago.js";
+import ReviewReplies from "./ReviewReplies";
 
 type Props = {
   couresId: any;
@@ -98,10 +99,7 @@ const Reviews = ({ couresId, refetch, data }: Props) => {
       <div className="border-t border-t-gray-300  mt-5 ">
         <div className=" flex flex-col items-center gap-5 mt-5">
           {data?.map((item: any, index: number) => (
-            <div
-              key={index}
-              className=" w-full"
-            >
+            <div key={index} className=" w-full">
               <div>
                 <div className=" flex items-start flex-col gap-3 md:flex-row justify-between">
                   <div className=" flex items-center gap-2 w-[70%]">
@@ -129,11 +127,23 @@ const Reviews = ({ couresId, refetch, data }: Props) => {
                       </p>
                     </div>
                   </div>
+                  <div className="ml-14 lg:ml-0 ">
                   <Rate disabled defaultValue={item.rating} />
+                  </div>
                 </div>
-                <p className="mt-3 text-base font-medium text-lightText">
-                  {item?.comment}
-                </p>
+                <div className=" ml-0 lg:ml-14">
+                  <p className="mt-1 text-base font-medium text-lightText">
+                    {item?.comment}
+                  </p>
+                  <div>
+                    <ReviewReplies
+                      user={user}
+                      couresId={couresId}
+                      review={item}
+                      refetch={refetch}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           ))}

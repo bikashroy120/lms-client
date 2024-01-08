@@ -3,7 +3,9 @@ import {createSlice} from "@reduxjs/toolkit"
 const initialState = {
     token:"",
     user:"",
-    code:""
+    code:"",
+    category:"",
+    search:"",
 }
 
 
@@ -22,10 +24,16 @@ const authSlice = createSlice({
         userLoggedOut:(state)=>{
             state.token="";
             state.user=""; 
+        },
+        addCategory:(state,action)=>{
+            state.category=action.payload;
+        },
+        addSearch:(state,action)=>{
+            state.search=action.payload;
         }
     }
 })
 
-export const {userRegistration,userLoggedOut,userLoggedIn} = authSlice.actions;
+export const {userRegistration,userLoggedOut,userLoggedIn,addCategory,addSearch} = authSlice.actions;
 
 export default authSlice.reducer

@@ -5,9 +5,11 @@ import { Icon } from '@iconify/react';
 import { useDebounce } from 'use-debounce';
 import {  usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-type Props = {}
+type Props = {
+    setQuery:any
+}
 
-const CourseSearch = (props: Props) => {
+const CourseSearch = ({setQuery}: Props) => {
     const [search,setSearch] = useState("")
     const [searchValue] = useDebounce(search, 1000); 
     const searchParams = useSearchParams();

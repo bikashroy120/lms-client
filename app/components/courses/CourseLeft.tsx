@@ -10,7 +10,7 @@ type Props = {
 const CourseLeft = ({setQuery}: Props) => {
   return (
     <div>
-        <CourseSearch />
+        <CourseSearch setQuery={setQuery}/>
         <FilterCategory setQuery={setQuery}/>
         <FilterLevel setQuery={setQuery}/>
     </div>

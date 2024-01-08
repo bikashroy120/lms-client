@@ -1,14 +1,28 @@
+"use client"
+
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Container from "@/app/utils/Container";
 import { BiSearch } from "react-icons/bi";
 import { FaArrowRightLong } from "react-icons/fa6";
 import AnimatedNumber from "../ui/AnimatedNumber";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { addSearch } from "@/redux/features/auth/authSlice";
 
 
 type Props = {};
 
 const Hero = (props: Props) => {
+  const [search,setSearch] = useState("")
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const handelSearch = ()=>{
+    dispatch(addSearch(search))
+    router.push("/course?hfhfhf")
+  }
+
+
   return (
     <div className="hero_background">
       <Container>
@@ -19,8 +33,8 @@ const Hero = (props: Props) => {
                     <h2 className=" text-text font-bold text-[25px] lg:text-[45px] pt-4 pb-2 lg:pb-8 w-full  xl:w-[70%]">Engaging & Accessible Online Courses For All</h2>
                     <div className=" py-2 px-5 bg-white rounded-full flex items-center justify-between">
                         <span className=" text-[20px] mr-2"><BiSearch/></span>
-                        <input type="text" placeholder="Search Courses ..." className=" w-full py-2 px-1 border-none outline-none "/>
-                        <button className=" bg-primary w-[50px] h-[50px] flex items-center justify-center text-[25px] text-white rounded-full"><FaArrowRightLong/></button>
+                        <input type="text" value={search} onChange={(e:any)=>setSearch(e.target.value)} placeholder="Search Courses ..." className=" w-[90%] py-2 px-1 border-none outline-none "/>
+                        <button onClick={handelSearch} className=" bg-primary w-[50px] h-[50px] flex items-center justify-center text-[25px] text-white rounded-full"><FaArrowRightLong/></button>
                     </div>
                     <h3 className=" text-[20px] py-3 lg:py-10 w-full md:w-[50%] font-semibold text-lightText">Trusted by over 15K Users
                       worldwide since 2022</h3>

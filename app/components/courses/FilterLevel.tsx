@@ -43,7 +43,7 @@ const FilterLevel = ({setQuery}: Props) => {
   const getProducts = async () => {
     const params = new URLSearchParams();
     selectedCategories.forEach((category) => {
-      params.append("category", category);
+      params.append("level", category);
     });
     const url = `${params.toString()}`;
     // replace(`${pathName}?${url}`)

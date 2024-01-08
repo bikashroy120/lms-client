@@ -6,6 +6,7 @@ import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { Checkbox } from "antd";
 import { Icon } from "@iconify/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSelector } from "react-redux";
 
 type Props = {
   setQuery: any;
@@ -14,18 +15,16 @@ type Props = {
 const FilterCategory = ({ setQuery }: Props) => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const searchParams = useSearchParams();
+  const { category } = useSelector((state: any) => state.auth);
   // const {replace} = useRouter();
   // const pathName = usePathname();
   const { data } = useGetAllCategoryQuery("", {
     refetchOnMountOrArgChange: true,
   });
 
-  // console.log("catrgory======", pathName);
-
   useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    console.log("category=====", params.get("category"));
-  }, [searchParams]);
+    setSelectedCategories([category])
+  }, [category]);
 
   const categoryAdd = (title: string) => {
     const isSelected = Boolean(

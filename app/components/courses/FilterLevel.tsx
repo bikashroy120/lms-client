@@ -8,24 +8,22 @@ import { Icon } from "@iconify/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
-  setQuery: any;
+  setQuery:any
 };
 
-const FilterCategory = ({ setQuery }: Props) => {
+const FilterLevel = ({setQuery}: Props) => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const searchParams = useSearchParams();
-  // const {replace} = useRouter();
-  // const pathName = usePathname();
-  const { data } = useGetAllCategoryQuery("", {
-    refetchOnMountOrArgChange: true,
-  });
+//   const {replace} = useRouter();
+//   const pathName = usePathname();
+    const data = ["Beginner","Intermediate","Expert"]
 
   // console.log("catrgory======", pathName);
 
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    console.log("category=====", params.get("category"));
-  }, [searchParams]);
+  useEffect(()=>{
+    const params = new URLSearchParams(searchParams)
+    console.log("category=====",params.get("category"))
+  },[searchParams])
 
   const categoryAdd = (title: string) => {
     const isSelected = Boolean(
@@ -41,14 +39,17 @@ const FilterCategory = ({ setQuery }: Props) => {
     }
   };
 
+
   const getProducts = async () => {
     const params = new URLSearchParams();
     selectedCategories.forEach((category) => {
       params.append("category", category);
     });
     const url = `${params.toString()}`;
-    setQuery(url);
+    // replace(`${pathName}?${url}`)
+    setQuery(url)
   };
+
 
   useEffect(() => {
     getProducts();
@@ -60,36 +61,29 @@ const FilterCategory = ({ setQuery }: Props) => {
         Course Categories
       </h2>
       <div className=" mt-5 flex items-start flex-col gap-2">
-        {data?.category?.map((item: any, index: number) => {
-          const isSelected = Boolean(
-            selectedCategories.find(
-              (grpStud: string) => grpStud === item?.title
-            )
-          );
+        {data.map((item: any, index: number) => {
+              const isSelected = Boolean(
+                selectedCategories.find((grpStud: string) => grpStud === item)
+              )
           return (
-            <div className="" key={index}>
-              <Checkbox
-                onClick={() => categoryAdd(item?.title)}
-                checked={isSelected}
-              >
+            <div
+              className=""
+              key={index}
+            >
+              <Checkbox onClick={() => categoryAdd(item)} checked={isSelected}>
                 <span className=" text-[18px] text-lightText font-medium">
-                  {item?.title}
+                  {item}
                 </span>
               </Checkbox>
             </div>
           );
         })}
       </div>
-      <div className=" flex items-center justify-center mt-2">
-        <button
-          onClick={() => setSelectedCategories([])}
-          className=" py-2 px-4 text-[14px] font-bold rounded-full border-2 text-text border-red-400 hover:bg-red-400 hover:text-white"
-        >
-          Clear
-        </button>
+      <div className=" flex items-center justify-center mt-2"> 
+            <button onClick={()=>setSelectedCategories([])} className=" py-2 px-4 text-[14px] font-bold rounded-full border-2 text-text border-red-400 hover:bg-red-400 hover:text-white">Clear</button>
       </div>
     </div>
   );
 };
 
-export default FilterCategory;
+export default FilterLevel;

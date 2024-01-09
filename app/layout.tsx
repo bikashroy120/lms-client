@@ -1,12 +1,19 @@
+"use client"
+
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import { Josefin_Sans } from "next/font/google";
 import { ThemeProvider } from "./utils/theme-provider";
 import { Toaster } from "react-hot-toast";
 import { Providers } from "./Provider";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 import Loader from "./components/Loader/Loader";
+import Custom from "./components/Custom";
+import socketIO from "socket.io-client";
+const ENPOIENT = process.env.NEXT_PUBLIC_SOCKET_URL || "";
+const socketId = socketIO(ENPOIENT,{transports:["websocket"]});
+ 
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,6 +32,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  useEffect(()=>{
+    socketId.on("connection",()=>{})
+  },[])
+
   return (
     <html lang="en">
       <body
@@ -32,7 +44,7 @@ export default function RootLayout({
       >
         <Providers>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              {children}
+            {children}
             <Toaster position="top-center" reverseOrder={false} />
           </ThemeProvider>
         </Providers>
@@ -40,13 +52,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-
-// const Custom :FC<{children:React.ReactNode}>=({children})=>{
-//   const {isLoading} = useLoadUserQuery({})
-//   return(
-//     <>
-//     { isLoading ? <Loader/> : <>{children}</>}
-//     </>
-//   )
-// }

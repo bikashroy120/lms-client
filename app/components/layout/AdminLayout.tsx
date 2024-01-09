@@ -1,5 +1,6 @@
 import React from 'react'
 import AdminSidber from './AdminSidber'
+import AdminNav from './AdminNav'
 
 type Props = {
   children:React.ReactNode
@@ -12,7 +13,7 @@ const AdminLayout = ({children}: Props) => {
             <AdminSidber/>
         </div>
         <div className=' w-full h-screen overflow-y-auto'>
-            <div className='w-full h-[100px] bg-white shadow-lg'> sdsds</div>
+            <AdminNav/>
             <div className='px-8 py-8'>
               {children}
             </div>

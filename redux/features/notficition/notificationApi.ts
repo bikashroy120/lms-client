@@ -3,10 +3,10 @@ import {apiSlice} from "../api/apiSlice";
 export const notificationApi = apiSlice.injectEndpoints({
     endpoints:(builder)=>({
         update:builder.mutation({
-            query:({id,data})=>({
+            query:(id)=>({
                 url:`/notifaction/${id}`,
-                method:"POST",
-                body:data,
+                method:"PUT",
+                body:{},
                 credentials:"include" as const,
             })
         }),

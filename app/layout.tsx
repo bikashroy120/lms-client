@@ -10,9 +10,9 @@ import { FC, useEffect } from "react";
 import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 import Loader from "./components/Loader/Loader";
 import Custom from "./components/Custom";
-import socketIO from "socket.io-client";
-const ENPOIENT = process.env.NEXT_PUBLIC_SOCKET_URL || "";
-const socketId = socketIO(ENPOIENT,{transports:["websocket"]});
+// import socketIO from "socket.io-client";
+// const ENPOIENT = process.env.NEXT_PUBLIC_SOCKET_URL || "";
+// const socketId = socketIO(ENPOIENT,{transports:["websocket"]});
  
 
 const poppins = Poppins({
@@ -33,9 +33,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
 
-  useEffect(()=>{
-    socketId.on("connection",()=>{})
-  },[])
+  // useEffect(()=>{
+  //   socketId.on("connection",()=>{})
+  // },[])
 
   return (
     <html lang="en">

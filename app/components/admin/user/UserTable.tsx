@@ -8,6 +8,7 @@ import Table from "@/app/utils/Table";
 import { AiFillEdit, AiTwotoneDelete } from "react-icons/ai";
 import swal from "sweetalert";
 import { useDeleteUserMutation } from "@/redux/features/auth/authApi";
+import ViewUser from "./ViewUser";
 
 type Props = {
   users: any;
@@ -80,12 +81,7 @@ const UserTable = ({ users, isLoading, refetch }: Props) => {
         <>
           <div className=" flex flex-row items-center gap-5">
             {/* <button><HiOutlineViewfinderCircle /></button> */}
-            <button
-              onClick={() => handelEdit(row._id)}
-              className=" text-[20px] hover:text-green-500"
-            >
-              <AiFillEdit />
-            </button>
+            <ViewUser row={row} />
             <button
               onClick={() => handelDelete(row._id)}
               className=" text-[20px] hover:text-red-500"

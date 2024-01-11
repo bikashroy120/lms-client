@@ -5,22 +5,22 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import Table from "@/app/utils/Table";
-import { AiFillEdit, AiTwotoneDelete } from "react-icons/ai";
+import { AiTwotoneDelete } from "react-icons/ai";
 import swal from "sweetalert";
-import { useDeleteUserMutation } from "@/redux/features/auth/authApi";
 import { format } from "timeago.js";
+import { useDeleteOrderMutation } from "@/redux/features/order/orderApi";
 // import ViewUser from "./ViewUser";
 
 type Props = {
-  users: any;
+  orders: any;
   isLoading: boolean;
   refetch: any;
 };
 
-const OrderTable = ({ users, isLoading, refetch }: Props) => {
+const OrderTable = ({ orders, isLoading, refetch }: Props) => {
   const router = useRouter();
 
-  const [deleteUser,{isSuccess,error}] = useDeleteUserMutation()
+  const [deleteOrder,{isSuccess,error}] = useDeleteOrderMutation()
 
 
   useEffect(()=>{
@@ -89,7 +89,7 @@ const OrderTable = ({ users, isLoading, refetch }: Props) => {
             {/* <button><HiOutlineViewfinderCircle /></button> */}
             {/* <ViewUser row={row} /> */}
             <button
-              onClick={() => handelDelete(row._id)}
+              onClick={() => handelDelete(row?._id)}
               className=" text-[20px] hover:text-red-500"
             >
               <AiTwotoneDelete />
@@ -121,8 +121,8 @@ const OrderTable = ({ users, isLoading, refetch }: Props) => {
   };
 
   const deleteItemFun = async (id: any) => {
-    console.log(id);
-    await deleteUser(id)
+    console.log("================",id)
+    await deleteOrder(id)
   };
 
   return (
@@ -133,7 +133,7 @@ const OrderTable = ({ users, isLoading, refetch }: Props) => {
             <Loader2 />{" "}
           </div>
         ) : (
-          <Table columns={columns} data={users} />
+          <Table columns={columns} data={orders} />
         )}
       </div>
     </>

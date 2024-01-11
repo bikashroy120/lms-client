@@ -17,8 +17,15 @@ export const orderApi = apiSlice.injectEndpoints({
                 credentials:"include" as const,
             })
         }),
+        deleteOrder: builder.mutation({
+            query: (id) => ({
+              url: `order/delete-order/${id}`,
+              method: "DELETE",
+              credentials: "include" as const,
+            }),
+          }),
     })
 })
 
 
-export const {useCreateOrderMutation,useGetAllOrderQuery} = orderApi;
+export const {useCreateOrderMutation,useGetAllOrderQuery,useDeleteOrderMutation} = orderApi;

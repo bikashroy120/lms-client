@@ -82,7 +82,7 @@ const AllOrder = (props: Props) => {
       </div>
 
       <div className=" border-b w-full flex items-center justify-center">
-        <OrderTable users={order?.order} isLoading={isLoading} refetch={refetch}/>      
+        <OrderTable orders={order?.order} isLoading={isLoading} refetch={refetch}/>      
       </div>
 
       <div className=" py-5">

@@ -11,6 +11,7 @@ type Props = {};
 const AdminAllUser = (props: Props) => {
   const [searchName, setSearchName] = useState("");
   const [searchQuery, sestSearchQuery] = useState("");
+  const [page,setPage] = useState(1)
   const [searchValue] = useDebounce(searchName, 1000);
   let itemsPerPage = 10;
   const {
@@ -24,6 +25,7 @@ const AdminAllUser = (props: Props) => {
     const queryParams = [];
     if (searchName) {
       queryParams.push(`search=${searchValue}`);
+      setPage(1)
     }
     // if (gender) {
     //   queryParams.push(`gender=${gender}`);
@@ -41,9 +43,16 @@ const AdminAllUser = (props: Props) => {
 
   useEffect(() => {
     const query = generateQuery();
-    sestSearchQuery(`${query}&page=1&limit=${itemsPerPage}`);
+    sestSearchQuery(`${query}&page=${page}&limit=${itemsPerPage}`);
     refetch()
-  }, [searchValue]);
+  }, [searchValue,page]);
+
+
+  const PagenationChange = (page:any, pageSiz:any)=>{
+    console.log("hello world",page)
+    console.log("hello world",pageSiz)
+    setPage(page)
+  }
 
 
   console.log(user)
@@ -54,7 +63,7 @@ const AdminAllUser = (props: Props) => {
         <div className=" lg:w-[50%] w-full">
           <input
             type="text"
-            placeholder="Search title..."
+            placeholder="Search name and email..."
             value={searchName}
             onChange={(e: any) => setSearchName(e.target.value)}
             className=" w-full py-3 px-3 border  rounded-lg border-gray-400 focus:outline-blue-500"
@@ -76,7 +85,7 @@ const AdminAllUser = (props: Props) => {
       </div>
 
       <div className=" py-5">
-        {isLoading ? <> </> : <Pagination defaultCurrent={1} total={100} pageSize={10}  showSizeChanger={false}/>} 
+        {isLoading ? <> </> : <Pagination defaultCurrent={1} total={user?.item} pageSize={itemsPerPage} onChange={PagenationChange}  showSizeChanger={false}/>} 
       </div>
     </div>
   );

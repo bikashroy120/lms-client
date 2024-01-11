@@ -70,10 +70,10 @@ const AddCategory = (props: Props) => {
       <div className=" border-b w-full flex items-center justify-center">
         <CategoryTable course={data?.category} isLoading={isLoading} refetch={refetch}/>      
       </div>
-
+{/* 
       <div className=" py-5">
         {isLoading ? <> </> : <Pagination defaultCurrent={1} total={100} pageSize={10}  showSizeChanger={false}/>} 
-      </div>
+      </div> */}
     </div>
     <CategoryDrawer open={addOpen} setOpen={setAddOpen} refetch={refetch}/>
   </div>

@@ -3,10 +3,11 @@
 import Loader2 from "@/app/utils/Loader2/Loader2";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import Table from "@/app/utils/Table";
 import { AiFillEdit, AiTwotoneDelete } from "react-icons/ai";
 import swal from "sweetalert";
+import { useDeleteUserMutation } from "@/redux/features/auth/authApi";
 
 type Props = {
   users: any;
@@ -16,13 +17,37 @@ type Props = {
 
 const UserTable = ({ users, isLoading, refetch }: Props) => {
   const router = useRouter();
+
+  const [deleteUser,{isSuccess,error}] = useDeleteUserMutation()
+
+
+  useEffect(()=>{
+    if(isSuccess){
+      swal("Successfully deleted!", {
+        icon: "success",
+      });
+      refetch()
+    }
+    if(error){
+      if("data" in error){
+        const errorData = error as any;
+        swal(errorData.data.message, {
+          icon: "warning",
+        });
+      }else{
+        console.log(error)
+      }
+    }
+  },[isSuccess,error])
+
+
   const columns = [
     {
       name: "Image",
       selector: (row: any) => (
         <>
           <Image
-            src={row?.avater}
+            src={row?.avater ? row?.avater : "/user.png"}
             width={50}
             height={50}
             alt="logo"
@@ -95,7 +120,7 @@ const UserTable = ({ users, isLoading, refetch }: Props) => {
 
   const deleteItemFun = async (id: any) => {
     console.log(id);
-    // await deleteCourse(id)
+    await deleteUser(id)
   };
 
   return (

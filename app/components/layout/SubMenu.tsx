@@ -31,7 +31,7 @@ const SubMenu = ({ data }: any) => {
       <li
         onClick={() => setSubMenuOpen((pre)=>!pre)}
       >
-        <div style={isActive(data?.activeData) ? activeStyle : undefined}   className=" flex items-center py-3 relative group  text-slate-500 font-semibold px-8 gap-6 hover:bg-gray-200">
+        <div style={isActive(data?.activeData) ? activeStyle : undefined}   className=" flex items-center cursor-pointer py-3 relative group  text-slate-500 font-semibold px-8 gap-6 hover:bg-gray-200">
           <data.icon size={23} className="min-w-max" />
           <p className="flex-1 capitalize">{data.name}</p>
           <IoIosArrowDown

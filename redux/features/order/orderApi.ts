@@ -10,15 +10,15 @@ export const orderApi = apiSlice.injectEndpoints({
                 credentials:"include" as const,
             })
         }),
-        // getAllOrder:builder.query({
-        //     query:(query:any)=>({
-        //         url:`course/all-course?${query}`,
-        //         method:"GET",
-        //         credentials:"include" as const,
-        //     })
-        // }),
+        getAllOrder:builder.query({
+            query:(query:any)=>({
+                url:`order/all-order?${query}`,
+                method:"GET",
+                credentials:"include" as const,
+            })
+        }),
     })
 })
 
 
-export const {useCreateOrderMutation} = orderApi;
+export const {useCreateOrderMutation,useGetAllOrderQuery} = orderApi;

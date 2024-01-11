@@ -8,8 +8,10 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import { HiOutlineDatabase } from "react-icons/hi";
 import { TbReportAnalytics } from "react-icons/tb";
+import { FaJediOrder, FaRegUser } from "react-icons/fa";
 import { RiBuilding3Line } from "react-icons/ri";
 import SubMenu from "./SubMenu";
+import { SiCoursera } from "react-icons/si";
 
 type Props = {};
 
@@ -46,7 +48,7 @@ const text_hedin = {
 const subMenusList = [
   {
     name: "Courses",
-    icon: RiBuilding3Line,
+    icon: SiCoursera,
     active: 13,
     activeData: "/admin/course",
     menus: [
@@ -142,7 +144,7 @@ const AdminSidber = (props: Props) => {
               href={"/admin/user"}
               className=" flex items-center py-3 relative group  text-slate-500 font-semibold px-8 gap-6 hover:bg-gray-200"
             >
-              <MdOutlineDashboard size={20} className={" min-w-max"} />
+              <FaRegUser size={20} className={" min-w-max"} />
               <span
                 className={`${
                   !open
@@ -168,11 +170,11 @@ const AdminSidber = (props: Props) => {
 
           <li>
             <Link
-              style={isActive("/admin") ? activeStyle : undefined}
-              href={"/admin"}
+              style={isActive("/admin/order") ? activeStyle : undefined}
+              href={"/admin/order"}
               className=" flex items-center py-3 relative group  text-slate-500 font-semibold px-8 gap-6 hover:bg-gray-200"
             >
-              <MdOutlineDashboard size={20} className={" min-w-max"} />
+              <FaJediOrder size={20} className={" min-w-max"} />
               <span
                 className={`${
                   !open
@@ -180,7 +182,7 @@ const AdminSidber = (props: Props) => {
                     : ""
                 }`}
               >
-                DashBoard
+                Order
               </span>
             </Link>
           </li>

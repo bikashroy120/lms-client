@@ -1,12 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Icon } from "@iconify/react";
 import Container from "../../utils/Container";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { styles } from "../styles/style";
+import toast from "react-hot-toast";
+import { useCreateContactMutation } from "@/redux/features/contact/contactApi";
 
 type Props = {};
 
@@ -36,16 +38,39 @@ const Contact = (props: Props) => {
     },
   ];
 
+  const [createContact,{isError,isSuccess,isLoading,data,error}] = useCreateContactMutation()
+
+
+
+
   const formik = useFormik({
     initialValues: { name: "", phone: "", email: "", message: "" },
     validationSchema: schema,
     onSubmit: async ({ name, phone, email, message }) => {
       // await login({email,password})
       console.log(name, email, phone, message);
+      const data = {name, email, phone, message}
+      await createContact(data)
     },
   });
 
-  const { values, touched, errors, handleChange, handleSubmit } = formik;
+  const { values, touched, errors, handleChange, handleSubmit,resetForm } = formik;
+
+  useEffect(()=>{
+    if(isSuccess){
+      const message = data?.message || "send message admin success"
+      toast.success(message)
+      resetForm()
+    }
+    if(error){
+      if("data" in error){
+        const errorData = error as any;
+        toast.error(errorData.data.message)
+      }else{
+        console.log(error)
+      }
+    }
+  },[isSuccess,error])
 
   return (
     <div className="lg:py-[100px] py-5">
@@ -91,7 +116,8 @@ const Contact = (props: Props) => {
                     </label>
                     <input
                       type="text"
-                      value={values.email}
+                      value={values.name}
+                      id="name"
                       onChange={handleChange}
                       className={`${
                         errors.name && touched.name && "border-red-500"
@@ -110,6 +136,7 @@ const Contact = (props: Props) => {
                     <input
                       type="text"
                       value={values.phone}
+                      id="phone"
                       onChange={handleChange}
                       className={`${
                         errors.name && touched.name && "border-red-500"
@@ -129,6 +156,7 @@ const Contact = (props: Props) => {
                     <input
                       type="email"
                       value={values.email}
+                      id="email"
                       onChange={handleChange}
                       className={`${
                         errors.name && touched.name && "border-red-500"
@@ -146,6 +174,7 @@ const Contact = (props: Props) => {
                     </label>
                     <textarea
                       value={values.message}
+                      id="message"
                       onChange={handleChange}
                       className={`${
                         errors.name && touched.name && "border-red-500"
@@ -158,7 +187,7 @@ const Contact = (props: Props) => {
                     )}
                   </div>
                   <div className=" mt-8">
-                      <button className=" py-3 px-5 bg-primary text-white text-[20px] rounded-md font-semibold font-serif " type="submit">Send Message</button>
+                      <button className=" py-3 px-5 bg-primary text-white text-[20px] rounded-md font-semibold font-serif " type="submit">{isLoading ? "Loading..." : "Send Message"}</button>
                   </div>
               </form>
             </div>

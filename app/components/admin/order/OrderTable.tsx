@@ -9,6 +9,7 @@ import { AiTwotoneDelete } from "react-icons/ai";
 import swal from "sweetalert";
 import { format } from "timeago.js";
 import { useDeleteOrderMutation } from "@/redux/features/order/orderApi";
+import ViewOrder from "./ViewOrder";
 // import ViewUser from "./ViewUser";
 
 type Props = {
@@ -87,7 +88,7 @@ const OrderTable = ({ orders, isLoading, refetch }: Props) => {
         <>
           <div className=" flex flex-row items-center gap-5">
             {/* <button><HiOutlineViewfinderCircle /></button> */}
-            {/* <ViewUser row={row} /> */}
+            <ViewOrder row={row} />
             <button
               onClick={() => handelDelete(row?._id)}
               className=" text-[20px] hover:text-red-500"

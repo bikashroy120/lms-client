@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { MdOutlineDashboard } from "react-icons/md";
+import { MdOutlineContactMail, MdOutlineDashboard } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import { HiOutlineDatabase } from "react-icons/hi";
 import { TbReportAnalytics } from "react-icons/tb";
@@ -183,6 +183,24 @@ const AdminSidber = (props: Props) => {
                 }`}
               >
                 Order
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              style={isActive("/admin/contact") ? activeStyle : undefined}
+              href={"/admin/contact"}
+              className=" flex items-center py-3 relative group  text-slate-500 font-semibold px-8 gap-6 hover:bg-gray-200"
+            >
+              <MdOutlineContactMail size={20} className={" min-w-max"} />
+              <span
+                className={`${
+                  !open
+                    ? "absolute top-[3px] hidden group-hover:flex  bg-gray-200 rounded-md p-2 left-[100px]"
+                    : ""
+                }`}
+              >
+                Contact
               </span>
             </Link>
           </li>

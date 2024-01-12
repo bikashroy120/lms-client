@@ -12,6 +12,7 @@ import { FaJediOrder, FaRegUser } from "react-icons/fa";
 import { RiBuilding3Line } from "react-icons/ri";
 import SubMenu from "./SubMenu";
 import { SiCoursera } from "react-icons/si";
+import { IoSettingsOutline } from "react-icons/io5";
 
 type Props = {};
 
@@ -201,6 +202,24 @@ const AdminSidber = (props: Props) => {
                 }`}
               >
                 Contact
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              style={isActive("/admin/setting") ? activeStyle : undefined}
+              href={"/admin/setting"}
+              className=" flex items-center py-3 relative group  text-slate-500 font-semibold px-8 gap-6 hover:bg-gray-200"
+            >
+              <IoSettingsOutline size={20} className={" min-w-max"} />
+              <span
+                className={`${
+                  !open
+                    ? "absolute top-[3px] hidden group-hover:flex  bg-gray-200 rounded-md p-2 left-[100px]"
+                    : ""
+                }`}
+              >
+                Setting
               </span>
             </Link>
           </li>

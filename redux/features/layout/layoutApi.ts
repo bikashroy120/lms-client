@@ -28,4 +28,4 @@ export const layoutApi = apiSlice.injectEndpoints({
 })
 
 
-export const {} = layoutApi;
+export const {useGetLayoutQuery,useUpdateLayoutMutation} = layoutApi;

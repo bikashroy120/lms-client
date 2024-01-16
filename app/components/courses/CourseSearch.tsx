@@ -7,9 +7,10 @@ import {  usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 type Props = {
     setQuery:any
+    setPage:any;
 }
 
-const CourseSearch = ({setQuery}: Props) => {
+const CourseSearch = ({setQuery,setPage}: Props) => {
     const [search,setSearch] = useState("")
     const [searchValue] = useDebounce(search, 1000); 
     const searchParams = useSearchParams();
@@ -25,10 +26,12 @@ const CourseSearch = ({setQuery}: Props) => {
             params.append("search", searchValue);
             const url = `${params.toString()}`;
             setQuery(url)
+            setPage(1)
         }else{
             params.delete("search")
             setQuery(``)
             // replace(`${pathName}?${params}`)
+            setPage(1)
         }
     },[searchValue])
 

@@ -8,10 +8,11 @@ import { Icon } from "@iconify/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
-  setQuery:any
+  setQuery:any;
+  setPage:any
 };
 
-const FilterLevel = ({setQuery}: Props) => {
+const FilterLevel = ({setQuery,setPage}: Props) => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const searchParams = useSearchParams();
 //   const {replace} = useRouter();
@@ -48,6 +49,7 @@ const FilterLevel = ({setQuery}: Props) => {
     const url = `${params.toString()}`;
     // replace(`${pathName}?${url}`)
     setQuery(url)
+    setPage(1)
   };
 
 

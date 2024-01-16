@@ -5,14 +5,15 @@ import FilterLevel from './FilterLevel';
 
 type Props = {
   setQuery:any;
+  setPage:any;
 }
 
-const CourseLeft = ({setQuery}: Props) => {
+const CourseLeft = ({setQuery,setPage}: Props) => {
   return (
     <div>
-        <CourseSearch setQuery={setQuery}/>
-        <FilterCategory setQuery={setQuery}/>
-        <FilterLevel setQuery={setQuery}/>
+        <CourseSearch setQuery={setQuery} setPage={setPage}/>
+        <FilterCategory setQuery={setQuery} setPage={setPage}/>
+        <FilterLevel setQuery={setQuery} setPage={setPage}/>
     </div>
   )
 }

@@ -10,9 +10,10 @@ import { useSelector } from "react-redux";
 
 type Props = {
   setQuery: any;
+  setPage:any;
 };
 
-const FilterCategory = ({ setQuery }: Props) => {
+const FilterCategory = ({ setQuery,setPage }: Props) => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const searchParams = useSearchParams();
   const { category } = useSelector((state: any) => state.auth);
@@ -25,6 +26,7 @@ const FilterCategory = ({ setQuery }: Props) => {
   useEffect(() => {
     if(category){
       setSelectedCategories([category])
+      setPage(1)
     }
   }, [category]);
 
@@ -49,6 +51,7 @@ const FilterCategory = ({ setQuery }: Props) => {
     });
     const url = `${params.toString()}`;
     setQuery(url);
+    setPage(1)
   };
 
   useEffect(() => {

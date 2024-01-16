@@ -15,9 +15,11 @@ import { useGetAllCategoryQuery } from "@/redux/features/category/categoryApi";
 import CategoryCard from "./CategoryCard";
 
 
-type Props = {};
+type Props = {
+  home:any
+};
 
-const Category = (props: Props) => {
+const Category = ({home}: Props) => {
   const router = useRouter()
   const { data,isLoading, refetch } = useGetAllCategoryQuery(
     "",{refetchOnMountOrArgChange:true}
@@ -26,7 +28,7 @@ const Category = (props: Props) => {
 
   return (
     <div className="">
-      <CategoryTop />
+      <CategoryTop home={home}/>
       <div className="lg:py-[100px] lg:pt-[130px] py-5">
         <Container>
           <div>

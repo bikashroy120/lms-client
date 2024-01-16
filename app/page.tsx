@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import Header from "./components/Header";
@@ -9,24 +9,44 @@ import MasterSkills from "./components/HomePage/MasterSkills";
 import TrendingCourses from "./components/HomePage/TrendingCourses";
 import StudentReview from "./components/HomePage/StudentReview";
 import Footer from "./components/Footer";
-
+import { useGetLayoutQuery } from "@/redux/features/layout/layoutApi";
+import Loader from "./components/Loader/Loader";
 
 export default function Home() {
-  const [open,setOpen] = useState(false)
-  const [activeItem,setActiveItem] = useState(0)
-  const [route,setRoute] = useState("Login")
+  const [open, setOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState(0);
+  const [route, setRoute] = useState("Login");
+
+  const { isLoading, data } = useGetLayoutQuery("type=Home");
+
+  console.log(data?.data?.home)
+
   return (
-      <>
-        <div>
-          < Header open={open} setOpen={setOpen} route={route} setRoute={setRoute} activeItem={activeItem}/>
-          <Hero/>
-          <Category/>
-          <HomeProduct/>
-          <MasterSkills/>
-          <TrendingCourses/>
-          <StudentReview/>
-          <Footer/>
-        </div>
-      </>
-  )
+    <>
+      {isLoading ? (
+        <>
+          <Loader /> 
+       </>
+      ) : (
+        <>
+          <div>
+            <Header
+              open={open}
+              setOpen={setOpen}
+              route={route}
+              setRoute={setRoute}
+              activeItem={activeItem}
+            />
+            <Hero home={data?.data?.home}/>
+            <Category home={data?.data?.home}/>
+            <HomeProduct />
+            <MasterSkills />
+            <TrendingCourses />
+            <StudentReview />
+            <Footer />
+          </div>
+        </>
+      )}
+    </>
+  );
 }

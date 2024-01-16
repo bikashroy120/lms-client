@@ -6,9 +6,11 @@ import TutorsSvg from "@/app/utils/svg/TutorsSvg";
 import React from "react";
 import AnimatedNumber from "../ui/AnimatedNumber";
 
-type Props = {};
+type Props = {
+  home:any
+};
 
-const CategoryTop = (props: Props) => {
+const CategoryTop = ({home}: Props) => {
   return (
     <Container>
       <div className=" relative w-full pt-7 lg:pt-0">
@@ -18,7 +20,7 @@ const CategoryTop = (props: Props) => {
               <CoursesSvg />
             </div>
             <div>
-              <h2 className="text-[25px] font-bold text-text"><AnimatedNumber value={10}/>K</h2>
+              <h2 className="text-[25px] font-bold text-text"><AnimatedNumber value={home?.Courses}/>+</h2>
               <p className=" text-[18px] font-medium text-lightText">
                 Online Courses
               </p>
@@ -29,7 +31,7 @@ const CategoryTop = (props: Props) => {
               <TutorsSvg />
             </div>
             <div>
-              <h2 className="text-[25px] font-bold text-text"><AnimatedNumber value={186}/>+</h2>
+              <h2 className="text-[25px] font-bold text-text"><AnimatedNumber value={home?.Tutors}/>+</h2>
               <p className=" text-[18px] font-medium text-lightText">
                 Expert Tutors
               </p>
@@ -40,7 +42,7 @@ const CategoryTop = (props: Props) => {
               <CeritifiedSvg />
             </div>
             <div>
-              <h2 className="text-[25px] font-bold text-text"><AnimatedNumber value={5}/>K</h2>
+              <h2 className="text-[25px] font-bold text-text"><AnimatedNumber value={home?.Certified}/>+</h2>
               <p className=" text-[18px] font-medium text-lightText">
                 Ceritified Courses
               </p>
@@ -51,7 +53,7 @@ const CategoryTop = (props: Props) => {
               <StudentsSvg />
             </div>
             <div>
-              <h2 className="text-[25px] font-bold text-text"><AnimatedNumber value={7}/>K</h2>
+              <h2 className="text-[25px] font-bold text-text"><AnimatedNumber value={home?.Students}/>+</h2>
               <p className=" text-[18px] font-medium text-lightText">
                 Online Students
               </p>

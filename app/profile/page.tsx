@@ -9,6 +9,7 @@ import { useLogoutQuery } from "@/redux/features/auth/authApi";
 import { redirect } from "next/navigation";
 import Protected from "../components/hooks/useProtected";
 import ProfileInfo from "../components/profile/ProfileInfo";
+import ChangePassword from "../components/profile/ChangePassword";
 
 type Props = {};
 
@@ -49,6 +50,7 @@ const Profile = (props: Props) => {
           />
           <div className=" w-[90%]">
             {active === 1 && <ProfileInfo user={user} />}
+            {active === 2 && <ChangePassword user={user} />}
           </div>
         </div>
       </Protected>

@@ -21,9 +21,8 @@ const Hero = ({home}: Props) => {
   const router = useRouter()
   const handelSearch = ()=>{
     dispatch(addSearch(search))
-    router.push("/course?hfhfhf")
+    router.push(`/course?search=${search}`)
   }
-
 
   return (
     <div className="hero_background">

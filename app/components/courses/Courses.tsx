@@ -1,14 +1,27 @@
 "use client";
 import Container from "../../utils/Container";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CourseLeft from "./CourseLeft";
 import { useGetAllCourseQuery } from "@/redux/features/courses/coursesApi";
 import CourseRight from "./CourseRight";
 import Loader from "../Loader/Loader";
+import BreadCrumb from "../ui/BreadCrumb";
+import { useSelector } from "react-redux";
 
 const Courses = ({ searchParams }: any) => {
   const [query, setQuery] = useState("");
-  console.log("======================", query);
+  const { search } = useSelector((state: any) => state.auth);
+  console.log("======================", search,query);
+
+
+  // useEffect(()=>{
+  //   const params = new URLSearchParams();
+  //   if(search){
+  //     params.append("search", search);
+  //     const url = `${params.toString()}`;
+  //     setQuery(url)
+  //   }
+  // },[search])
 
   const {
     data: course,

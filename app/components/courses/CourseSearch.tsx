@@ -17,14 +17,29 @@ const CourseSearch = ({setQuery}: Props) => {
     const pathName = usePathname();
 
     useEffect(()=>{
-        const params = new URLSearchParams(searchParams)
-        if(searchValue){
-            params.set("search",searchValue)
+        const params = new URLSearchParams();
+        if(searchValue !== ""){
+            // params.set("search",searchValue)
+            // setQuery(`search=${searchValue}`)
+            // replace(`${pathName}?${params}`)
+            params.append("search", searchValue);
+            const url = `${params.toString()}`;
+            setQuery(url)
         }else{
             params.delete("search")
+            setQuery(``)
+            // replace(`${pathName}?${params}`)
         }
-        replace(`${pathName}?${params}`)
     },[searchValue])
+
+
+    // useEffect(()=>{
+    //     if(searchValue){
+
+    //     }else{
+    //         setQuery("")
+    //     }
+    // },[])
 
 
   return (

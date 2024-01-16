@@ -20,10 +20,10 @@ const FilterLevel = ({setQuery}: Props) => {
 
   // console.log("catrgory======", pathName);
 
-  useEffect(()=>{
-    const params = new URLSearchParams(searchParams)
-    console.log("category=====",params.get("category"))
-  },[searchParams])
+  // useEffect(()=>{
+  //   const params = new URLSearchParams(searchParams)
+  //   console.log("category=====",params.get("category"))
+  // },[searchParams])
 
   const categoryAdd = (title: string) => {
     const isSelected = Boolean(

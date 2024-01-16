@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import Header from "../components/Header";
-import BreadCrumb from "../components/ui/BreadCrumb";
 import Footer from "../components/Footer";
 import Courses from "../components/courses/Courses";
+import BreadCrumb from "../components/ui/BreadCrumb";
 
 type Props = {};
 

@@ -23,7 +23,9 @@ const FilterCategory = ({ setQuery }: Props) => {
   });
 
   useEffect(() => {
-    setSelectedCategories([category])
+    if(category){
+      setSelectedCategories([category])
+    }
   }, [category]);
 
   const categoryAdd = (title: string) => {

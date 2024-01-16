@@ -5,6 +5,7 @@ import CourseAccess from '../../components/CourseAccess/CourseAccess';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import React, { useState } from 'react'
+import Protected from "../../components/hooks/useProtected"
 
 
 const Page = ({ params }: any) => {
@@ -15,6 +16,7 @@ const Page = ({ params }: any) => {
 
   return (
     <div>
+      <Protected>
       <div className=" bg-white h-[80px] relative">
         <Header
           open={open}
@@ -26,6 +28,7 @@ const Page = ({ params }: any) => {
       </div>
       <CourseAccess id={id}/>
       <Footer/>
+      </Protected>
     </div>
   )
 }

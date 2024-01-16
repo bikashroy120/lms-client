@@ -17,7 +17,7 @@ type Props = {};
 
 const Profile = (props: Props) => {
   const [open, setOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState(0);
+  const [activeItem, setActiveItem] = useState(10);
   const [route, setRoute] = useState("Login");
   const [active, setActive] = useState(1);
   const [logout, setLogout] = useState(false);

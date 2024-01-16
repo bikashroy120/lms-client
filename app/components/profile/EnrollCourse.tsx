@@ -12,7 +12,6 @@ type Props = {
 };
 
 const EnrollCourse = ({ user }: Props) => {
-  console.log("======course=====", user?.courses);
   const router = useRouter()
 
   return (
@@ -47,7 +46,7 @@ const EnrollCourse = ({ user }: Props) => {
                   className=" group-hover:text-white"
                 >
                   <h2 className=" text-[18px] font-bold hover:text-primary  duration-500 text-text">
-                    {course?.courseId?.name.slice(0, 50)}...
+                    {course?.courseId?.name?.slice(0, 50)}...
                   </h2>
                 </Link>
                 <div className="flex items-center py-3 text-[18px] font-semibold text-lightText justify-between">

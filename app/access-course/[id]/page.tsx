@@ -9,7 +9,7 @@ import React, { useState } from 'react'
 
 const Page = ({ params }: any) => {
     const [open, setOpen] = useState(false);
-    const [activeItem, setActiveItem] = useState(4);
+    const [activeItem, setActiveItem] = useState(10);
     const [route, setRoute] = useState("Login");
     const id = params?.id;
 

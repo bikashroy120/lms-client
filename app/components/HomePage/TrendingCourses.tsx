@@ -40,7 +40,7 @@ const TrendingCourses = (props: Props) => {
             <div className=" w-full flex items-center md:justify-end">
               <CustomButton
                 title="All Courses"
-                handelClick={() => router.push("/admin")}
+                handelClick={() => router.push("/course")}
               />
             </div>
           </div>

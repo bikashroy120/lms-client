@@ -41,7 +41,7 @@ const Category = ({home}: Props) => {
                  imperdiet."
               />
               <div className=" w-full flex items-center md:justify-end">
-                  <CustomButton title="All Category" handelClick={()=>router.push("/admin")}/>
+                  <CustomButton title="All Category" handelClick={()=>router.push("/course")}/>
               </div>
             </div>
 

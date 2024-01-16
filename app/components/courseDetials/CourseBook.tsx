@@ -1,12 +1,13 @@
 "use client"
 
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react';
 import useAuth from '../hooks/useAuth';
 import { useCreateOrderMutation } from '../../../redux/features/order/orderApi';
 import toast from 'react-hot-toast';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
+import { useLoadUserQuery } from '@/redux/features/api/apiSlice';
 
 type Props = {
     courseData:any;
@@ -14,6 +15,9 @@ type Props = {
 
 const CourseBook = ({courseData}: Props) => {
     const auth =  useAuth()
+    const router = useRouter()
+    const [loadUser, setLoadUser] = useState(false);
+    const {} = useLoadUserQuery(undefined, { skip: loadUser ? false : true });
     const [createOrder,{isError,data,error,isSuccess,isLoading}] = useCreateOrderMutation()
 
 
@@ -21,7 +25,8 @@ const CourseBook = ({courseData}: Props) => {
         if(isSuccess){
           const message = data?.message || "order create success"
           toast.success(message)
-          redirect(`/access-course/${courseData?._id}`)
+          setLoadUser(true)
+          router.push(`/access-course/${courseData?._id}`)
         }
         if(error){
           if("data" in error){

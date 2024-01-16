@@ -10,6 +10,8 @@ import { redirect } from "next/navigation";
 import Protected from "../components/hooks/useProtected";
 import ProfileInfo from "../components/profile/ProfileInfo";
 import ChangePassword from "../components/profile/ChangePassword";
+import EnrollCourse from "../components/profile/EnrollCourse";
+import Container from "../utils/Container";
 
 type Props = {};
 
@@ -41,18 +43,21 @@ const Profile = (props: Props) => {
             activeItem={activeItem}
           />
         </div>
-        <div className=" flex item w-[90%] gap-5 mx-auto py-10 ">
-          <ProfileLeft
-            active={active}
-            user={user}
-            setActive={setActive}
-            logOutFunction={logOutFunction}
-          />
-          <div className=" w-[90%]">
-            {active === 1 && <ProfileInfo user={user} />}
-            {active === 2 && <ChangePassword user={user} />}
+        <Container>
+          <div className=" flex item w-full gap-5 py-10 ">
+            <ProfileLeft
+              active={active}
+              user={user}
+              setActive={setActive}
+              logOutFunction={logOutFunction}
+            />
+            <div className=" w-[90%]">
+              {active === 1 && <ProfileInfo user={user} />}
+              {active === 2 && <ChangePassword user={user} />}
+              {active === 3 && <EnrollCourse user={user} />}
+            </div>
           </div>
-        </div>
+        </Container>
       </Protected>
     </div>
   );

@@ -85,12 +85,14 @@ export const authApi = apiSlice.injectEndpoints({
       },
     }),
     update: builder.mutation({
-      query: ({ name, avater }) => ({
+      query: ({ name, avater,phone,address }) => ({
         url: "update-user",
         method: "PUT",
         body: {
           name,
           avater,
+          phone,
+          address,
         },
         credentials: "include" as const,
       }),

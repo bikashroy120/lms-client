@@ -13,7 +13,7 @@ type Props = {
 
 const ProfileLeft = ({ active, user,setActive,logOutFunction }: Props) => {
   return (
-    <div className=" bg-slate-800 rounded-md h-[500px] overflow-hidden">
+    <div className=" bg-white shadow-md rounded-md h-[500px] overflow-hidden">
       <button onClick={()=>setActive(1)} className={`flex hover:bg-slate-500 py-3 px-5 items-center gap-3 cursor-pointer 800px:w-[300px] w-[80px] ${active === 1 ? "bg-slate-500" : " bg-transparent"}`}>
         <Image
           src={user?.avater ? user?.avater : "/user.png"}

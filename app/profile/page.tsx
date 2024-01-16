@@ -29,15 +29,17 @@ const Profile = (props: Props) => {
   };
 
   return (
-    <div>
+    <div className=" bg-[#fafafa] w-full h-screen">
       <Protected>
-        <Header
-          open={open}
-          setOpen={setOpen}
-          route={route}
-          setRoute={setRoute}
-          activeItem={activeItem}
-        />
+        <div className=" bg-white h-[80px] relative">
+          <Header
+            open={open}
+            setOpen={setOpen}
+            route={route}
+            setRoute={setRoute}
+            activeItem={activeItem}
+          />
+        </div>
         <div className=" flex item w-[90%] gap-5 mx-auto py-10 ">
           <ProfileLeft
             active={active}
@@ -45,7 +47,9 @@ const Profile = (props: Props) => {
             setActive={setActive}
             logOutFunction={logOutFunction}
           />
-          <div className=" w-[90%]">{active === 1 && <ProfileInfo user={user}/>}</div>
+          <div className=" w-[90%]">
+            {active === 1 && <ProfileInfo user={user} />}
+          </div>
         </div>
       </Protected>
     </div>

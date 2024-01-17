@@ -12,7 +12,9 @@ import { FaJediOrder, FaRegUser } from "react-icons/fa";
 import { RiBuilding3Line } from "react-icons/ri";
 import SubMenu from "./SubMenu";
 import { SiCoursera } from "react-icons/si";
-import { IoSettingsOutline } from "react-icons/io5";
+import { IoClose, IoSettingsOutline } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { addMobile } from "@/redux/features/auth/authSlice";
 
 type Props = {};
 
@@ -70,12 +72,15 @@ const subMenusList = [
 ];
 
 const AdminSidber = (props: Props) => {
-  const [open, setOpen] = useState(true);
-
+  const mobile = true;
+  const { user } = useSelector((state: any) => state.auth);
   const pathname = usePathname();
   const isActive = (href: any) => {
     return pathname === href;
   };
+  const dispatch = useDispatch();
+
+  console.log("user=====", user);
 
   const activeStyle = {
     // your active style
@@ -86,37 +91,48 @@ const AdminSidber = (props: Props) => {
   };
 
   return (
-    <motion.div
-      variants={Sidebar_animation}
-      animate={open ? "open" : "closed"}
-      className=" w-[16rem] max-w-[16rem] bg-white text-gray border-r border-r-gray-300 h-screen  md:relative fixed"
-    >
+    <div className=" w-[16rem] max-w-[16rem] bg-white text-gray border-r border-r-gray-300 h-screen relative">
       <div className=" p-5 flex items-center justify-between">
-        <Image src={"/logo.png"} width={50} height={50} alt="logo" />
+        <Link
+          href={"/"}
+          className=" text-[28px] font-Poppins font-[500] text-black dark:text-white"
+        >
+          Elearing
+        </Link>
         <div>
-          <button onClick={() => setOpen((it) => !it)}>ad</button>
+          <button className=" md:hidden text-[25px] bg-primary w-[35px] text-white h-[35px] rounded-lg flex items-center justify-center" onClick={() => dispatch(addMobile(false))}>
+            <IoClose />
+          </button>
         </div>
       </div>
 
-      <div className=" m-2 p-4 rounded-md bg-gray-200 flex items-center gap-5 ">
-        <Image
-          src={"/user.png"}
-          width={40}
-          height={40}
-          alt="user"
-          className=" rounded-full min-w-max"
-        />
-        {open && (
-          <div>
-            <h3 className="text-sm font-semibold whitespace-pre">Bikash Roy</h3>
-            <h3 className="text-sm font-normal whitespace-pre">Roll : Admin</h3>
-          </div>
-        )}
-      </div>
+      {user && (
+        <div className=" m-2 p-4 rounded-md bg-gray-200 flex items-center gap-5 ">
+          {user?.avater && (
+            <Image
+              src={user?.avater ? user?.avater : "/user.png"}
+              width={40}
+              height={40}
+              alt="user"
+              className=" rounded-full min-w-max"
+            />
+          )}
+          {mobile && (
+            <div>
+              <h3 className="text-sm font-semibold whitespace-pre">
+                {user?.name}
+              </h3>
+              <h3 className="text-sm font-normal whitespace-pre">
+                Roll : Admin
+              </h3>
+            </div>
+          )}
+        </div>
+      )}
 
       <div>
         <ul className=" mt-6">
-          {open && (
+          {mobile && (
             <div className=" px-8 py-1 mb-3">
               <p className=" text-sm font-bold text-gray-500">MANAGEMENT</p>
             </div>
@@ -130,7 +146,7 @@ const AdminSidber = (props: Props) => {
               <MdOutlineDashboard size={20} className={" min-w-max"} />
               <span
                 className={`${
-                  !open
+                  !mobile
                     ? "absolute top-[3px] hidden group-hover:flex  bg-gray-200 rounded-md p-2 left-[100px]"
                     : ""
                 }`}
@@ -148,7 +164,7 @@ const AdminSidber = (props: Props) => {
               <FaRegUser size={20} className={" min-w-max"} />
               <span
                 className={`${
-                  !open
+                  !mobile
                     ? "absolute top-[3px] hidden group-hover:flex  bg-gray-200 rounded-md p-2 left-[100px]"
                     : ""
                 }`}
@@ -157,7 +173,7 @@ const AdminSidber = (props: Props) => {
               </span>
             </Link>
           </li>
-          {open && (
+          {mobile && (
             <div className=" px-8 py-1 my-4">
               <p className=" text-sm font-bold text-gray-500">MANAGEMENT</p>
             </div>
@@ -178,7 +194,7 @@ const AdminSidber = (props: Props) => {
               <FaJediOrder size={20} className={" min-w-max"} />
               <span
                 className={`${
-                  !open
+                  !mobile
                     ? "absolute top-[3px] hidden group-hover:flex  bg-gray-200 rounded-md p-2 left-[100px]"
                     : ""
                 }`}
@@ -196,7 +212,7 @@ const AdminSidber = (props: Props) => {
               <MdOutlineContactMail size={20} className={" min-w-max"} />
               <span
                 className={`${
-                  !open
+                  !mobile
                     ? "absolute top-[3px] hidden group-hover:flex  bg-gray-200 rounded-md p-2 left-[100px]"
                     : ""
                 }`}
@@ -214,7 +230,7 @@ const AdminSidber = (props: Props) => {
               <IoSettingsOutline size={20} className={" min-w-max"} />
               <span
                 className={`${
-                  !open
+                  !mobile
                     ? "absolute top-[3px] hidden group-hover:flex  bg-gray-200 rounded-md p-2 left-[100px]"
                     : ""
                 }`}
@@ -225,7 +241,7 @@ const AdminSidber = (props: Props) => {
           </li>
         </ul>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

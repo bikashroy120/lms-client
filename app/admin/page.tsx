@@ -4,14 +4,14 @@ import AdminProtected from "../components/hooks/useAdminProtected";
 
 type Props = {};
 
-const page = (props: Props) => {
+const Page = (props: Props) => {
   return (
     <AdminLayout>
-      {/* <AdminProtected> */}
-        <div>hello</div>
-      {/* </AdminProtected> */}
+      <AdminProtected>
+        <div>hello Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam optio recusandae illum eligendi dolorem nemo voluptas expedita eum possimus quisquam.</div>
+      </AdminProtected>
     </AdminLayout>
   );
 };
 
-export default page;
+export default Page;

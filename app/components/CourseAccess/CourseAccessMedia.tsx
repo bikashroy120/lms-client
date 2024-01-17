@@ -19,7 +19,7 @@ const CourseAccessMedia = ({
   return (
     <div>
       <div className=" w-full lg:h-[570px] h-[280px] bg-black rounded-lg">
-        {/* <VideoPlayer videoUrl={courseData[activeVideo]?.videoUrl}/> */}
+        <VideoPlayer videoUrl={courseData[activeVideo]?.videoUrl}/>
       </div>
       <div>
         <div className=" flex items-center justify-between mt-5">

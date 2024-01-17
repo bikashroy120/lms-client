@@ -6,6 +6,7 @@ const initialState = {
     code:"",
     category:"",
     search:"",
+    mobile:false,
 }
 
 
@@ -30,10 +31,13 @@ const authSlice = createSlice({
         },
         addSearch:(state,action)=>{
             state.search=action.payload;
+        },
+        addMobile:(state,action)=>{
+            state.mobile=action.payload;
         }
     }
 })
 
-export const {userRegistration,userLoggedOut,userLoggedIn,addCategory,addSearch} = authSlice.actions;
+export const {userRegistration,userLoggedOut,userLoggedIn,addCategory,addSearch,addMobile} = authSlice.actions;
 
 export default authSlice.reducer

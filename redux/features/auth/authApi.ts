@@ -58,10 +58,14 @@ export const authApi = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
+          localStorage.setItem(
+            "token",
+            JSON.stringify(result?.data?.accessToken)
+          );
           dispatch(
             userLoggedIn({
               accessToken: result.data.accessToken,
-              user: result.data.user,
+              user: result?.data?.user,
             })
           );
         } catch (error: any) {
@@ -78,6 +82,7 @@ export const authApi = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
+          localStorage.removeItem("token");
           dispatch(userLoggedOut());
         } catch (error: any) {
           console.log(error);

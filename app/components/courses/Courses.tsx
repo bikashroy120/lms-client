@@ -1,4 +1,6 @@
 "use client";
+
+
 import Container from "../../utils/Container";
 import React, { useEffect, useState } from "react";
 import CourseLeft from "./CourseLeft";
@@ -9,7 +11,7 @@ import BreadCrumb from "../ui/BreadCrumb";
 import { useSelector } from "react-redux";
 import { Pagination } from "antd";
 
-const Courses = ({ searchParams }: any) => {
+const Courses = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const { search } = useSelector((state: any) => state.auth);

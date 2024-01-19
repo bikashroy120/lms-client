@@ -8,7 +8,7 @@ import BreadCrumb from "../components/ui/BreadCrumb";
 
 type Props = {};
 
-const Page = async({searchParams}: any) => {
+const Page = ({}: any) => {
     const [open, setOpen] = useState(false);
     const [activeItem, setActiveItem] = useState(1);
     const [route, setRoute] = useState("Login");
@@ -25,7 +25,7 @@ const Page = async({searchParams}: any) => {
         />
       </div>
       <BreadCrumb title="Courses" subTitle="Courses"/>
-      <Courses searchParams={searchParams}/>
+      <Courses />
       <Footer/>
     </div>
   );

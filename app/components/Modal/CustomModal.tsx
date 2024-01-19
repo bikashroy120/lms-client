@@ -1,3 +1,5 @@
+"use client"
+
 // import { Modal, Box } from "@mui/material";
 import { Modal } from "antd";
 import React from "react";

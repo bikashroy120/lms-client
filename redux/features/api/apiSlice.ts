@@ -5,6 +5,18 @@ export const apiSlice = createApi({
     reducerPath:"api",
     baseQuery:fetchBaseQuery({
         baseUrl:process.env.NEXT_PUBLIC_SERVER_URL,
+        prepareHeaders: (headers) => {
+            // Get the token from localStorage
+            const tokenString = localStorage.getItem("token");
+      
+            if (tokenString !== null) {
+              // Set the Bearer token in the headers
+              const token = JSON.parse(tokenString);
+              headers.set("Authorization", `Bearer ${token}`);
+            }
+      
+            return headers;
+          },
     }),
     endpoints:(builder)=>({
         refreshToken:builder.query({

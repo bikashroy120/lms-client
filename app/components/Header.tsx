@@ -81,7 +81,7 @@ const Header: FC<Props> = (props) => {
                 </div>
 
                 {user ? (
-                  <Link href={user?.role==="admin" ? "/profile" : "/profile"}>
+                  <Link href={user?.role==="admin" ? "/admin" : "/profile"}>
                     <Image
                       src={user?.avater ? user?.avater : "/user.png"}
                       width={50}

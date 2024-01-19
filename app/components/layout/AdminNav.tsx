@@ -1,13 +1,13 @@
 "use client";
 
 import { Badge, Popover, Tooltip } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { useGetAllQuery } from "@/redux/features/notficition/notificationApi";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
 import { format } from "timeago.js";
-import { useUpdateMutation } from "@/redux/features/auth/authApi";
+import { useLogoutQuery, useUpdateMutation } from "@/redux/features/auth/authApi";
 import toast from "react-hot-toast";
 import { FaBars } from "react-icons/fa6";
 import { useMediaQuery } from "@react-hook/media-query";
@@ -20,6 +20,16 @@ const AdminNav = (props: Props) => {
   const { data: notification, refetch } = useGetAllQuery("", {
     refetchOnMountOrArgChange: true,
   });
+  const [logout, setLogout] = useState(false);
+  const { user } = useSelector((state: any) => state.auth);
+  const {} = useLogoutQuery(undefined, {
+    skip: !logout ? true : false,
+  });
+
+  const logOutFunction = () => {
+    setLogout(true);
+    redirect("/");
+  };
   const {mobile} = useSelector((state:any)=>state.auth)
   const dispatch = useDispatch()
   const router = useRouter();
@@ -138,7 +148,7 @@ const AdminNav = (props: Props) => {
               </button>
             </Popover>
           </div>
-          <button className=" bg-primary text-white w-[100px] py-2 rounded-lg">
+          <button onClick={()=>logOutFunction()} className=" bg-primary text-white w-[100px] py-2 rounded-lg">
             Log Out
           </button>
         </div>

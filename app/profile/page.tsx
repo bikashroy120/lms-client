@@ -53,8 +53,8 @@ const Profile = (props: Props) => {
             />
             <div className=" w-[90%]">
               {active === 1 && <ProfileInfo user={user} />}
-              {/* {active === 2 && <ChangePassword user={user} />}
-              {active === 3 && <EnrollCourse user={user} />} */}
+              {active === 2 && <ChangePassword user={user} />}
+              {active === 3 && <EnrollCourse user={user} />}
             </div>
           </div>
         </Container>

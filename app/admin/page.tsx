@@ -7,6 +7,7 @@ import AdminProtected from "../components/hooks/useAdminProtected";
 import AdminCard from "../components/admin/admin/AdminCard";
 import { FaBookOpenReader, FaDollarSign } from "react-icons/fa6";
 import { PiStudentBold } from "react-icons/pi";
+import AdminChart from "../components/admin/admin/AdminChart";
 
 type Props = {};
 
@@ -39,6 +40,9 @@ const Page = (props: Props) => {
   ]
 
 
+
+
+
   return (
     <AdminLayout>
       {/* <AdminProtected> */}
@@ -48,8 +52,8 @@ const Page = (props: Props) => {
                 <AdminCard data={item} key={index}/>
               ))}
             </div>
-            <div>
-                
+            <div className=" mt-7">
+                <AdminChart />
             </div>
         </div>
       {/* </AdminProtected> */}

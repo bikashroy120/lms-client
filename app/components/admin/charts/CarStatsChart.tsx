@@ -11,11 +11,11 @@ import {
 import carStaticsData from "./carStatics";
 
 
-const CarStatsChart = () => {
+const CarStatsChart = ({data}:any) => {
   return (
     <ResponsiveContainer className={"w-full"}>
       <AreaChart
-        data={carStaticsData}
+        data={data}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
       >
         <defs>
@@ -28,13 +28,13 @@ const CarStatsChart = () => {
             <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="name" stroke="#ddd" />
+        <XAxis dataKey="month" stroke="#ddd" />
 
         {/* <CartesianGrid strokeDasharray="0" stroke="#b7ffe913" /> */}
         <Tooltip wrapperClassName="tooltip__style" cursor={false} />
 
         <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          {/* <XAxis dataKey="month" /> */}
           <YAxis />
           <Tooltip />
 
@@ -47,7 +47,7 @@ const CarStatsChart = () => {
         /> */}
         <Area
           type="monotone"
-          dataKey="prevWeek"
+          dataKey="count"
           stroke="#82ca9d"
           fillOpacity={1}
           fill="url(#colorPv)"

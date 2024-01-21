@@ -8,6 +8,7 @@ import CourseAccessMedia from "./CourseAccessMedia";
 import Link from "next/link";
 import Answer from "./Answer";
 import Reviews from "./review/Reviews";
+import CourseVideo from "./CourseVideo";
 
 type Props = {
   id: any;
@@ -86,16 +87,20 @@ const CourseAccess = ({ id }: Props) => {
                   {activeTab === 3 && (
                     <div>
                       <Reviews
-                      refetch={refetch}
-                      couresId={data?.course?._id}
-                      data={data?.course?.reviews}
+                        refetch={refetch}
+                        couresId={data?.course?._id}
+                        data={data?.course?.reviews}
                       />
                     </div>
                   )}
                 </div>
               </div>
-              <div className=" lg:w-[34%] w-full sticky top-[370px]">
-                <div className=" w-full flex flex-col gap-7"></div>
+              <div className=" lg:w-[34%] w-full sticky top-[100px] h-screen overflow-y-scroll bg-white border p-5 rounded-lg shadow-sm">
+                <CourseVideo
+                  data={data?.course?.courseData}
+                  activeVideo={activeVideo}
+                  setActiveVideo={setActiveVideo}
+                />
               </div>
             </div>
           </Container>

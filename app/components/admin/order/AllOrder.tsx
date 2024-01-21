@@ -50,13 +50,10 @@ const AllOrder = (props: Props) => {
 
 
   const PagenationChange = (page:any, pageSiz:any)=>{
-    console.log("hello world",page)
-    console.log("hello world",pageSiz)
     setPage(page)
   }
 
 
-  console.log(order)
 
   return (
     <div className=" mt-5 bg-white shadow-md rounded-lg">
@@ -85,7 +82,7 @@ const AllOrder = (props: Props) => {
         <OrderTable orders={order?.order} isLoading={isLoading} refetch={refetch}/>      
       </div>
 
-      <div className=" py-5">
+      <div className="flex items-center justify-end py-5 px-5">
         {isLoading ? <> </> : <Pagination defaultCurrent={1} total={order?.item} pageSize={itemsPerPage} onChange={PagenationChange}  showSizeChanger={false}/>} 
       </div>
     </div>

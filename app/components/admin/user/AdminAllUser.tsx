@@ -84,7 +84,7 @@ const AdminAllUser = (props: Props) => {
         <UserTable users={user?.users} isLoading={isLoading} refetch={refetch}/>      
       </div>
 
-      <div className=" py-5">
+      <div className=" flex items-center justify-end py-5 px-5">
         {isLoading ? <> </> : <Pagination defaultCurrent={1} total={user?.item} pageSize={itemsPerPage} onChange={PagenationChange}  showSizeChanger={false}/>} 
       </div>
     </div>

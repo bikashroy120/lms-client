@@ -26,6 +26,7 @@ const Page = (props: Props) => {
   const [searchQuery, sestSearchQuery] = useState("");
   const [category, setCategory] = useState<null | Option>(null);
   const [searchValue] = useDebounce(searchName, 1000);
+  const [page,setPage] = useState(1)
  
 
   let itemsPerPage = 10;
@@ -52,39 +53,35 @@ const Page = (props: Props) => {
 
     if (category) {
       queryParams.push(`category=${category.value}`);
+      setPage(1)
     }
 
     if (searchName) {
       queryParams.push(`search=${searchValue}`);
+      setPage(1)
     }
 
     if (level) {
       queryParams.push(`level=${level}`);
+      setPage(1)
     }
-    // if (gender) {
-    //   queryParams.push(`gender=${gender}`);
-    // }
-    // if (selectedStatus) {
-    //   queryParams.push(`status=${selectedStatus}`);
-    // }
-
-    //---- Default userRole for "student"
-    // queryParams.push("userRole=student");
-    // queryParams.push(`underOfInst=${user?.id}`);
-
     return queryParams.join("&");
   };
 
   useEffect(() => {
     const query = generateQuery();
-    sestSearchQuery(`${query}&page=1&limit=${itemsPerPage}`);
+    sestSearchQuery(`${query}&page=${page}&limit=${itemsPerPage}`);
     refetch()
   }, [searchValue, category,level]);
 
 
+  const PagenationChange = (page:any, pageSiz:any)=>{
+    setPage(page)
+  }
 
   const handelClear = () => {
     setCategory(null);
+    setLevel("")
   };
 
   return (
@@ -131,7 +128,7 @@ const Page = (props: Props) => {
             </div>
 
             <div>
-              <button onClick={handelClear}>clear</button>
+              <button className=" bg-yellow-500 text-white py-3 px-5 rounded-md" onClick={handelClear}>clear</button>
             </div>
           </div>
 
@@ -139,8 +136,8 @@ const Page = (props: Props) => {
             <CourseTable course={course?.course} isLoading={isLoading} refetch={refetch}/>      
           </div>
 
-          <div className=" py-5">
-            {isLoading ? <> </> : <Pagination defaultCurrent={1} total={100} pageSize={10}  showSizeChanger={false}/>} 
+          <div className="flex items-center justify-end py-5 px-5">
+            {isLoading ? <> </> : <Pagination defaultCurrent={1} total={course?.item} pageSize={itemsPerPage} onChange={PagenationChange}  showSizeChanger={false}/>} 
           </div>
         </div>
         {/* <Table columns={columns} data={data}/> */}

@@ -76,15 +76,13 @@ const AdminNav = (props: Props) => {
           <h2 className="text-[22px] font-medium text-text-primary">
             Notifications
           </h2>
-          <Tooltip placement="left" title={"Mark as read"}>
             <Icon
               icon="radix-icons:envelope-open"
               className="text-[23px] text-secondary cursor-pointer"
             />
-          </Tooltip>
         </div>
         <div>
-          <div className=" flex flex-col gap-3">
+          <div className=" flex flex-col gap-3 max-h-[400px] overflow-y-scroll">
             {notification?.notification?.map((item: any, index: number) => (
               <div
                 key={index}

@@ -106,7 +106,7 @@ const AddCourses = (props: Props) => {
 
   return (
     <div className=" w-full flex gap-3 h-full">
-      <div className="w-[75%] h-full bg-white shadow-lg rounded-lg">
+      <div className="lg:w-[75%] w-full h-full bg-white shadow-lg rounded-lg">
         {active === 0 && (
           <CourseInformation
             courseInfo={courseInfo}
@@ -146,7 +146,7 @@ const AddCourses = (props: Props) => {
           />
         )}
       </div>
-      <div className="w-[20%] mt-[100px] h-screen fixed z-[1] top-18 right-0">
+      <div className="w-[20%] hidden lg:block mt-[100px] h-screen fixed z-[1] top-18 right-0">
         <CourseOption active={active} setActive={setActive} />
       </div>
     </div>

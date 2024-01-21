@@ -9,6 +9,7 @@ import { PiStudentBold } from "react-icons/pi";
 import AdminChart from "../components/admin/admin/AdminChart";
 import { useAdminLayoutQuery } from "@/redux/features/layout/layoutApi";
 import Loader from "../components/Loader/Loader";
+import AdminOrder from "../components/admin/admin/AdminOrder";
 
 type Props = {};
 
@@ -43,11 +44,11 @@ const Page = (props: Props) => {
 
   return (
     <AdminLayout>
-      {/* <AdminProtected> */}
+      <AdminProtected>
       <div>
         {isLoading ? (
           <>
-            <Loader/>
+            <Loader />
           </>
         ) : (
           <>
@@ -56,13 +57,16 @@ const Page = (props: Props) => {
                 <AdminCard data={item} key={index} />
               ))}
             </div>
+            <div className=" mt-7">
+              <AdminChart />
+            </div>
+            <div className=" mt-7">
+              <AdminOrder />
+            </div>
           </>
         )}
-        <div className=" mt-7">
-          <AdminChart />
-        </div>
       </div>
-      {/* </AdminProtected> */}
+      </AdminProtected>
     </AdminLayout>
   );
 };

@@ -20,9 +20,9 @@ const AdminChart = (props: Props) => {
 
       <div className=" h-[500px] w-full">
         {isLoading ? (
-          <>
-            {/* <Loader2 /> */}
-          </>
+          <div className="flex items-center justify-center w-full h-full">
+            <Loader2 />
+          </div>
         ) : (
           <>
             <CarStatsChart data={data?.course?.last12Month}/>

@@ -56,7 +56,7 @@ const subMenusList = [
     activeData: "/admin/course",
     menus: [
       {
-        title: "Category & Tags",
+        title: "Category",
         link: "/admin/course/tags",
       },
       {
@@ -79,8 +79,6 @@ const AdminSidber = (props: Props) => {
     return pathname === href;
   };
   const dispatch = useDispatch();
-
-  console.log("user=====", user);
 
   const activeStyle = {
     // your active style

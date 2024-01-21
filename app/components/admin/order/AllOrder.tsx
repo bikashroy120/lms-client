@@ -60,7 +60,7 @@ const AllOrder = (props: Props) => {
 
   return (
     <div className=" mt-5 bg-white shadow-md rounded-lg">
-      <div className="py-5 px-4 flex items-center justify-between gap-7">
+      <div className="py-0 px-4 flex items-center justify-between gap-7">
         {/* <div className=" lg:w-[50%] w-full">
           <input
             type="text"

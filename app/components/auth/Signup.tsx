@@ -7,6 +7,8 @@ import { styles } from "../styles/style";
 import { Icon } from "@iconify/react";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import toast from "react-hot-toast";
+import { addReSent } from "@/redux/features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 type Props = {
   setRoute: (route: string) => void;
@@ -20,7 +22,7 @@ const schema = Yup.object().shape({
 
 const Signup = ({ setRoute }: Props) => {
   const [show, setShow] = useState(false);
-
+  const dispatch = useDispatch()
   const [register,{isError,data,error,isSuccess,isLoading}] = useRegisterMutation()
 
   useEffect(()=>{
@@ -46,6 +48,7 @@ const Signup = ({ setRoute }: Props) => {
       const data = {
         name,email,password
       }
+      dispatch(addReSent(data))
       await register(data)
     },
   });
@@ -118,7 +121,7 @@ const Signup = ({ setRoute }: Props) => {
         </div>
 
         <button type="submit" className=" w-full py-3 text-white rounded-full mt-5 font-Poppins font-semibold text-[17px] bg-[#39c1f3] ">
-          Sign up
+            {isLoading ? "Loading..." : "Sign up"}
         </button>
       </form>
 

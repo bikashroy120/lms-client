@@ -6,6 +6,7 @@ import { Icon } from '@iconify/react';
 import { useSelector } from 'react-redux';
 import { useActivationMutation } from '@/redux/features/auth/authApi';
 import toast from 'react-hot-toast';
+import ResentOtp from './ResentOtp';
 
 type Props = {
   setRoute:(route:string)=>void
@@ -21,11 +22,11 @@ type VerifyNumber = {
 const Verification = ({setRoute}: Props) => {
 
   const [invalidError , setInvalidError] = useState<boolean>(false)
-  const {token,code} = useSelector((state:any)=>state.auth)
+  const {token,code,reSent} = useSelector((state:any)=>state.auth)
   const [activation,{isSuccess,data,error,isLoading}] = useActivationMutation()
 
 
-  console.log(token)
+  console.log(reSent)
 
   useEffect(()=>{
     if(isSuccess){
@@ -85,13 +86,13 @@ const Verification = ({setRoute}: Props) => {
   return (
     <div className=' w-full px-3'>
       <h1 className={`${styles.title}`}>Verify Your Account</h1>
+      <p className=" text-center">OTP : {code}</p>
       <br />
       <div className=' w-full flex items-center justify-center'>
           <div className=' w-[80px] h-[80px] rounded-full bg-[#497df2] flex items-center justify-center'>
-            <Icon icon="uil:comment-verify" className='text-[30px]'/>
+            <Icon icon="uil:comment-verify" className='text-[30px] text-white'/>
           </div>
       </div>
-      <p className=' text-white'>{code}</p>
       <br />
       <br />
       <div className='m-auto flex items-center justify-around'>
@@ -112,6 +113,7 @@ const Verification = ({setRoute}: Props) => {
             ))
           }
       </div>
+      <ResentOtp />
       <button onClick={verificationHandler} className=" w-full py-3 text-white rounded-full mt-5 font-Poppins font-semibold text-[17px] bg-[#39c1f3] ">Verify OTP</button> 
       <div className=" flex items-center justify-center gap-2 py-3">
             <span className={`${styles.label} `}>Go back to sign in </span> <button onClick={()=>setRoute("sign-up")} className=" text-blue-500">Sign up </button> 

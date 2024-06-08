@@ -27,7 +27,7 @@ const Hero = ({home}: Props) => {
   return (
     <div className="hero_background">
       <Container>
-        <div className=" lg:h-[100vh] py-[100px] lg:py-0 h-full flex items-center justify-between w-full">
+        <div className=" md:h-[800px] 2xl:h-[100vh] py-[100px] lg:py-0 h-full flex items-center justify-between w-full">
             <div className="w-full flex items-center flex-col lg:flex-row justify-between gap-10">
                 <div className="lg:w-[60%] w-full">
                     <h3 className=" text-[20px] font-semibold text-lightText">{home?.subTitle}</h3>

@@ -37,6 +37,9 @@ const CourseBook = ({courseData}: Props) => {
       },[isSuccess,error])
 
 
+      console.log(courseData)
+
+
     const handelOrder = async()=>{
         if(!auth){
             toast.error("Please login first")
@@ -57,6 +60,12 @@ const CourseBook = ({courseData}: Props) => {
                 <Icon icon="gravity-ui:play-fill" className=' text-[50px]'/>
             </div>
         </div>
+
+        <div className=' flex mt-4 items-center justify-center gap-3'>
+          <h2 className=' text-[20px] line-through font-semibold'>${courseData?.estimatedPrice}</h2>
+          <h2 className=' text-[35px] font-semibold text-primary'>${courseData?.price}</h2>
+        </div>
+
         <div className=' flex items-center justify-center mt-5'>
             <button onClick={handelOrder} className={`py-2 px-5 font-semibold flex items-center justify-center text-[20px] w-full rounded-full border-[3px] duration-300 border-green-500 bg-green-500 text-white hover:bg-transparent hover:text-green-500  `}>{isLoading? "Loading..." :"Enroll Course "}</button>
         </div>

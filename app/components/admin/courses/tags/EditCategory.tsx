@@ -76,7 +76,7 @@ const EditCategory = ({open,setOpen,refetch,id}: Props) => {
   
 
   return (
-    <CustomDrawer open={open} setOpen={setOpen} title='Add Category'>
+    <CustomDrawer open={open} setOpen={setOpen} title='Update Category'>
       <div className=''>
       <div className=" flex items-start flex-col gap-1 py-3 w-full">
             <label className=" text-black font-semibold text-sm" htmlFor="name">
@@ -139,7 +139,7 @@ const EditCategory = ({open,setOpen,refetch,id}: Props) => {
         </div> 
 
         <div className=' mt-10'>
-            <AdminButton title={isLoading ?" Loading..." : "Add Category"} handelClick={handelSubmit} variant="fill" />
+            <AdminButton title={isLoading ?" Loading..." : "Update Category"} handelClick={handelSubmit} variant="fill" />
         </div>
       </div>
     </CustomDrawer>

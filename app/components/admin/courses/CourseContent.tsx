@@ -136,47 +136,47 @@ const CourseContent = ({
                   } `}
                 >
                   {showSectionInput && (
-                    <>
-                      <div className=" flex w-full items-center">
-                        <input
-                          type="text"
-                          className={` text-[20px] ${
-                            item.videoSection === "Untitled Section"
-                              ? "w-[170px]"
-                              : " w-max"
-                          } font-Poppins cursor-pointer text-black border-none outline-none`}
-                          value={item.videoSection}
-                          onChange={(e) => {
-                            const updateData = [...courseContentData];
-                            updateData[index].videoSection = e.target.value;
-                            setCourseContentData(updateData);
-                          }}
-                        />
-                        <BiSolidPencil className=" cursor-pointer text-dark" />
-                      </div>
-                      <br />
-                    </>
+                    // <>
+                    //   <div className=" flex w-full items-center">
+                    //     <input
+                    //       type="text"
+                    //       className={` text-[20px] ${
+                    //         item.videoSection === "Untitled Section"
+                    //           ? "w-[170px]"
+                    //           : " w-max"
+                    //       } font-Poppins cursor-pointer text-black border-none outline-none`}
+                    //       value={item.videoSection}
+                    //       onChange={(e) => {
+                    //         const updateData = [...courseContentData];
+                    //         updateData[index].videoSection = e.target.value;
+                    //         setCourseContentData(updateData);
+                    //       }}
+                    //     />
+                    //     <BiSolidPencil className=" cursor-pointer text-dark" />
+                    //   </div>
+                    //   <br />
+                    // </>
+                    <></>
                   )}
 
                   <div className=" flex w-full items-center justify-between my-0">
                     {isCollapsed[index] ? (
-                      <>
-                        {item.title ? (
-                          <p className=" font-Poppins text-black">
-                            {" "}
-                            {index + 1} {item.title}
-                          </p>
-                        ) : (
-                          <></>
-                        )}
-                      </>
+                      // <>
+                      //   {item.title ? (
+                      //     <p className=" font-Poppins text-black">
+                      //       {" "}
+                      //       {index + 1} {item.title}
+                      //     </p>
+                      //   ) : (
+                      //     <></>
+                      //   )}
+                      // </>
+                      <></>
                     ) : (
                       <div></div>
                     )}
 
-                    {/* ====arrow button for collasped video ===== */}
-
-                    <div className=" flex items-center">
+                    {/* <div className=" flex items-center">
                       <AiOutlineDelete
                         className={`text-[20px] mr-2 text-black ${
                           index > 0 ? " cursor-pointer " : " cursor-no-drop"
@@ -200,7 +200,7 @@ const CourseContent = ({
                         }}
                         onClick={() => handleCollapseToggle(index)}
                       />
-                    </div>
+                    </div> */}
                   </div>
 
                   {!isCollapsed[index] && (
@@ -250,9 +250,9 @@ const CourseContent = ({
                           <br />
                         </div>
                         {item.links.map((link: any, LinkIndex: number) => (
-                          <div className=" mb-3 block">
+                          <div className=" mb-3 bloc">
                             <div className=" w-full flex items-center justify-between">
-                              <label htmlFor="">Link {LinkIndex + 1}</label>
+                              <label htmlFor="">Resources Link {LinkIndex + 1}</label>
                               <AiOutlineDelete
                                 onClick={() =>
                                   LinkIndex === 0
@@ -298,7 +298,7 @@ const CourseContent = ({
                     </>
                   )}
                   <br />
-                  {index === courseContentData.length - 1 && (
+                  {/* {index === courseContentData.length - 1 && (
                     <div>
                         <p
                           className=" flex items-center text-[18px] text-black cursor-pointer"
@@ -307,15 +307,18 @@ const CourseContent = ({
                           <AiOutlinePlusCircle className= "mr-2"/> Add New Content
                         </p>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </>
             );
           })}
           <br />
-          <div onClick={()=>addNewSection()} className=" flex items-center text-[20px] text-black">
+
+          <button onClick={()=>addNewSection()} className=" flex items-center text-[20px] text-black">
             <AiOutlinePlusCircle className= "mr-2"/> Add New Section
-          </div>
+          </button>
+          <br />
+          <br />
 
           <div className=" flex items-center justify-between">
             <button type="button" onClick={()=>preButton()}  className="w-[200px] py-2 bg-primary rounded-md text-white font-semibold text-xl">Prev</button>

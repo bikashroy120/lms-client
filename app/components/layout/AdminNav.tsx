@@ -7,7 +7,10 @@ import { useGetAllQuery } from "@/redux/features/notficition/notificationApi";
 import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
 import { format } from "timeago.js";
-import { useLogoutQuery, useUpdateMutation } from "@/redux/features/auth/authApi";
+import {
+  useLogoutQuery,
+  useUpdateMutation,
+} from "@/redux/features/auth/authApi";
 import toast from "react-hot-toast";
 import { FaBars } from "react-icons/fa6";
 import { useMediaQuery } from "@react-hook/media-query";
@@ -30,29 +33,27 @@ const AdminNav = (props: Props) => {
     setLogout(true);
     redirect("/");
   };
-  const {mobile} = useSelector((state:any)=>state.auth)
-  const dispatch = useDispatch()
+  const { mobile } = useSelector((state: any) => state.auth);
+  const dispatch = useDispatch();
   const router = useRouter();
   const [update, { isError, isSuccess, isLoading, data, error }] =
     useUpdateMutation();
-    const isSmallScreen = useMediaQuery('(max-width: 767px)');
+  const isSmallScreen = useMediaQuery("(max-width: 767px)");
 
-
-    useEffect(()=>{
-      dispatch(addMobile(false))
-    },[isSmallScreen])
-  
+  useEffect(() => {
+    dispatch(addMobile(false));
+  }, [isSmallScreen]);
 
   useEffect(() => {
     if (isSuccess) {
-      const message = data?.message || "login success";
-      toast.success(message);
+      // const message = data?.message || "login success";
+      // toast.success(message);
       refetch();
     }
     if (error) {
       if ("data" in error) {
-        const errorData = error as any;
-        toast.error(errorData.data.message);
+        // const errorData = error as any;
+        // toast.error(errorData.data.message);
       } else {
         console.log(error);
       }
@@ -65,9 +66,9 @@ const AdminNav = (props: Props) => {
     router.push(item?.path);
   };
 
-  const mobileSidbar = ()=>{
-    dispatch(addMobile(mobile ? false :true))
-  }
+  const mobileSidbar = () => {
+    dispatch(addMobile(mobile ? false : true));
+  };
 
   const content = (
     <div className=" ">
@@ -76,10 +77,10 @@ const AdminNav = (props: Props) => {
           <h2 className="text-[22px] font-medium text-text-primary">
             Notifications
           </h2>
-            <Icon
-              icon="radix-icons:envelope-open"
-              className="text-[23px] text-secondary cursor-pointer"
-            />
+          <Icon
+            icon="radix-icons:envelope-open"
+            className="text-[23px] text-secondary cursor-pointer"
+          />
         </div>
         <div>
           <div className=" flex flex-col gap-3 max-h-[400px] overflow-y-scroll">
@@ -87,7 +88,7 @@ const AdminNav = (props: Props) => {
               <div
                 key={index}
                 onClick={() => updateNotification(item)}
-                className=" bg-gray-300 p-2 rounded-lg cursor-pointer"
+                className=" bg-gray-200 p-2 rounded-lg cursor-pointer"
               >
                 <div className=" flex items-start gap-3">
                   <div className="w-[50px] h-[50px] overflow-hidden rounded-full">
@@ -122,11 +123,22 @@ const AdminNav = (props: Props) => {
     </div>
   );
 
+  const content2 = (
+    <div>
+      <button onClick={()=>logOutFunction()} className="py-2 px-8 text-[17px] font-medium hover:bg-gray-200 rounded-md">Logout</button>
+    </div>
+  )
+
   return (
     <div className="w-full h-[80px] bg-white shadow-lg">
       <div className="flex items-center justify-between md:px-10 px-3 h-full">
         <div>
-          <button onClick={()=>mobileSidbar()} className=" text-[20px] md:hidden block"><FaBars /></button>
+          <button
+            onClick={() => mobileSidbar()}
+            className=" text-[20px] md:hidden block"
+          >
+            <FaBars />
+          </button>
         </div>
         <div className="flex items-center gap-3">
           <div>
@@ -140,15 +152,29 @@ const AdminNav = (props: Props) => {
                 >
                   <Icon
                     icon="basil:notification-solid"
-                    className=" text-light-black text-[25px]"
+                    className=" text-light-black text-[30px]"
                   />
                 </Badge>
               </button>
             </Popover>
           </div>
-          <button onClick={()=>logOutFunction()} className=" bg-primary text-white w-[100px] py-2 rounded-lg">
+          {/* <button onClick={()=>logOutFunction()} className=" bg-primary text-white w-[100px] py-2 rounded-lg">
             Log Out
-          </button>
+          </button> */}
+
+          <div>
+          <Popover content={content2} placement="bottomRight" trigger="click">
+            {user?.avater && (
+              <Image
+                src={user?.avater ? user?.avater : "/user.png"}
+                width={30}
+                height={30}
+                alt="user"
+                className=" rounded-full min-w-max cursor-pointer"
+              />
+            )}
+            </Popover>
+          </div>
         </div>
       </div>
     </div>

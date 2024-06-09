@@ -40,7 +40,7 @@ const Login = ({ setOpen,setRoute }: Props) => {
   },[isSuccess,error])
 
   const formik = useFormik({
-    initialValues: { email: "", password: "" },
+    initialValues: { email: "admin@gmail.com", password: "123456" },
     validationSchema: schema,
     onSubmit: async ({ email, password }) => {
       await login({email,password})

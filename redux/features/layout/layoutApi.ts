@@ -7,35 +7,30 @@ export const layoutApi = apiSlice.injectEndpoints({
                 url:"layout/update",
                 method:"PUT",
                 body:data,
-                credentials:"include" as const,
             })
         }),
         getLayout:builder.query({
             query:(query:any)=>({
                 url:`layout/get-data?${query}`,
                 method:"GET",
-                credentials:"include" as const,
             })
         }),
         adminLayout:builder.query({
             query:(query:any)=>({
                 url:`/admin-analutics?${query}`,
                 method:"GET",
-                credentials:"include" as const,
             })
         }),
         adminOrder:builder.query({
             query:(query:any)=>({
                 url:`/order-analutics?${query}`,
                 method:"GET",
-                credentials:"include" as const,
             })
         }),
         deleteLayout: builder.mutation({
             query: (id) => ({
               url: `layout/delete-order/${id}`,
               method: "DELETE",
-              credentials: "include" as const,
             }),
           }),
     })

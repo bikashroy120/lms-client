@@ -7,21 +7,18 @@ export const courseApi = apiSlice.injectEndpoints({
         url: "course/create-course",
         method: "POST",
         body: data,
-        credentials: "include" as const,
       }),
     }),
     getAllCourse: builder.query({
       query: (query: any) => ({
         url: `course/all-course?${query}`,
         method: "GET",
-        credentials: "include" as const,
       }),
     }),
     getSingleCourse: builder.query({
       query: (query: any) => ({
         url: `course/${query}`,
         method: "GET",
-        credentials: "include" as const,
       }),
     }),
     editCourse: builder.mutation({
@@ -29,14 +26,12 @@ export const courseApi = apiSlice.injectEndpoints({
         url: `course/update-course/${id}`,
         method: "PUT",
         body: data,
-        credentials: "include" as const,
       }),
     }),
     deleteCourse: builder.mutation({
       query: (id) => ({
         url: `course/delete-course/${id}`,
         method: "DELETE",
-        credentials: "include" as const,
       }),
     }),
     addQuestion: builder.mutation({
@@ -44,7 +39,6 @@ export const courseApi = apiSlice.injectEndpoints({
         url: `course/question-add`,
         method: "PUT",
         body: data,
-        credentials: "include" as const,
       }),
     }),
     addAnswer: builder.mutation({
@@ -52,7 +46,6 @@ export const courseApi = apiSlice.injectEndpoints({
         url: `course/question-answer`,
         method: "PUT",
         body: data,
-        credentials: "include" as const,
       }),
     }),
     addReview: builder.mutation({
@@ -60,7 +53,6 @@ export const courseApi = apiSlice.injectEndpoints({
         url: `course/add-review`,
         method: "PUT",
         body: data,
-        credentials: "include" as const,
       }),
     }),
     answerReview: builder.mutation({
@@ -68,7 +60,6 @@ export const courseApi = apiSlice.injectEndpoints({
         url: `course/review-replay`,
         method: "PUT",
         body: data,
-        credentials: "include" as const,
       }),
     }),
   }),

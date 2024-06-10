@@ -7,14 +7,12 @@ export const notificationApi = apiSlice.injectEndpoints({
                 url:`/notifaction/${id}`,
                 method:"PUT",
                 body:{},
-                credentials:"include" as const,
             })
         }),
         getAll:builder.query({
             query:(query:any)=>({
                 url:`/notifaction`,
                 method:"GET",
-                credentials:"include" as const,
             })
         }),
     })

@@ -19,7 +19,6 @@ export const authApi = apiSlice.injectEndpoints({
         url: "regester",
         method: "POST",
         body: data,
-        credentials: "include" as const,
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
@@ -53,7 +52,6 @@ export const authApi = apiSlice.injectEndpoints({
           email,
           password,
         },
-        credentials: "include" as const,
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
@@ -77,7 +75,6 @@ export const authApi = apiSlice.injectEndpoints({
       query: (data) => ({
         url: "logout",
         method: "GET",
-        credentials: "include" as const,
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
@@ -106,14 +103,12 @@ export const authApi = apiSlice.injectEndpoints({
       query: (query: any) => ({
         url: `users?${query}`,
         method: "GET",
-        credentials: "include" as const,
       }),
     }),
     deleteUser: builder.mutation({
       query: (id) => ({
         url: `delete-user/${id}`,
         method: "DELETE",
-        credentials: "include" as const,
       }),
     }),
     password: builder.mutation({
@@ -121,7 +116,6 @@ export const authApi = apiSlice.injectEndpoints({
         url: `/update-password`,
         method: "POST",
         body:data,
-        credentials: "include" as const,
       }),
     }),
   }),

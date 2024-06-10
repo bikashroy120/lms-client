@@ -19,7 +19,6 @@ export default function Home() {
 
   const { isLoading, data } = useGetLayoutQuery("type=Home");
 
-  console.log(data?.data?.home)
 
   return (
     <>

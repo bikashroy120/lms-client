@@ -23,6 +23,7 @@ const nextConfig = {
           "picsum.photos",
           "api.lorem.space",
           "ibb.co",
+          "i.ibb.co.com"
         ],
       },
 }

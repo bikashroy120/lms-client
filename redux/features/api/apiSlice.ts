@@ -4,7 +4,7 @@ import { userLoggedIn } from "../auth/authSlice";
 export const apiSlice = createApi({
     reducerPath:"api",
     baseQuery:fetchBaseQuery({
-        baseUrl:"https://lms-server-test.onrender.com/api/v1/",
+        baseUrl:"https://lms-server-last.vercel.app/api/v1/",
         prepareHeaders: (headers) => {
             // Get the token from localStorage
             const tokenString = localStorage.getItem("token");

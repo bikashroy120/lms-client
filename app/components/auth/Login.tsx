@@ -23,6 +23,8 @@ const Login = ({ setOpen,setRoute }: Props) => {
 
   const [login,{isError,isSuccess,isLoading,data,error}] = useLoginMutation()
 
+  console.log(error)
+
   useEffect(()=>{
     if(isSuccess){
       const message = data?.message || "login success"

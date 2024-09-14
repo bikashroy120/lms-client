@@ -20,10 +20,10 @@ export const navsItemData = [
         name: "About Us",
         url: "/about"
     },
-    {
-        name: "Policy",
-        url: "/policy"
-    },
+    // {
+    //     name: "Policy",
+    //     url: "/policy"
+    // },
     {
         name: "Contact Us",
         url: "/contact"

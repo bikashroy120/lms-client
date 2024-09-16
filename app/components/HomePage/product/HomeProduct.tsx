@@ -19,7 +19,7 @@ const HomeProduct = (props: Props) => {
     isError,
     isLoading,
     refetch
-  } = useGetAllCourseQuery("",{refetchOnMountOrArgChange:true});
+  } = useGetAllCourseQuery("limit=6",{refetchOnMountOrArgChange:true});
 
 
   return (

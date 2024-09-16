@@ -89,7 +89,7 @@ const AdminSidber = (props: Props) => {
   };
 
   return (
-    <div className=" w-[16rem] max-w-[16rem] bg-white text-gray border-r border-r-gray-300 h-screen relative">
+    <div className=" w-[16rem] max-w-[16rem] bg-white text-gray border-r border-r-gray-300 h-screen overflow-y-auto pb-4 relative">
       <div className=" p-5 flex items-center justify-between">
         <Link
           href={"/"}

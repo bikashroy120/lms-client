@@ -91,7 +91,7 @@ const Answer = ({ data, courseId,refetch }: Props) => {
 
       <div className=" border-t border-t-gray-300 mt-5 pt-5">
         <div className=" flex items-start flex-col gap-5">
-          {data?.question?.reverse()?.map((item: any, index: number) => (
+          {data?.question?.map((item: any, index: number) => (
             <div key={index} className=" w-full flex items-start gap-3">
               <div className=" w-[50px] flex bg-gray-300 items-center justify-center h-[50px] rounded-full overflow-hidden">
                 {item?.user?.avater ? (

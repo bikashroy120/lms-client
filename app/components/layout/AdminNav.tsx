@@ -3,7 +3,7 @@
 import { Badge, Popover, Tooltip } from "antd";
 import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
-import { useGetAllQuery } from "@/redux/features/notficition/notificationApi";
+import { useGetAllQuery, useUpdateNotMutation } from "@/redux/features/notficition/notificationApi";
 import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
 import { format } from "timeago.js";
@@ -36,9 +36,11 @@ const AdminNav = (props: Props) => {
   const { mobile } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
-  const [update, { isError, isSuccess, isLoading, data, error }] =
-    useUpdateMutation();
+  const [updateNot, { isError, isSuccess, isLoading, data, error }] =
+  useUpdateNotMutation();
   const isSmallScreen = useMediaQuery("(max-width: 767px)");
+
+  console.log("error",error)
 
   useEffect(() => {
     dispatch(addMobile(false));
@@ -62,8 +64,8 @@ const AdminNav = (props: Props) => {
 
   const updateNotification = async (item: any) => {
     const id = item._id;
-    await update(id);
-    router.push(item?.path);
+    await updateNot(id);
+    // router.push(item?.path);
   };
 
   const mobileSidbar = () => {
@@ -93,7 +95,7 @@ const AdminNav = (props: Props) => {
                 <div className=" flex items-start gap-3">
                   <div className="w-[50px] h-[50px] overflow-hidden rounded-full">
                     <Image
-                      src={item?.user?.avater}
+                      src={item?.user?.avater ? item?.user?.avater : "/user.png"}
                       width={60}
                       height={60}
                       alt="user"
